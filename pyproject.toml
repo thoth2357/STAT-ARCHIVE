@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "stat-archive"
+version = "0.1.0"
+description = ""
+authors = ["Thoth <thoth2357@gmail.com>"]
+readme = "README.md"
+packages = [{include = "stat_archive"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "^4.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
