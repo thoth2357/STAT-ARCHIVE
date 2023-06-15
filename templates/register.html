@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Register {% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+{% endblock styles %}
+
+{% block content %} 
+<div class="container-fluid">
+    <div class="container">
+        <div class="limiter">
+            <div class="container-login">
+                <div class="wrap-login">
+                    <form class="login-form validate-form" method="post">
+                        {% csrf_token %}
+                        <!-- Add the following code to display form errors -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <span class="login-form-logo">
+                            <a href={% url 'login' %}>
+                                <img src="{% static 'assets/img/futa-logo.jpeg' %}" alt="" width="120px">
+                            </a>
+                        </span>
+
+                        <span class="login-form-title p-b-30 p-t-6">
+                            FUTA STAT-ARCHIVE <br> Registration
+                        </span>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter full name">
+                            {{ form.fullname }}
+                            <span class="focus-input100"></span>
+                        </div>
+
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+                            {{ form.username }}
+                            <span class="focus-input100"></span>
+                            <p class="error-message" id="username-error"></p> <!-- Placeholder for displaying the error message -->
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter email">
+                            {{ form.email }}
+                            <span class="focus-input100"></span>
+                            <p class="error-message" id="email-error"></p> <!-- Placeholder for displaying the error message -->
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            {{ form.password }}
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Confirm password">
+                            {{ form.confirm_password }}
+                            <span class="focus-input100"></span>
+                            <p class="error-message" id="password-error"></p>
+                        </div>
+                        <div class="container-login-form-btn">
+                            <button class="login-form-btn" id="register-btn">
+                                Register
+                            </button>
+                        </div>
+        
+                        <div class="text-center p-t-10">
+                            <p>
+                                Already have an account? <br>
+                                <a href="{% url 'login' %}"><i class="fas fa-mouse-pointer"></i> Click here to log in</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}
+
+{% block scripts %}
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Custom JavaScript for form validation -->
+<script>
+    $(document).ready(function() {
+        // Regular expression for username validation
+        var usernamePattern = /^sta\/\d{2}\/\d{4}$/;
+        
+        // Function to validate username on keyup event
+        function validateUsername() {
+            var username = $('input[name="username"]').val();
+            if (username.length >= 11) {
+                if (usernamePattern.test(username)) {
+                    $('#username-error').empty();
+                } else {
+                    $('#username-error').text('Not a Valid Statistics Matric Number');
+                }
+            } else {
+                $('#username-error').empty();
+            }
+        }
+        
+        // Perform username validation on keyup event
+        $('input[name="username"]').keyup(function() {
+            validateUsername();
+        });
+        
+        // Function to validate email format
+        function validateEmail() {
+            var email = $('input[name="email"]').val();
+            if (email.length > 0) {
+                var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                if (!emailPattern.test(email)) {
+                    $('#email-error').text('Invalid email format');
+                } else {
+                    $('#email-error').empty();
+                }
+            } else {
+                $('#email-error').empty();
+            }
+        }
+        
+        // Perform email validation on keyup event
+        $('input[name="email"]').keyup(function() {
+            validateEmail();
+        });
+        
+        // AJAX form submission
+        $('#register-btn').click(function(e) {
+            e.preventDefault();
+            
+            // Clear previous error messages
+            $('.error-message').empty();
+            
+            // Get form data
+            var firstName = $('input[name="first_name"]').val();
+            var lastName = $('input[name="last_name"]').val();
+            var username = $('input[name="username"]').val();
+            var email = $('input[name="email"]').val();
+            var password = $('input[name="password"]').val();
+            
+            // Validate username format
+            if (username.length >= 11 && !usernamePattern.test(username)) {
+                $('#username-error').text('Invalid Matric Number');
+                return;
+            }
+            
+            // Validate email format
+            var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+            if (email.length > 0 && !emailPattern.test(email)) {
+                $('#email-error').text('Invalid email format');
+                return;
+            }
+
+            //validate password is same as confirm password
+            var password = $('input[name="password"]').val();
+            var confirm_password = $('input[name="confirm_password"]').val();
+            if (password != confirm_password){
+                $('#password-error').text('Password does not match');
+                return;
+            }
+
+            // Send AJAX request
+            $.ajax({
+                url: '{% url "register" %}',
+                type: 'POST',
+                data: {
+                    'first_name': firstName,
+                    'last_name': lastName,
+                    'username': username,
+                    'email': email,
+                    'password': password,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // Handle success response
+                    window.location.href = '{% url "login" %}';  //#TODO change this to the appropriate URL after successful registration
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    if (xhr.status === 400) {
+                        var errorData = xhr.responseJSON;
+                        $('#username-error').text(errorData.username);
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock scripts %}
