@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
@@ -23,7 +23,7 @@ class LoginView(View):
 
 class RegisterView(View):
     def get(self, request):
-        form = UserCreationForm()
+        form = RegisterForm()
         return render(request, 'register.html', {'form': form})
 
     def post(self, request):
