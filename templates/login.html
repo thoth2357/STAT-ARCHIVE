@@ -30,7 +30,7 @@
                             </a>
                         </span>
 
-                        <span class="login-form-title p-b-34 p-t-27">
+                        <span class="login-form-title p-b-34 p-t-6">
                             FUTA STAT-ARCHIVE <br> Log In
                         </span>
         
@@ -50,8 +50,15 @@
                                 Login
                             </button>
                         </div>
-        
-                        <div class="text-center p-t-50">
+                        
+                        <br/>
+                        <div class="text-center">
+                            <p>
+                                <a style="color: white; font-size: 17px; onMouseOver="this.style.color='#fff'"" href="{% url 'login' %}"><i class="fas fa-mouse-pointer"></i> Forgot Password?</a> 
+                                {% comment %} #TODO change this to the forgot password URL {% endcomment %}
+                            </p>
+                        </div>
+                        <div class="text-center p-t-30">
                             <p>
                                 Statistics Student visiting for the first time? <br>
                                 <a href="{% url 'register' %}"><i class="fas fa-mouse-pointer"></i> click me to sign up</a>
@@ -82,7 +89,7 @@
                 if (usernamePattern.test(username)) {
                     $('#username-error').empty();
                 } else {
-                    $('#username-error').text('Matric Number Not a Statistics Student');
+                    $('#username-error').text('Not a Valid Statistics Matric Number');
                 }
             } else {
                 $('#username-error').empty();
