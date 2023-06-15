@@ -34,9 +34,10 @@
                             FUTA STAT-ARCHIVE <br> Log In
                         </span>
         
-                        <div class="wrap-input100 validate-input" data-validate = "Enter username">
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
                             {{ form.username }}
                             <span class="focus-input100"></span>
+                            <p class="error-message" id="username-error"></p> <!-- Placeholder for displaying the error message -->
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -45,7 +46,7 @@
                         </div>
                     
                         <div class="container-login-form-btn">
-                            <button class="login-form-btn">
+                            <button class="login-form-btn" id="login-btn">
                                 Login
                             </button>
                         </div>
@@ -62,4 +63,72 @@
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock content%}
+
+{% block scripts %}
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Custom JavaScript for form validation -->
+<script>
+    $(document).ready(function() {
+        // Regular expression for username validation
+        var usernamePattern = /^sta\/\d{2}\/\d{4}$/;
+        
+        // Function to validate username on keyup event
+        function validateUsername() {
+            var username = $('input[name="username"]').val();
+            if (usernamePattern.test(username)) {
+                $('#username-error').empty();
+            } else {
+                $('#username-error').text('Enter Your Username in the format of sta/17/5129');
+            }
+        }
+        
+        // Perform username validation on keyup event
+        $('input[name="username"]').keyup(function() {
+            validateUsername();
+        });
+        
+        // AJAX form submission
+        $('#login-btn').click(function(e) {
+            e.preventDefault();
+            
+            // Clear previous error messages
+            $('.error-message').empty();
+            
+            // Get form data
+            var username = $('input[name="username"]').val();
+            var password = $('input[name="password"]').val();
+            
+            // Validate username format
+            if (!usernamePattern.test(username)) {
+                $('#username-error').text('Enter Your Username in the format of sta/17/5129');
+                return;
+            }
+            
+            // Send AJAX request
+            $.ajax({
+                url: '{% url "login" %}',
+                type: 'POST',
+                data: {
+                    'username': username,
+                    'password': password,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    // Handle success response
+                    window.location.href = '{% url "login" %}';
+                },
+                error: function(xhr) {
+                    // Handle error response
+                    if (xhr.status === 400) {
+                        var errorData = xhr.responseJSON;
+                        $('#username-error').text(errorData.error);
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock scripts %}

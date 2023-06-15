@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.views import View
+from django.http import JsonResponse
 from .forms import LoginForm
 class LoginView(View):
     def get(self, request):
@@ -11,17 +12,14 @@ class LoginView(View):
         return render(request, 'login.html', {'form': form})
 
     def post(self, request):
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Replace 'home' with your desired URL
-            else:
-                form.add_error(None, 'Invalid username or password')
-        return render(request, 'login.html', {'form': form})
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True})  # Return success response
+        else:
+            return JsonResponse({'error': 'Invalid username or password'}, status=400)  # Return error response
 
 class RegisterView(View):
     def get(self, request):
