@@ -3,6 +3,7 @@
 {% block title %} Login {% endblock title %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 {% endblock styles %}
 
 {% block content %} 
@@ -58,7 +59,7 @@
                                 {% comment %} #TODO change this to the forgot password URL {% endcomment %}
                             </p>
                         </div>
-                        <div class="text-center p-t-30">
+                        <div class="text-center p-t-28">
                             <p>
                                 Statistics Student visiting for the first time? <br>
                                 <a href="{% url 'register' %}"><i class="fas fa-mouse-pointer"></i> click me to sign up</a>
@@ -75,6 +76,9 @@
 {% block scripts %}
 <!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include SweetAlert2 library -->	
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
 <!-- Custom JavaScript for form validation -->
 <script>
@@ -123,7 +127,7 @@
                 url: '{% url "login" %}',
                 type: 'POST',
                 data: {
-                    'username': username,
+                    'username': username.replace(/\//g, ''),
                     'password': password,
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
@@ -135,7 +139,12 @@
                     // Handle error response
                     if (xhr.status === 400) {
                         var errorData = xhr.responseJSON;
-                        $('#username-error').text(errorData.error);
+                        // Display error message in SweetAlert popup
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: errorData.error,
+                        });
                     }
                 }
             });
