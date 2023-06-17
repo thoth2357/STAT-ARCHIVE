@@ -27,9 +27,9 @@ class RegisterView(View):
         return render(request, 'register.html', {'form': form})
 
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Replace 'login' with your desired URL
+            return JsonResponse({'success': 'Registration Successful, Check Email to Verify'}, status=200)  # Return error response
         else:
-            return render(request, 'register.html', {'form': form})
+            return JsonResponse({'error': 'Error In Registration'}, status=400)  # Return error response
