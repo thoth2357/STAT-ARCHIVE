@@ -3,6 +3,7 @@
 {% block title %} Register {% endblock title %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
 {% endblock styles %}
 
 {% block content %} 
@@ -53,12 +54,12 @@
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
-                            {{ form.password }}
+                            {{ form.password1 }}
                             <span class="focus-input100"></span>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Confirm password">
-                            {{ form.confirm_password }}
+                            {{ form.password2 }}
                             <span class="focus-input100"></span>
                             <p class="error-message" id="password-error"></p>
                         </div>
@@ -85,6 +86,9 @@
 {% block scripts %}
 <!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include SweetAlert2 library -->	
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
 <!-- Custom JavaScript for form validation -->
 <script>
@@ -139,11 +143,10 @@
             $('.error-message').empty();
             
             // Get form data
-            var firstName = $('input[name="first_name"]').val();
-            var lastName = $('input[name="last_name"]').val();
+            var fullname = $('input[name="fullname"]').val();
             var username = $('input[name="username"]').val();
             var email = $('input[name="email"]').val();
-            var password = $('input[name="password"]').val();
+            var password = $('input[name="password1"]').val();
             
             // Validate username format
             if (username.length >= 11 && !usernamePattern.test(username)) {
@@ -159,8 +162,8 @@
             }
 
             //validate password is same as confirm password
-            var password = $('input[name="password"]').val();
-            var confirm_password = $('input[name="confirm_password"]').val();
+            var password = $('input[name="password1"]').val();
+            var confirm_password = $('input[name="password2"]').val();
             if (password != confirm_password){
                 $('#password-error').text('Password does not match');
                 return;
@@ -171,22 +174,37 @@
                 url: '{% url "register" %}',
                 type: 'POST',
                 data: {
-                    'first_name': firstName,
-                    'last_name': lastName,
-                    'username': username,
+                    'fullname': fullname,
+                    'username': username.replace(/\//g, ''),
                     'email': email,
-                    'password': password,
+                    'password1': password,
+                    'password2': confirm_password,
                     'csrfmiddlewaretoken': '{{ csrf_token }}'
                 },
                 success: function(response) {
+                    var successMessage = response.success;
+                    // Display success message in SweetAlert popup
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: successMessage,
+                    });
+
                     // Handle success response
-                    window.location.href = '{% url "login" %}';  //#TODO change this to the appropriate URL after successful registration
+                    //  window.location.href = '{% url "login" %}';  //#TODO change this to the appropriate URL after successful registration
                 },
                 error: function(xhr) {
                     // Handle error response
                     if (xhr.status === 400) {
                         var errorData = xhr.responseJSON;
-                        $('#username-error').text(errorData.username);
+                        var errorMessage = errorData.error;
+                    
+                        // Display error message in SweetAlert popup
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: errorMessage,
+                        });
                     }
                 }
             });
