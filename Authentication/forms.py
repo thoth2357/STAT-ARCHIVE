@@ -1,33 +1,20 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from django.contrib.auth.models import User
 import re
-
-class MatricField(forms.CharField):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.regex = r'^sta/\d{2}/\d{4}$'
-        self.error_messages['invalid'] = 'Enter a valid username in the format of sta/**/****'
-
-    def to_python(self, value):
-        value = super().to_python(value)
-        if value:
-            if not re.match(self.regex, value):
-                raise forms.ValidationError(self.error_messages['invalid'])
-        return value
 
 
 class LoginForm(forms.Form):
-    username = MatricField(max_length=150, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Matric Number'}))
+    username = forms.CharField(max_length=150, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Matric Number'}))
     password = forms.CharField(max_length=8, required=True,widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Password'}))
 
-class RegisterForm(forms.ModelForm):
+class RegisterForm(UserCreationForm):
     email = forms.EmailField(max_length=100, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Email'}))
-    username = MatricField(max_length=150, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Matric Number'}))
+    username = forms.CharField(max_length=150, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Matric Number'}))
     fullname = forms.CharField(max_length=150, required=True,widget=forms.TextInput(attrs={'class': 'input100', 'placeholder': 'Full Name'}))
-    password = forms.CharField(max_length=100, required=True,widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Password'}))
-    confirm_password = forms.CharField(max_length=100, required=True,widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirm Password'}))
+    password1 = forms.CharField(max_length=100, required=True,widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Password'}))
+    password2 = forms.CharField(max_length=100, required=True,widget=forms.PasswordInput(attrs={'class': 'input100', 'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = User
-        fields = ['fullname', 'username', 'email', 'password']
+        fields = ['fullname', 'username', 'email', 'password1']
