@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Email Verification {% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+{% endblock styles %}
+{% block content %}
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Email Verified!',
+            text: 'Your email has been successfully verified.',
+            confirmButtonText: 'OK'
+        }).then(function() {
+            // Redirect to the desired page after the SweetAlert is closed
+            window.location.href = '/';  // Replace '/home' with your desired URL
+        });
+    </script>
+{% endblock %}
