@@ -130,3 +130,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# settings.py
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://localhost:6379'  # Replace with your broker URL
+CELERY_RESULT_BACKEND = 'django-db'  # Store task results in the Django database
+
+# Configure celery to use Django's settings module
+CELERY_APP = 'statArchive'
+
+
+AUTH_USER_MODEL = 'Authentication.User'
