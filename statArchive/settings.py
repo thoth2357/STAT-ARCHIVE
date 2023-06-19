@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     
     "Authentication.apps.AuthenticationConfig", # new   
+    "Dashboard.apps.DashboardConfig",   # new
+    
     "widget_tweaks", # new
 ]
 
