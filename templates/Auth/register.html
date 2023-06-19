@@ -33,17 +33,14 @@
                         <div class="wrap-input100 validate-input" data-validate="Enter username">
                             {{ form.username }}
                             <span class="focus-input100"></span>
-                            {% if form.username.errors %}
-                                <p class="error-message">{{ form.username.errors }}</p>
-                            {% endif %}
+                            <p class="error-message" id="username-error"></p>
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter email">
                             {{ form.email }}
                             <span class="focus-input100"></span>
-                            {% if form.email.errors %}
-                                <p class="error-message">{{ form.email.errors }}</p>
-                            {% endif %}
+                            <p class="error-message" id="email-error"></p>
+                            
                         </div>
 
                         <div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -54,9 +51,8 @@
                         <div class="wrap-input100 validate-input" data-validate="Confirm password">
                             {{ form.password2 }}
                             <span class="focus-input100"></span>
-                            {% if form.password2.errors %}
-                                <p class="error-message">{{ form.password2.errors }}</p>
-                            {% endif %}
+                            <p class="error-message" id="password-error"></p>
+
                         </div>
 
                         <div class="container-login-form-btn">
@@ -95,7 +91,7 @@
         // Function to validate username on keyup event
         function validateUsername() {
             var username = $('input[name="username"]').val();
-            if (username.length >= 11) {
+            if (username.length >= 10) {
                 if (usernamePattern.test(username)) {
                     $('#username-error').empty();
                 } else {
