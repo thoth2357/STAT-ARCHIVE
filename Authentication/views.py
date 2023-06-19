@@ -1,6 +1,6 @@
 
 # Create your views here.
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
@@ -21,14 +21,18 @@ class LoginView(View):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            if user.is_active == False:
-                return JsonResponse({'error': 'Email is not verified'}, status=400)
+            if user.is_email_verified == False:
+                return JsonResponse({'error': 'Email is not verified.Please Verify Email'}, status=400)
             else:
                 login(request, user)
                 return JsonResponse({'success': True})  # Return success response
         else:
             return JsonResponse({'error': 'Invalid username or password'}, status=400)  # Return error response
             
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('login')
 
 class RegisterView(View):
     def get(self, request):
@@ -48,7 +52,6 @@ class RegisterView(View):
                 return JsonResponse({'error': 'Email already exists'}, status=400)
             
             user = form.save(commit=False)
-            user.is_active = False  # Set the user as inactive until email verification
             user.save()
 
             # Generate verification token
@@ -70,7 +73,7 @@ class VerifyEmailView(View):
         try:
             user,token_generator =  decode_token(uidb64)
             if token_generator.check_token(user, token):
-                user.is_active = True
+                user.is_email_verified = True
                 user.save()
                 return render(request, 'Auth/verification_sucess.html')
             else:
