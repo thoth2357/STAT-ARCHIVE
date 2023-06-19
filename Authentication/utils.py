@@ -1,8 +1,10 @@
-from django.contrib.auth.tokens import PasswordResetTokenGenerator 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator, default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
 from .models import User
 
 
@@ -27,3 +29,8 @@ def decode_token(uidb64):
     except User.DoesNotExist:
         return None, None
     
+def generate_password_reset_token(request, user):
+    token = default_token_generator.make_token(user)
+    expiration = timezone.now() + timedelta(minutes=10)
+    link = request.build_absolute_uri(reverse('reset_password')) + f'?token={token}'
+    return token,expiration,link
