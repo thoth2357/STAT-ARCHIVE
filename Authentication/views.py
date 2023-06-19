@@ -14,7 +14,7 @@ from .models import User
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'Auth/login.html', {'form': form})
 
     def post(self, request):
         username = request.POST['username']
@@ -33,7 +33,7 @@ class LoginView(View):
 class RegisterView(View):
     def get(self, request):
         form = RegisterForm()
-        return render(request, 'register.html', {'form': form})
+        return render(request, 'Auth/register.html', {'form': form})
 
     def post(self, request):
         form = RegisterForm(request.POST)
@@ -72,16 +72,16 @@ class VerifyEmailView(View):
             if token_generator.check_token(user, token):
                 user.is_active = True
                 user.save()
-                return render(request, 'verification_sucess.html')
+                return render(request, 'Auth/verification_sucess.html')
             else:
-                return render(request, 'verification_error.html')  
+                return render(request, 'Auth/verification_error.html')  
         except (TypeError, ValueError, OverflowError, Exception):
-            return render(request, 'verification_error.html')  
+            return render(request, 'Auth/verification_error.html')  
         
     
 class ForgotPasswordView(View):
     def get(self, request):
-        return render(request, 'forgot_password.html')
+        return render(request, 'Auth/forgot_password.html')
 
     def post(self, request):
         email = request.POST.get('email')
@@ -115,10 +115,10 @@ class ResetPasswordView(View):
             # Check if the token is still valid (within the expiration time)
             if user.reset_token_expiration and user.reset_token_expiration > timezone.now():
                 # Render the password reset form
-                return render(request, 'reset_password.html')
+                return render(request, 'Auth/reset_password.html')
         
         # Invalid token or expired, redirect to an error page or display an error message
-        return render(request, 'password_reset_error.html') 
+        return render(request, 'Auth/password_reset_error.html') 
 
     def post(self, request):
         token = request.GET.get('token')
@@ -137,4 +137,4 @@ class ResetPasswordView(View):
                 return JsonResponse({'success': 'Password reset successful.'}, status=200)
 
         # Invalid token or expired, redirect to an error page or display an error message
-        return render(request, 'password_reset_error.html') #TODO Create a password reset error page
+        return render(request, 'Auth/password_reset_error.html') #TODO Create a password reset error page
