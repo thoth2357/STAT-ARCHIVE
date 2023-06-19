@@ -6,7 +6,7 @@ from celery.exceptions import MaxRetriesExceededError
 from time import sleep
 
 @shared_task(bind=True, max_retries=3)
-def send_verification_email(self, email,subject,message):
+def send_email(self, email,subject,message):
     try:
         # Code to send the verification email
         # Use Django's send_mail() function or any email sending library of your choice
