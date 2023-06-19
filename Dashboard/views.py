@@ -4,7 +4,10 @@ from django.views import View
 
 class Bibliotheca(View):
     def get(self, request):
-        return render(request, 'Bibliotheca.html')
+        context = {
+            'user': request.user,
+        }
+        return render(request, 'Bibliotheca.html', context=context)
     
     def post(self, request):
         ...
