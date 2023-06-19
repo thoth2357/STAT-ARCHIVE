@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Archive {% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+{% endblock styles %}
+
+{% block content %} 
+<div class="container-fluid">
+    <div class="container">
+        <div class="limiter">
+            <div class="container-login">
+                <div class="wrap-login">
+                    <div class="login-form validate-form">
+                        <span class="login-form-logo">
+                                <img src="{% static 'assets/img/futa-logo.jpeg' %}" alt="" width="120px">
+                        </span>
+
+                        <span class="login-form-title p-b-30 p-t-6">
+                            FUTA STAT-ARCHIVE <br> DASHBOARD
+                        </span>
+
+                        <div class="login-form-title p-b-18 p-t-6">
+                            <p>WELCOME <b>{{user.fullname}}</b></p>
+                            <br/>
+                            <p>Dashboard Still in development Mode</p>
+                        </div>
+
+                        <div class="container-login-form-btn">
+                            <a href="{% url 'logout' %}">
+                                <button class="login-form-btn">
+                                    Logout
+                                </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}
+
+
+
+
+
+
