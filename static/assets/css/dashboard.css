@@ -546,9 +546,9 @@ progress {
   margin-right: auto;
   margin-left: auto; }
 
-@media (min-width: 576px) {
+/* @media (min-width: 576px) {
   .container, .container-sm {
-    max-width: 540px; } }
+    max-width: 540px; } } */
 
 @media (min-width: 768px) {
   .container, .container-sm, .container-md {
@@ -21446,8 +21446,14 @@ pre {
       width: 50%; } }
   @media only screen and (max-width: 575px) {
     .book-grid-row .col-book.style-1 {
+      width: 50%;
+      margin-bottom: 0; } }
+
+  @media only screen and (max-width: 390px) { /*Todo */
+    .book-grid-row .col-book.style-1 {
       width: 100%;
       margin-bottom: 0; } }
+  
 
 .book-grid-row .col-book.style-2 {
   width: 33.33%;
@@ -21455,12 +21461,10 @@ pre {
   @media only screen and (max-width: 991px) {
     .book-grid-row .col-book.style-2 {
       width: 50%; } }
-  @media only screen and (max-width: 767px) {
-    .book-grid-row .col-book.style-2 {
-      width: 50%; } }
+
   @media only screen and (max-width: 575px) {
     .book-grid-row .col-book.style-2 {
-      width: 100%;
+      width: 50%;
       margin-bottom: 0; } }
 
 .tabs-site-button .nav-tabs {
