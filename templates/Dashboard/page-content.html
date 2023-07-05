@@ -1,0 +1,149 @@
+{% load static %}
+<!-- page content -->
+<div class="page-content">
+    <div class="content-inner-1 border-bottom">
+        <div class="container">
+            <div class="row">
+                <!-- Start here -->
+                <!-- navbar when screen is mobile view -->
+                <div class="col-xl-14">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="title">Books Archive</h4>
+                        <button
+                            type="button"
+                            class="btn btn-primary panel-btn btnhover2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#uploadModal">
+                            Upload Resources
+                            <i class="fa fa-upload" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="filter-area">
+                        <div class="grid-area">
+                            <div class="header-search-nav">
+                                <form class="header-item-search">
+                                    <div class="input-group search-input">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="Text input with dropdown button"
+                                            placeholder="Search Books Here" />
+                                        <button class="btn" type="button">
+                                            <i class="flaticon-loupe"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="category">
+                            <div class="filter-category-new">
+                                <div class="form-group">
+                                    <i class="fas fa-list-alt me-2 text-secondary"></i>
+                                    <select class="default-select">
+                                        <option>Category</option>
+                                        <option>Past Questions</option>
+                                        <option>Projects</option>
+                                        <option>Books</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <i class="fas fa-sort-amount-down me-2 text-secondary"></i>
+                                <select class="default">
+                                    <option>Session</option>
+                                    <option>1 Day</option>
+                                    <option>1 Week</option>
+                                    <option>3 Weeks</option>
+                                    <option>1 Month</option>
+                                    <option>3 Months</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row book-grid-row">
+                        <div class="col-book style-1">
+                            <div class="dz-shop-card style-1">
+                                <div class="dz-media">
+                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
+                                </div>
+                                <div class="dz-content">
+                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
+                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-book style-1">
+                            <div class="dz-shop-card style-1">
+                                <div class="dz-media">
+                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
+                                </div>
+                                <div class="dz-content">
+                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
+                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-book style-1">
+                            <div class="dz-shop-card style-1">
+                                <div class="dz-media">
+                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
+                                </div>
+                                <div class="dz-content">
+                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
+                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-book style-1">
+                            <div class="dz-shop-card style-1">
+                                <div class="dz-media">
+                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
+                                </div>
+                                <div class="dz-content">
+                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
+                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row page mt-0">
+                        <div class="col-md-6">
+                            <p class="page-text">Showing 12 from 50 data</p>
+                        </div>
+                        <div class="col-md-6">
+                            <nav aria-label="Blog Pagination">
+                                <ul class="pagination style-1 p-t20">
+                                    <li class="page-item">
+                                        <a class="page-link prev" href="javascript:void(0);"
+                                            >Prev</a
+                                        >
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link active" href="javascript:void(0);">1</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="javascript:void(0);">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link next" href="javascript:void(0);"
+                                            >Next</a
+                                        >
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page content end -->

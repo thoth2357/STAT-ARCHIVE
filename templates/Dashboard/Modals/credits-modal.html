@@ -1,0 +1,71 @@
+{% load static %}
+<!-- Credits Modal -->
+<div
+  class="modal fade"
+  id="creditsModal"
+  tabindex="-1"
+  aria-labelledby="creditsModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="creditsModalLabel">
+          <i class="fas fa-info-circle me-2"></i>Credits
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="exempt"><i class="fas fa-code me-2"></i>Developer:</h6>
+            <ul>
+              <li>
+                <i class="fas fa-user me-2"></i>Oluwaseyi Oyewunmi
+                <div><i class="fas fa-graduation-cap me-2"></i>Class 21</div>
+
+                <div class="text-center">
+                  <img
+                    src="{% static 'assets/img/sponsor1.jpg' %}"
+                    alt="Developer Picture"
+                    class="rounded mt-2"
+                    width="200"
+                    height="200"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col border-start">
+            <h6 class="exempt">
+              <i class="fas fa-paint-brush me-2"></i>Graphics Designer:
+            </h6>
+            <ul>
+              <li>
+                <i class="fas fa-user me-2"></i>Adelaja AbdulMuiz
+                <div><i class="fas fa-graduation-cap me-2"></i>Class 21</div>
+                <div class="text-center">
+                  <img
+                    src="{% static 'assets/img/designer.jpg' %}"
+                    alt="Designer Picture"
+                    class="rounded mt-2"
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times-circle me-2"></i>Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

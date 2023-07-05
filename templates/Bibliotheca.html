@@ -1,48 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Archive {% endblock title %}
+
+{% block misc-head-options %}
+    <meta name="description" content="Futa Statistics Archive Website"/>
+    <meta property="og:title" content="Futa Statistics Archive Website"/>
+    <meta property="og:description" content="Futa Statistics Archive Website"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock misc-head-options %}
+
+
+{% block title %} STATISTICS Archive {% endblock title %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/icons/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 {% endblock styles %}
 
 {% block content %} 
-<div class="container-fluid">
-    <div class="container">
-        <div class="limiter">
-            <div class="container-login">
-                <div class="wrap-login">
-                    <div class="login-form validate-form">
-                        <span class="login-form-logo">
-                                <img src="{% static 'assets/img/futa-logo.jpeg' %}" alt="" width="120px">
-                        </span>
+    <div class="page-wraper">
 
-                        <span class="login-form-title p-b-30 p-t-6">
-                            FUTA STAT-ARCHIVE <br> DASHBOARD
-                        </span>
+        {% comment %} Preloader {% endcomment %}
+        {% include 'Dashboard/preloader.html' %}
 
-                        <div class="login-form-title p-b-18 p-t-6">
-                            <p>WELCOME <b>{{user.fullname}}</b></p>
-                            <br/>
-                            <p>Dashboard Still in development Mode</p>
-                        </div>
+        {% comment %} Header {% endcomment %}
+        {% include 'Dashboard/header.html' %}
 
-                        <div class="container-login-form-btn">
-                            <a href="{% url 'logout' %}">
-                                <button class="login-form-btn">
-                                    Logout
-                                </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% comment %} Page Content {% endcomment %}
+        {% include 'Dashboard/page-content.html' %}
+
+        {% comment %} Upload Modal {% endcomment %}
+        {% include 'Dashboard/Modals/upload-modal.html' %}
+
+        {% comment %} Credits Modal {% endcomment %}
+        {% include 'Dashboard/Modals/credits-modal.html' %}
+
+        {% comment %} Sponsors Modal {% endcomment %}
+        {% include 'Dashboard/Modals/sponsors-modal.html' %}
+
+        {% comment %} scrolltop button {% endcomment %}
+        <button class="scroltop" type="button">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
-</div>
 {% endblock content%}
 
-
-
-
-
+{% block scripts %}
+    <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+{% endblock scripts %}
 

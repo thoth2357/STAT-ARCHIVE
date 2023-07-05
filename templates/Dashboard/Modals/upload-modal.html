@@ -1,0 +1,172 @@
+<!-- Upload Modal -->
+<div
+  class="modal fade"
+  id="uploadModal"
+  tabindex="-1"
+  aria-labelledby="uploadModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Upload Resources</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div
+          class="btn-group mb-3"
+          role="group"
+          aria-label="Upload Type Buttons"
+        >
+          <button
+            type="button"
+            class="btn btn-primary upload-type-btn active"
+            data-target="pastQuestionsForm"
+          >
+            Past Questions
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary upload-type-btn"
+            data-target="textbookForm"
+          >
+            Textbook
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary upload-type-btn"
+            data-target="projectForm"
+          >
+            Project
+          </button>
+        </div>
+
+        <!-- Past Questions Form -->
+        <form id="pastQuestionsForm" class="upload-form active">
+          <div class="mb-3">
+            <label for="sessionDropdown" class="form-label">Session</label>
+            <select class="form-select" id="sessionDropdown">
+              <option selected>Choose Session...</option>
+              <option value="session1">Session 1</option>
+              <option value="session2">Session 2</option>
+              <!-- Add more session options here -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="pastQuestionsLecturerName" class="form-label"
+              >Lecturer Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="pastQuestionsLecturerName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pastQuestionsCourseName" class="form-label"
+              >Course Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="pastQuestionsCourseName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pastQuestionsCourseTitle" class="form-label"
+              >Course Title</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="pastQuestionsCourseTitle"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pastQuestionsFileInput" class="form-label"
+              >Select PDF File</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="pastQuestionsFileInput"
+              accept=".pdf"
+            />
+          </div>
+        </form>
+
+        <!-- Textbook Form -->
+        <form id="textbookForm" class="upload-form" style="display: none">
+          <div class="mb-3">
+            <label for="textbookName" class="form-label">Textbook Name</label>
+            <input type="text" class="form-control" id="textbookName" />
+          </div>
+          <div class="mb-3">
+            <label for="textbookAuthor" class="form-label"
+              >Textbook Author</label
+            >
+            <input type="text" class="form-control" id="textbookAuthor" />
+          </div>
+          <div class="mb-3">
+            <label for="textbookFileInput" class="form-label"
+              >Select PDF File</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="textbookFileInput"
+              accept=".pdf"
+            />
+          </div>
+        </form>
+
+        <!-- Project Form -->
+        <form id="projectForm" class="upload-form" style="display: none">
+          <div class="mb-3">
+            <label for="projectTopic" class="form-label">Project Topic</label>
+            <input type="text" class="form-control" id="projectTopic" />
+          </div>
+          <div class="mb-3">
+            <label for="sessionDropdown" class="form-label">Session</label>
+            <select class="form-select" id="sessionDropdown">
+              <option selected>Choose Session...</option>
+              <option value="session1">Session 1</option>
+              <option value="session2">Session 2</option>
+              <!-- Add more session options here -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="projectAuthor" class="form-label">Author</label>
+            <input type="text" class="form-control" id="projectAuthor" />
+          </div>
+          <div class="mb-3">
+            <label for="projectSupervisor" class="form-label">Supervisor</label>
+            <input type="text" class="form-control" id="projectSupervisor" />
+          </div>
+          <div class="mb-3">
+            <label for="textbookFileInput" class="form-label"
+              >Select PDF File</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="projectFileInput"
+              accept=".pdf"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
