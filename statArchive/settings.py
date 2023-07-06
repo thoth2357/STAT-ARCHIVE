@@ -147,7 +147,9 @@ CELERY_APP = 'statArchive'
 AUTH_USER_MODEL = 'Authentication.User'
 
 STORAGES = {
-    # ...
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
