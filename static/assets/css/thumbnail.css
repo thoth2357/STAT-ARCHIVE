@@ -1,0 +1,25 @@
+/* Styles for the paper sheet */
+.paper {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 150px;
+}
+
+/* Styles for the lines */
+.paper-lines {
+background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, #ccc 10px, #ccc 11px);
+line-height: 1.5;
+font-family: Arial, sans-serif;
+text-align: center;
+
+}
+
+/* Styles for the dynamic text */
+.dynamic-text {
+font-size: 18px;
+font-weight: bold;
+color: #333;
+margin-bottom: 10px;
+}
