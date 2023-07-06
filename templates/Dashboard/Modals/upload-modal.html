@@ -1,3 +1,4 @@
+{% load static %}
 <!-- Upload Modal -->
 <div
   class="modal fade"
@@ -47,13 +48,23 @@
         </div>
 
         <!-- Past Questions Form -->
-        <form id="pastQuestionsForm" class="upload-form active">
+        <form id="pastQuestionsForm" class="upload-form active" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="mb-3">
             <label for="sessionDropdown" class="form-label">Session</label>
             <select class="form-select" id="sessionDropdown">
               <option selected>Choose Session...</option>
-              <option value="session1">Session 1</option>
+              <option value="session1">Session 1</option> T
               <option value="session2">Session 2</option>
+              <!-- TODO Add more session options here from view -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="sessionDropdown" class="form-label">Past Question Type</label>
+            <select class="form-select" id="sessionDropdowntype">
+              <option selected>Choose type</option>
+              <option value="Exam Question">Exam Question</option>
+              <option value="Test Question">Test Question</option>
               <!-- Add more session options here -->
             </select>
           </div>
@@ -78,13 +89,13 @@
             />
           </div>
           <div class="mb-3">
-            <label for="pastQuestionsCourseTitle" class="form-label"
-              >Course Title</label
+            <label for="pastQuestionsCourseCode" class="form-label"
+              >Course Code</label
             >
             <input
               type="text"
               class="form-control"
-              id="pastQuestionsCourseTitle"
+              id="pastQuestionsCourseCode"
             />
           </div>
           <div class="mb-3">
@@ -101,7 +112,8 @@
         </form>
 
         <!-- Textbook Form -->
-        <form id="textbookForm" class="upload-form" style="display: none">
+        <form id="textbookForm" class="upload-form" style="display: none" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="mb-3">
             <label for="textbookName" class="form-label">Textbook Name</label>
             <input type="text" class="form-control" id="textbookName" />
@@ -126,22 +138,23 @@
         </form>
 
         <!-- Project Form -->
-        <form id="projectForm" class="upload-form" style="display: none">
-          <div class="mb-3">
-            <label for="projectTopic" class="form-label">Project Topic</label>
-            <input type="text" class="form-control" id="projectTopic" />
-          </div>
+        <form id="projectForm" class="upload-form" style="display: none" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="mb-3">
             <label for="sessionDropdown" class="form-label">Session</label>
             <select class="form-select" id="sessionDropdown">
               <option selected>Choose Session...</option>
               <option value="session1">Session 1</option>
               <option value="session2">Session 2</option>
-              <!-- Add more session options here -->
+              <!-- TODO Add more session options here from view -->
             </select>
           </div>
           <div class="mb-3">
-            <label for="projectAuthor" class="form-label">Author</label>
+            <label for="projectTopic" class="form-label">Project Topic</label>
+            <input type="text" class="form-control" id="projectTopic" />
+          </div>
+          <div class="mb-3">
+            <label for="projectAuthor" class="form-label">Author (if yours put your full name) </label>
             <input type="text" class="form-control" id="projectAuthor" />
           </div>
           <div class="mb-3">
@@ -149,7 +162,7 @@
             <input type="text" class="form-control" id="projectSupervisor" />
           </div>
           <div class="mb-3">
-            <label for="textbookFileInput" class="form-label"
+            <label for="ProjectFileInput" class="form-label"
               >Select PDF File</label
             >
             <input
@@ -162,10 +175,16 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <div class="upload-progress" style="display: none; width: 70px;">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            0%
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary" id="close-btn" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-primary">Upload</button>
+        <button type="button" class="btn btn-primary upload-btn">Upload</button>
       </div>
     </div>
   </div>
