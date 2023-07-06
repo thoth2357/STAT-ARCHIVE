@@ -10,8 +10,8 @@ validate_year_format = RegexValidator(
 # Create your models here.
 class PastQuestion(models.Model):
     Type_choices = [
-        ('Exam Question', 'Test Question'),
-        ('Exam Question', 'Test Question')
+        ('Exam Question', 'Exam Question'),
+        ('Test Question', 'Test Question')
     ]
     Session = models.CharField(max_length=100, validators=[validate_year_format])
     Type = models.CharField(max_length=50,choices=Type_choices,)
