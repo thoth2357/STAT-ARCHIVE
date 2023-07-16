@@ -6,18 +6,24 @@ from django.http import JsonResponse
 from django.http.request import QueryDict
 from django.core.files import File
 from urllib.parse import urlparse
-from .utils import create_pastquestion_thumbnail
-from .models import PastQuestion, TextBook, Project
+from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail
+from .models import PastQuestion, TextBook, Project, Sessions
 
 class Bibliotheca(View):
     def get(self, request):
+        all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
+        sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded)
+        print(sorted_resources)
         context = {
             'user': request.user,
+            'sessions':Sessions.objects.all(),
+            'resources':sorted_resources,
         }
         return render(request, 'Bibliotheca.html', context=context)
     
     def post(self, request):
-        ...
+        print("a post request")
+        return JsonResponse({'status': 'success'})
 
 
 class UploadResources(View):
@@ -34,7 +40,7 @@ class UploadResources(View):
             thumbnail_name = ''.join(random.choices(string.ascii_letters + string.digits, k=8))          
             output_path = create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name)
             pq_object = PastQuestion.objects.create(
-                Session=session,
+                Session = Sessions.objects.get(id=session),
                 Type = pq_type,
                 Lecturer_name = lecturer_name,
                 Course_name = course_name,
@@ -43,23 +49,50 @@ class UploadResources(View):
             )
             try:           
                 with open(output_path, 'rb') as image_file:
-                    PastQuestion.objects.get(id=pq_object.id).Course_image.save(f'{thumbnail_name}.png', File(image_file))
-            except Exception as e:
+                    pq_object.Course_image.save(f'{thumbnail_name}.png', File(image_file))
+            except Exception:
                 pass #TODO send log to admin
             return JsonResponse({'status': 'success'})    
         elif upload_type == 'txb':
-            print('text_book')
             textbook_name = request.POST.get('textbookName')
             textbook_author = request.POST.get('textbookAuthor')
-            file = request.FILES.get('textbookFileInput')
+            file = request.FILES.get('textbookFile')
+            
+            txb_object = TextBook.objects.create(
+                Name = textbook_name,
+                Author = textbook_author,
+                TextBook_file = file,
+            )
+            try:
+                thumbnail_path,filename = generate_textbook_thumbnail(txb_object.TextBook_file.url, 'media/resources/images/textbook')
+                with open(thumbnail_path, 'rb') as image_file:
+                    txb_object.Textbook_thumbnail.save(f'{filename}.jpg', File(image_file))
+                    #TODO To delete duplicate file
+            except Exception:
+                ...
+            return JsonResponse({'status': 'success'})
             
         elif upload_type == 'prj':
-            print('project')
             session = request.POST.get('session')
             topic = request.POST.get('projectTopic')
             author = request.POST.get('projectAuthor')
             supervisor = request.POST.get('projectSupervisor')
-            file = request.FILES.get('projectFileInput') 
+            file = request.FILES.get('projectFile') 
+            prj_object = Project.objects.create(
+                Session = Sessions.objects.get(id=session),
+                Topic = topic,
+                Author = author,
+                Supervisor = supervisor,
+                Project_file = file
+            )
+            try:
+                thumbnail_path,filename = generate_textbook_thumbnail(prj_object.Project_file.url, 'media/resources/images/project')
+                with open(thumbnail_path, 'rb') as image_file:
+                    prj_object.Project_thumbnail.save(f'{filename}.jpg', File(image_file))
+                    #TODO To delete duplicate file
+            except Exception:
+                ...
+            return JsonResponse({'status': 'success'})
         else:
             print('error')
 
