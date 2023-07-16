@@ -12,38 +12,30 @@
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <div class="profile-info">
-                    <h5 class="title-2">STA/18/5129</h5>
+                <div c   lass="profile-info">
+                    <h5 class="title-2">{{user.username}}</h5>
                     <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    <span>Oyewunmi Oluwaseyi's</span>
+                    <span>{{user.fullname}}</span>
                 </div>
             </a>
             <div class="dropdown-menu py-0 dropdown-menu-end">
                 <div class="dropdown-header">
-                    <h6 class="m-0 exempt">Oyewunmi Oluwaseyi</h6>
-                    <span>info@gmail.com</span>
-                </div>
-                <div class="dropdown-body">
-                    <a
-                        href="my-profile.html"
-                        class="dropdown-item d-flex justify-content-between align-items-center ai-icon">
-                        <div>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="20px"
-                                viewBox="0 0 24 24"
-                                width="20px"
-                                fill="#000000">
-                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                <path
-                                    d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                            </svg>
-                            <span class="ms-2">Profile</span>
-                        </div>
-                    </a>
+                    <span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="20px"
+                            viewBox="0 0 24 24"
+                            width="20px"
+                            fill="#000000"
+                        >
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                            d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                            />
+                        </svg>{{user.email}}</span>
                 </div>
                 <div class="dropdown-footer">
-                    <a class="btn btn-primary w-100 btnhover btn-sm" href="shop-login.html"
+                    <a class="btn btn-primary w-100 btnhover btn-sm" href="{% url 'logout' %}"
                         >Log Out</a
                     >
                 </div>
