@@ -1,10 +1,27 @@
+import os
 import imgkit
 from django.templatetags.static import static
 from django.conf import settings
-import os
+from pdf2image import convert_from_path
+
+
+def generate_textbook_thumbnail(file, destination):
+    
+    input_file = os.path.join(settings.BASE_DIR,str(file).lstrip('/'))
+        
+    # Convert the first page of the PDF to an image
+    images = convert_from_path(input_file, first_page=1, last_page=1)
+
+    # Save the image thumbnail
+    filename = os.path.splitext(os.path.basename(input_file))[0]
+    output_dir = os.path.join(settings.BASE_DIR,destination)
+    os.makedirs(output_dir, exist_ok=True)  # Create the output directory if it doesn't exist
+    thumbnail_path = os.path.join(output_dir, f'{filename}_thumbnail.jpg')
+    print(thumbnail_path,"thumbnail-path")
+    images[0].save(thumbnail_path, 'JPEG')
+    return thumbnail_path,filename
 
 def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name):
-    # print(os.getcwd())
     try:
         html_code = f"""
                     <!DOCTYPE html>
