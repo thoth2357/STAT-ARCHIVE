@@ -8,18 +8,25 @@ validate_year_format = RegexValidator(
 )
 
 # Create your models here.
+class Sessions(models.Model):
+    Session = models.CharField(max_length=100, validators=[validate_year_format])
+    def __str__(self):
+        return self.Session
+
+
 class PastQuestion(models.Model):
     Type_choices = [
         ('Exam Question', 'Exam Question'),
         ('Test Question', 'Test Question')
     ]
-    Session = models.CharField(max_length=100, validators=[validate_year_format])
+    Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
     Type = models.CharField(max_length=50,choices=Type_choices,)
     Lecturer_name = models.CharField(max_length=100)
     Course_name = models.CharField(max_length=100)
     Course_code = models.CharField(max_length=100,)
-    Course_file = models.FileField(upload_to='resources/past-question/')
-    Course_image = models.ImageField(upload_to='resources/images', null=True)
+    Course_file = models.FileField(upload_to='resources/past-question/', null=False)
+    thumbnail = models.ImageField(upload_to='resources/images/pastquestion', null=True)
+    Date_uploaded = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.Course_name+' '+self.Course_code
@@ -35,17 +42,22 @@ class PastQuestion(models.Model):
 class TextBook(models.Model):
     Name = models.CharField(max_length=100)
     Author  = models.CharField(max_length=100)
-    TextBook_file = models.FileField(upload_to='media/resources/text-book/')
+    TextBook_file = models.FileField(upload_to='resources/text-book/', null=False)
+    thumbnail = models.ImageField(upload_to='resources/images/textbook', null=True)
+    Date_uploaded = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.Name
 
 class Project(models.Model):
-    Session = models.CharField(max_length=100, validators=[validate_year_format])
+    Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
     Topic = models.CharField(max_length=100)
     Author  = models.CharField(max_length=100)
     Supervisor = models.CharField(max_length=100)
-    Project_file = models.FileField(upload_to='media/resources/project/')
+    Project_file = models.FileField(upload_to='resources/project/', null=False)
+    thumbnail = models.ImageField(upload_to='resources/images/project', null=True)
+    Date_uploaded = models.DateTimeField(auto_now_add=True)
+
     
     def __str__(self):
         return self.Topic
