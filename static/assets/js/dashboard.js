@@ -22,11 +22,27 @@ $(document).ready(function () {
 
     // Handle click event on upload buttons
     $(".upload-btn").click(function () {
-        console.log("Upload button clicked!");
+        // console.log("Upload button clicked!");
         // Get the form id of the active upload form
         var formId = $(".upload-type-btn.active").attr("data-target");
-        console.log(formId);
+        // console.log(formId);
         var formData = new FormData();
+
+        // Check if any required field is empty
+        var isValid = validateFormFields(formId);
+        if (!isValid) {
+            //close modal
+            var modal_close = document.getElementById("close-btn"); // Hide the upload modal
+            modal_close.click();
+            
+            // Display an error message to the user
+            Swal.fire({
+                icon: "error",
+                title: "Required Information",
+                text: "Please fill in all the required fields.",
+            });
+            return; // Stop further execution
+        }
 
         // Get the query parameter based on the form id
         var queryParam = "";
@@ -65,7 +81,7 @@ $(document).ready(function () {
                         var progress = Math.round((event.loaded / event.total) * 100);
                         progressBar.css("width", progress + "%");
                         progressBar.text(progress + "%");
-                        console.log(progress + "in percent %");
+                        // console.log(progress + "in percent %");
                     }
                 });
                 return xhr;
@@ -119,7 +135,6 @@ $(document).ready(function () {
         formData.append("CourseName", pastQuestionsCourseName);
         formData.append("CourseCode", pastQuestionsCourseCode);
         formData.append("QuestionFile", pastQuestionFile);
-
         return formData;
     }
 
@@ -139,7 +154,7 @@ $(document).ready(function () {
 
     // Function to form the data for the project form
     function formProjectData() {
-        var session = $("#sessionDropdown").val();
+        var session = $("#sessionDropdown2").val();
         var projectTopic = $("#projectTopic").val();
         var projectAuthor = $("#projectAuthor").val();
         var projectSupervisor = $("#projectSupervisor").val();
@@ -151,7 +166,45 @@ $(document).ready(function () {
         formData.append("projectAuthor", projectAuthor);
         formData.append("projectSupervisor", projectSupervisor);
         formData.append("projectFile", projectFile);
-
         return formData;
+    }
+
+    // Function to validate the form fields based on formId
+    function validateFormFields(formId) {
+        if (formId === "pastQuestionsForm") {
+            var session = $("#sessionDropdown").val();
+            var pastQuestionsType = $("#sessionDropdowntype").val();
+            var pastQuestionsLecturerName = $("#pastQuestionsLecturerName").val();
+            var pastQuestionsCourseName = $("#pastQuestionsCourseName").val();
+            var pastQuestionsCourseCode = $("#pastQuestionsCourseCode").val();
+            var pastQuestionFile = $("#pastQuestionsFileInput").prop("files")[0];
+
+            // Check if any required field is empty
+            if (!session || !pastQuestionsType || !pastQuestionsLecturerName || !pastQuestionsCourseName || !pastQuestionsCourseCode || !pastQuestionFile) {
+                return false;
+            }
+        } else if (formId === "textbookForm") {
+            var textbookName = $("#textbookName").val();
+            var textbookAuthor = $("#textbookAuthor").val();
+            var textbookFile = $("#textbookFileInput").prop("files")[0];
+
+            // Check if any required field is empty
+            if (!textbookName || !textbookAuthor || !textbookFile) {
+                return false;
+            }
+        } else if (formId === "projectForm") {
+            var session = $("#sessionDropdown2").val();
+            var projectTopic = $("#projectTopic").val();
+            var projectAuthor = $("#projectAuthor").val();
+            var projectSupervisor = $("#projectSupervisor").val();
+            var projectFile = $("#projectFileInput").prop("files")[0];
+            // console.log(projectFile, projectSupervisor, projectAuthor, projectTopic, session, "prj");
+            // Check if any required field is empty
+            if (!session || !projectTopic || !projectAuthor || !projectSupervisor || !projectFile) {
+                return false;
+            }
+        }
+
+        return true; // All required fields are filled
     }
 });
