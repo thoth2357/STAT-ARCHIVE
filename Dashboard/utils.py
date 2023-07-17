@@ -10,7 +10,7 @@ def generate_textbook_thumbnail(file, destination):
     input_file = os.path.join(settings.BASE_DIR,str(file).lstrip('/'))
         
     # Convert the first page of the PDF to an image
-    images = convert_from_path(input_file, first_page=1, last_page=1)
+    images = convert_from_path(input_file, first_page=1, last_page=1, size=(220, 300))
 
     # Save the image thumbnail
     filename = os.path.splitext(os.path.basename(input_file))[0]
@@ -42,7 +42,8 @@ def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, sessi
 
         options = {
             'format': 'png',
-            'width': 150,
+            'width': 220,
+            'height': 300,
         }
         css = os.path.join(settings.BASE_DIR, 'static/assets/css/thumbnail.css')
         # Define the output file path
