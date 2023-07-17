@@ -16691,7 +16691,7 @@ ul a.rsswidget {
   .dz-post-media img {
     max-width: 100%;
     height: auto;
-    width: 100%; }
+    width: auto; }
 
 .dz-box-bg {
   overflow: hidden;
