@@ -22,14 +22,14 @@ class PastQuestion(models.Model):
     Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
     Type = models.CharField(max_length=50,choices=Type_choices,)
     Lecturer_name = models.CharField(max_length=100)
-    Course_name = models.CharField(max_length=100)
+    Name = models.CharField(max_length=100)
     Course_code = models.CharField(max_length=100,)
-    Course_file = models.FileField(upload_to='resources/past-question/', null=False)
+    file = models.FileField(upload_to='resources/past-question/', null=False)
     thumbnail = models.ImageField(upload_to='resources/images/pastquestion', null=True)
     Date_uploaded = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.Course_name+' '+self.Course_code
+        return self.Name+' '+self.Course_code
     
     @property
     def start_year(self):
@@ -42,7 +42,7 @@ class PastQuestion(models.Model):
 class TextBook(models.Model):
     Name = models.CharField(max_length=100)
     Author  = models.CharField(max_length=100)
-    TextBook_file = models.FileField(upload_to='resources/text-book/', null=False)
+    file = models.FileField(upload_to='resources/text-book/', null=False)
     thumbnail = models.ImageField(upload_to='resources/images/textbook', null=True)
     Date_uploaded = models.DateTimeField(auto_now_add=True)
     
@@ -51,14 +51,14 @@ class TextBook(models.Model):
 
 class Project(models.Model):
     Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
-    Topic = models.CharField(max_length=100)
+    Name = models.CharField(max_length=100)
     Author  = models.CharField(max_length=100)
     Supervisor = models.CharField(max_length=100)
-    Project_file = models.FileField(upload_to='resources/project/', null=False)
+    file = models.FileField(upload_to='resources/project/', null=False)
     thumbnail = models.ImageField(upload_to='resources/images/project', null=True)
     Date_uploaded = models.DateTimeField(auto_now_add=True)
 
     
     def __str__(self):
-        return self.Topic
+        return self.Name
 
