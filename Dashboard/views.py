@@ -13,11 +13,11 @@ class Bibliotheca(View):
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded)
-        print(sorted_resources)
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
             'resources':sorted_resources,
+            'resources_count':len(sorted_resources),
         }
         return render(request, 'Bibliotheca.html', context=context)
     
@@ -43,13 +43,13 @@ class UploadResources(View):
                 Session = Sessions.objects.get(id=session),
                 Type = pq_type,
                 Lecturer_name = lecturer_name,
-                Course_name = course_name,
+                Name = course_name,
                 Course_code = course_code,
-                Course_file = file,
+                file = file,
             )
             try:           
                 with open(output_path, 'rb') as image_file:
-                    pq_object.Course_image.save(f'{thumbnail_name}.png', File(image_file))
+                    pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
             except Exception:
                 pass #TODO send log to admin
             return JsonResponse({'status': 'success'})    
@@ -61,12 +61,12 @@ class UploadResources(View):
             txb_object = TextBook.objects.create(
                 Name = textbook_name,
                 Author = textbook_author,
-                TextBook_file = file,
+                file = file,
             )
             try:
-                thumbnail_path,filename = generate_textbook_thumbnail(txb_object.TextBook_file.url, 'media/resources/images/textbook')
+                thumbnail_path,filename = generate_textbook_thumbnail(txb_object.file.url, 'media/resources/images/textbook')
                 with open(thumbnail_path, 'rb') as image_file:
-                    txb_object.Textbook_thumbnail.save(f'{filename}.jpg', File(image_file))
+                    txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                     #TODO To delete duplicate file
             except Exception:
                 ...
@@ -80,15 +80,15 @@ class UploadResources(View):
             file = request.FILES.get('projectFile') 
             prj_object = Project.objects.create(
                 Session = Sessions.objects.get(id=session),
-                Topic = topic,
+                Name = topic,
                 Author = author,
                 Supervisor = supervisor,
-                Project_file = file
+                file = file
             )
             try:
-                thumbnail_path,filename = generate_textbook_thumbnail(prj_object.Project_file.url, 'media/resources/images/project')
+                thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
                 with open(thumbnail_path, 'rb') as image_file:
-                    prj_object.Project_thumbnail.save(f'{filename}.jpg', File(image_file))
+                    prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                     #TODO To delete duplicate file
             except Exception:
                 ...
