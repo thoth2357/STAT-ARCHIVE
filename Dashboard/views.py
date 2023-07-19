@@ -8,16 +8,18 @@ from django.core.files import File
 from urllib.parse import urlparse
 from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail
 from .models import PastQuestion, TextBook, Project, Sessions
-
+from .filters import ResourcesFilter
 class Bibliotheca(View):
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded)
+        filtering = ResourcesFilter(request.GET, queryset=TextBook.objects.all())
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
-            'resources':sorted_resources,
+            'resources':sorted_resources[:8],
             'resources_count':len(sorted_resources),
+            'filter':filtering,
         }
         return render(request, 'Bibliotheca.html', context=context)
     
