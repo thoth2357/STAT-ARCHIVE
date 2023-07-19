@@ -1,4 +1,6 @@
 {% load static %}
+{% load widget_tweaks %}
+
 <!-- page content -->
 <div class="page-content">
     <div class="content-inner-1 border-bottom">
@@ -21,99 +23,53 @@
                     <div class="filter-area">
                         <div class="grid-area">
                             <div class="header-search-nav">
-                                <form class="header-item-search">
+                                <form method="post" class="header-item-search">
+                                    {% csrf_token %}
                                     <div class="input-group search-input">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            aria-label="Text input with dropdown button"
-                                            placeholder="Search Books Here" />
-                                        <button class="btn" type="button">
+                                        {% render_field filter.form.search class+="form-control" placeholder="Search Books Here"%}
+                                        <button class="btn" type="submit">
                                             <i class="flaticon-loupe"></i>
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-
+                    
                         <div class="category">
                             <div class="filter-category-new">
                                 <div class="form-group">
                                     <i class="fas fa-list-alt me-2 text-secondary"></i>
-                                    <select class="default-select">
-                                        <option>Category</option>
-                                        <option>Past Questions</option>
-                                        <option>Projects</option>
-                                        <option>Books</option>
-                                    </select>
+                                    {% render_field filter.form.category class+="default-select" %}
+
                                 </div>
                             </div>
                             <div class="form-group">
                                 <i class="fas fa-sort-amount-down me-2 text-secondary"></i>
-                                <select class="default">
-                                    <option>Session</option>
-                                    <option>1 Day</option>
-                                    <option>1 Week</option>
-                                    <option>3 Weeks</option>
-                                    <option>1 Month</option>
-                                    <option>3 Months</option>
-                                </select>
+                                {% render_field filter.form.session class+="default-select" %}
+                                
                             </div>
                         </div>
                     </div>
                     <div class="row book-grid-row">
+                        {% for resource in resources %}
                         <div class="col-book style-1">
                             <div class="dz-shop-card style-1">
                                 <div class="dz-media">
-                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
+                                    <img src="{{resource.thumbnail.url}}" alt="book">
                                 </div>
                                 <div class="dz-content">
-                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
+                                    <span><b>{{resource.Name}}</b></span>
+                                    <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
                                         ><i class="fa fa-book-open m-r10"></i> Click To Download</a
                                     >
                                 </div>
                             </div>
                         </div>
-                        <div class="col-book style-1">
-                            <div class="dz-shop-card style-1">
-                                <div class="dz-media">
-                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
-                                </div>
-                                <div class="dz-content">
-                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
-                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-book style-1">
-                            <div class="dz-shop-card style-1">
-                                <div class="dz-media">
-                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
-                                </div>
-                                <div class="dz-content">
-                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
-                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-book style-1">
-                            <div class="dz-shop-card style-1">
-                                <div class="dz-media">
-                                    <img src="{% static 'assets/img/page.png' %}" alt="book" />
-                                </div>
-                                <div class="dz-content">
-                                    <a href="" class="btn btn-secondary box-btn btnhover btnhover2"
-                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="row page mt-0">
                         <div class="col-md-6">
-                            <p class="page-text">Showing 12 from 50 data</p>
+                            <p class="page-text">Showing 12 from {{resources_count}} Books in Archive</p>
                         </div>
                         <div class="col-md-6">
                             <nav aria-label="Blog Pagination">
