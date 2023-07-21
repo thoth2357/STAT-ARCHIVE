@@ -23,9 +23,9 @@
                     <div class="filter-area">
                         <div class="grid-area">
                             <div class="header-search-nav">
-                                <form action={% url 'resource-search' %} class="header-item-search">
+                                <form id="resource-search-form" action={% url 'resource-search' %} class="header-item-search">
                                     {% csrf_token %}
-                                    <div action = {% url 'resource-search' %} class="input-group search-input">
+                                    <div class="input-group search-input">
                                         {% render_field filter.form.search class+="form-control" placeholder="Search Books Here"%}
                                         <button class="btn" type="submit">
                                             <i class="flaticon-loupe"></i>

@@ -5,23 +5,25 @@ from django.conf import settings
 from django.db.models import Model
 from pdf2image import convert_from_path
 from typing import List
+from itertools import chain
+from operator import attrgetter
 
 
 def generate_textbook_thumbnail(file, destination):
-    
-    input_file = os.path.join(settings.BASE_DIR,str(file).lstrip('/'))
-        
+    input_file = os.path.join(settings.BASE_DIR, str(file).lstrip('/'))
+
     # Convert the first page of the PDF to an image
     images = convert_from_path(input_file, first_page=1, last_page=1, size=(220, 300))
 
     # Save the image thumbnail
     filename = os.path.splitext(os.path.basename(input_file))[0]
-    output_dir = os.path.join(settings.BASE_DIR,destination)
+    output_dir = os.path.join(settings.BASE_DIR, destination)
     os.makedirs(output_dir, exist_ok=True)  # Create the output directory if it doesn't exist
     thumbnail_path = os.path.join(output_dir, f'{filename}_thumbnail.jpg')
-    print(thumbnail_path,"thumbnail-path")
+    print(thumbnail_path, "thumbnail-path")
     images[0].save(thumbnail_path, 'JPEG')
-    return thumbnail_path,filename
+    return thumbnail_path, filename
+
 
 def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name):
     try:
@@ -56,21 +58,55 @@ def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, sessi
         print(e)
 
 
-def convert_list_to_queryset(my_list:List, Model1:Model, Model2:Model, Model3:Model):
+def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3: Model):
     # Get the primary keys of the objects for each model
     model1_pks = [obj.pk for obj in my_list if isinstance(obj, Model1)]
     model2_pks = [obj.pk for obj in my_list if isinstance(obj, Model2)]
     model3_pks = [obj.pk for obj in my_list if isinstance(obj, Model3)]
 
     # Retrieve the objects from the database using the primary keys
-    model1_queryset = Model1.objects.filter(pk__in=model1_pks)
-    model2_queryset = Model2.objects.filter(pk__in=model2_pks)
-    model3_queryset = Model3.objects.filter(pk__in=model3_pks)
-    
-    # Combine all querysets into a single queryset
-    h = {model1_queryset:len(model1_queryset), model2_queryset:len(model2_queryset), model3_queryset:len(model3_queryset)}
+    model1_queryset = Model1.objects.filter(pk__in=model1_pks).values("id", "Name", "Type", "file", "thumbnail")
+    model2_queryset = Model2.objects.filter(pk__in=model2_pks).values("id", "Name", "Type", "file", "thumbnail")
+    model3_queryset = Model3.objects.filter(pk__in=model3_pks).values("id", "Name", "Type", "file", "thumbnail")
+
+    print(model1_queryset, "testing1\n")
+    print(model2_queryset, "testing2\n")
+    print(model3_queryset, "testing3\n")
+
+
+    # # Combine all querysets into a single queryset
+    h = {model1_queryset: len(model1_queryset), model2_queryset: len(model2_queryset),
+         model3_queryset: len(model3_queryset)}
     h = sorted(h.items(), key=lambda item: item[1], reverse=True)
-    
-    combined_queryset = h[0][0].union(h[1][0], h[2][0])
+
+    h = [(item[0], item[1], item[0].model.__name__) for item in h]
+
+
+    h = [item for item in h if item[0]]
+    size = len(h)
+    print("\n", h, "bastards", size)
+    # # for i in h:
+    # #     h[0][0].union()
+    if 1 < size < 3:  # sloppy code here , fix after deadline
+        combined_queryset = h[0][0].union(h[size - 1][0])
+    elif size > 1 and size == 3:
+        combined_queryset = h[0][0].union(h[size - 2][0], h[size - 1][0])
+    else:
+        combined_queryset = h[0][0]
+
+    print("combined", combined_queryset)
+    # results_list = sorted(
+    #     combined_queryset,
+    #     key=attrgetter('Date_uploaded')
+    # )
+    # print(results_list, "results list")
+    v = model1_queryset.union(model2_queryset, model3_queryset)
     return combined_queryset
 
+def unionalize_models(model1, model2,model3):
+    model1_query = model1.objects.all().values("id", "Name", "Type", "file", "thumbnail")
+    model2_query = model2.objects.all().values("id", "Name", "Type", "file", "thumbnail")
+    model3_query = model3.objects.all().values("id", "Name", "Type", "file", "thumbnail")
+
+    final = model1_query.union(model2_query, model3_query)
+    return final

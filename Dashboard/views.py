@@ -10,6 +10,8 @@ from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail
 from .models import PastQuestion, TextBook, Project, Sessions
 from .filters import ResourcesFilter
 from django_filters.views import FilterView
+from django.views.generic import ListView
+
 
 class Bibliotheca(View):
     def get(self, request):
@@ -19,19 +21,16 @@ class Bibliotheca(View):
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
-            'resources':sorted_resources[:8],
+            'resources':sorted_resources,
             'resources_count':len(sorted_resources),
             'filter':filtering,
             'type':"home"
         }
         return render(request, 'Bibliotheca.html', context=context)
 
-
-
 class UploadResources(View):
     def post(self,request):
         upload_type = QueryDict(urlparse(request.get_full_path()).query).get("query","")
-        print(request.POST, request.FILES)
         if upload_type == 'pq':
             session = request.POST.get('session')
             pq_type = request.POST.get('PastQuestionsType')
@@ -99,7 +98,7 @@ class UploadResources(View):
             print('error')
 
         return JsonResponse({'status': 'success'})
-    
+
 class ResourcesSearch(FilterView):
     model = PastQuestion
     template_name = 'Bibliotheca.html'

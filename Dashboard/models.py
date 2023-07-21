@@ -16,8 +16,8 @@ class Sessions(models.Model):
 
 class PastQuestion(models.Model):
     Type_choices = [
-        ('Exam Question', 'Exam Question'),
-        ('Test Question', 'Test Question')
+        ('Exam_Questions', 'Exam Questions'),
+        ('Text_Questions', 'Text Questions')
     ]
     Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
     Type = models.CharField(max_length=50,choices=Type_choices,)
@@ -41,6 +41,7 @@ class PastQuestion(models.Model):
 
 class TextBook(models.Model):
     Name = models.CharField(max_length=100)
+    Type = models.CharField(max_length=12, default='Textbooks', editable=False)
     Author  = models.CharField(max_length=100)
     file = models.FileField(upload_to='resources/text-book/', null=False)
     thumbnail = models.ImageField(upload_to='resources/images/textbook', null=True)
@@ -52,6 +53,7 @@ class TextBook(models.Model):
 class Project(models.Model):
     Session = models.ForeignKey(Sessions, on_delete=models.CASCADE)
     Name = models.CharField(max_length=100)
+    Type = models.CharField(max_length=12, default='Project', editable=False)
     Author  = models.CharField(max_length=100)
     Supervisor = models.CharField(max_length=100)
     file = models.FileField(upload_to='resources/project/', null=False)
