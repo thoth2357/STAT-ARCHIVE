@@ -9,23 +9,23 @@ from urllib.parse import urlparse
 from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail
 from .models import PastQuestion, TextBook, Project, Sessions
 from .filters import ResourcesFilter
+from django_filters.views import FilterView
+
 class Bibliotheca(View):
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded)
-        filtering = ResourcesFilter(request.GET, queryset=TextBook.objects.all())
+        filtering = ResourcesFilter(request.GET, queryset=PastQuestion.objects.all())
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
             'resources':sorted_resources[:8],
             'resources_count':len(sorted_resources),
             'filter':filtering,
+            'type':"home"
         }
         return render(request, 'Bibliotheca.html', context=context)
-    
-    def post(self, request):
-        print("a post request")
-        return JsonResponse({'status': 'success'})
+
 
 
 class UploadResources(View):
@@ -99,3 +99,9 @@ class UploadResources(View):
             print('error')
 
         return JsonResponse({'status': 'success'})
+    
+class ResourcesSearch(FilterView):
+    model = PastQuestion
+    template_name = 'Bibliotheca.html'
+    paginate_by = 8
+    filterset_class = ResourcesFilter

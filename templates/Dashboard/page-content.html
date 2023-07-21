@@ -23,9 +23,9 @@
                     <div class="filter-area">
                         <div class="grid-area">
                             <div class="header-search-nav">
-                                <form method="post" class="header-item-search">
+                                <form action={% url 'resource-search' %} class="header-item-search">
                                     {% csrf_token %}
-                                    <div class="input-group search-input">
+                                    <div action = {% url 'resource-search' %} class="input-group search-input">
                                         {% render_field filter.form.search class+="form-control" placeholder="Search Books Here"%}
                                         <button class="btn" type="submit">
                                             <i class="flaticon-loupe"></i>
@@ -51,52 +51,47 @@
                         </div>
                     </div>
                     <div class="row book-grid-row">
-                        {% for resource in resources %}
-                        <div class="col-book style-1">
-                            <div class="dz-shop-card style-1">
-                                <div class="dz-media">
-                                    <img src="{{resource.thumbnail.url}}" alt="book">
-                                </div>
-                                <div class="dz-content">
-                                    <span><b>{{resource.Name}}</b></span>
-                                    <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
-                                        ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                        {% if type == 'home' %}
+                            {% with variable=resources %}
+                                <!-- Use the 'variable' here -->
+                                {% for resource in variable %}
+                                    <div class="col-book style-1">
+                                        <div class="dz-shop-card style-1">
+                                            <div class="dz-media">
+                                                <img src="{{resource.thumbnail.url}}" alt="book">
+                                            </div>
+                                            <div class="dz-content">
+                                                <span><b>{{resource.Name}}</b></span>
+                                                <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
+                                                    ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endwith %}
+                        {% else %}
+                            {% with variable=filter.qs %}
+                                <!-- Use the 'variable' here -->
+                                {% for resource in variable %}
+                                    <div class="col-book style-1">
+                                        <div class="dz-shop-card style-1">
+                                            <div class="dz-media">
+                                                <img src="{{resource.thumbnail.url}}" alt="book">
+                                            </div>
+                                            <div class="dz-content">
+                                                <span><b>{{resource.Name}}</b></span>
+                                                <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
+                                                    ><i class="fa fa-book-open m-r10"></i> Click To Download</a
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endwith %}
+                        {% endif %}
                     </div>
-                    <div class="row page mt-0">
-                        <div class="col-md-6">
-                            <p class="page-text">Showing 12 from {{resources_count}} Books in Archive</p>
-                        </div>
-                        <div class="col-md-6">
-                            <nav aria-label="Blog Pagination">
-                                <ul class="pagination style-1 p-t20">
-                                    <li class="page-item">
-                                        <a class="page-link prev" href="javascript:void(0);"
-                                            >Prev</a
-                                        >
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link active" href="javascript:void(0);">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="javascript:void(0);">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="javascript:void(0);">3</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link next" href="javascript:void(0);"
-                                            >Next</a
-                                        >
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                    {% include 'Dashboard/pagination.html' %}
                 </div>
             </div>
         </div>

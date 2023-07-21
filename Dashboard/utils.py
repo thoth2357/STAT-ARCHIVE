@@ -2,7 +2,9 @@ import os
 import imgkit
 from django.templatetags.static import static
 from django.conf import settings
+from django.db.models import Model
 from pdf2image import convert_from_path
+from typing import List
 
 
 def generate_textbook_thumbnail(file, destination):
@@ -52,3 +54,23 @@ def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, sessi
         return output_path
     except Exception as e:
         print(e)
+
+
+def convert_list_to_queryset(my_list:List, Model1:Model, Model2:Model, Model3:Model):
+    # Get the primary keys of the objects for each model
+    model1_pks = [obj.pk for obj in my_list if isinstance(obj, Model1)]
+    model2_pks = [obj.pk for obj in my_list if isinstance(obj, Model2)]
+    model3_pks = [obj.pk for obj in my_list if isinstance(obj, Model3)]
+
+    # Retrieve the objects from the database using the primary keys
+    model1_queryset = Model1.objects.filter(pk__in=model1_pks)
+    model2_queryset = Model2.objects.filter(pk__in=model2_pks)
+    model3_queryset = Model3.objects.filter(pk__in=model3_pks)
+    
+    # Combine all querysets into a single queryset
+    h = {model1_queryset:len(model1_queryset), model2_queryset:len(model2_queryset), model3_queryset:len(model3_queryset)}
+    h = sorted(h.items(), key=lambda item: item[1], reverse=True)
+    
+    combined_queryset = h[0][0].union(h[1][0], h[2][0])
+    return combined_queryset
+
