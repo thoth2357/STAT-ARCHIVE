@@ -1,26 +1,22 @@
+{% load pagination_tags %}
 <div class="row page mt-0">
   <div class="col-md-6">
-    <p class="page-text">Showing 12 from 50 data</p>
+      <p class="page-text">Showing 8 from {{resources_count}} Books in Archive</p>
   </div>
   <div class="col-md-6">
-    <nav aria-label="Blog Pagination">
-      <ul class="pagination style-1 p-t20">
-        <li class="page-item">
-          <a class="page-link prev" href="javascript:void(0);">Prev</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link active" href="javascript:void(0);">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="javascript:void(0);">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="javascript:void(0);">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link next" href="javascript:void(0);">Next</a>
-        </li>
-      </ul>
-    </nav>
+      <nav aria-label="Blog Pagination">
+          <ul class="pagination style-1 p-t20">
+            {% for page_number in resource_per_page.paginator.page_range %}
+              <li class="page-item {% if page_number == resource_per_page.number %}active{% endif %}">
+                  {% comment %} <a class="page-link" href="
+                  {% if 'page=' in request.get_full_path %}
+                      ?{% url_replace request 'page' page_number %}
+                  {% else %}
+                      {{request.get_full_path}}&page={{ page_number }}
+                  {% endif %}">{{ page_number }}</a> {% endcomment %}
+              </li>
+            {% endfor %}
+          </ul>
+      </nav>
   </div>
 </div>
