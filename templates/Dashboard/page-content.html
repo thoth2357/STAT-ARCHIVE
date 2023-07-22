@@ -43,11 +43,13 @@
 
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <i class="fas fa-sort-amount-down me-2 text-secondary"></i>
-                                {% render_field filter.form.session class+="default-select" %}
-                                
+                            <div class="filter-session-new">
+                                <div class="form-group">
+                                    <i class="fas fa-sort-amount-down me-2 text-secondary"></i>
+                                    {% render_field filter.form.session class+="default-select" %}
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                     <div class="row book-grid-row">
@@ -98,3 +100,102 @@
     </div>
 </div>
 <!-- page content end -->
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Function to handle changes in the category and session dropdowns and search input
+    function handleFilterChange() {
+        const searchValue = $(".header-item-search input[name='search']").val().trim();
+        const categoryValue = $(".filter-category-new select[name='category']").val();
+        const sessionValue = $(".filter-session-new select[name='session']").val();
+
+        // Create an object with the parameters and their values
+        const params = {
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        };
+
+        // Add search parameter if it has a value
+        if (searchValue !== '') {
+            params['search'] = searchValue;
+        }
+
+        // Add category parameter if it has a value
+        if (categoryValue !== '') {
+            params['category'] = categoryValue;
+        }
+
+        // Add session parameter if it has a value
+        if (sessionValue !== '') {
+            params['session'] = sessionValue;
+        }
+
+        // Construct the query string using the filtered parameters
+        const queryString = $.param(params);
+
+        // Construct the final URL
+        const url = '{% url "resource-search" %}' + '?' + queryString;
+
+        console.log("constructed_url", url)
+        // Send the AJAX request to the server
+        $.ajax({
+            url: url,
+            type: 'GET', // Use 'GET' to send query parameters
+            success: function(response) {
+                // Clear existing book grid content
+                if (response.length === 0) {
+                    //$(".book-grid-row").empty();
+
+                    var bookCardHtml = `
+                    <div class="col-book style-1">
+                      
+                    </div>
+                  `;
+                  $(".book-grid-row").append(bookCardHtml);
+                  $(".book-grid-row").html("<h1>No Results found</h1>");
+                    return;
+                }
+                else{
+                    $(".book-grid-row").empty();
+                }
+        
+                // Iterate over the JSON data and update the book grid content
+                for (var i = 0; i < response.length; i++) {
+                  var resource = response[i];
+                  var bookCardHtml = `
+                    <div class="col-book style-1">
+                      <div class="dz-shop-card style-1">
+                        <div class="dz-media">
+                          <img src="${resource.thumbnail}" alt="book">
+                        </div>
+                        <div class="dz-content">
+                          <span><b>${resource.Name}</b></span>
+                          <a href="${resource.file}" class="btn btn-secondary box-btn btnhover btnhover2">
+                            <i class="fa fa-book-open m-r10"></i> Click To Download
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                  $(".book-grid-row").append(bookCardHtml);
+                }
+              },
+            error: function (xhr) {
+                // Handle error response
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    // Add event listener to the category dropdown change
+    $(".filter-category-new select[name='category']").on("change", handleFilterChange);
+
+    // Add event listener to the session dropdown change
+    $(".filter-session-new select[name='session']").on("change", handleFilterChange);
+
+    // Add event listener to the search input change
+    $(".header-item-search input[name='search']").on("input", handleFilterChange);
+</script>
+{% endblock scripts %}
+
+
