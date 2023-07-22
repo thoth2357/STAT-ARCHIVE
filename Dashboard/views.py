@@ -104,3 +104,43 @@ class ResourcesSearch(FilterView):
     template_name = 'Bibliotheca.html'
     paginate_by = 8
     filterset_class = ResourcesFilter
+
+    def render_to_response(self, context, **response_kwargs):
+        # Get the filtered queryset from the context
+        filtered_queryset = context['filter'].qs
+        print('\n\n\n',filtered_queryset)
+        # Create a list to store the serialized data
+        serialized_data = []
+        try:
+            for resource in filtered_queryset:
+                # Serialize each resource object into a dictionary
+                serialized_resource = {
+                    'id': resource.id,
+                    'Name': resource.Name,
+                    'file': resource.file.url,
+                    'thumbnail': resource.thumbnail.url,
+                    # Add other fields you want to include in the JSON response
+                }
+                # Append the serialized resource to the list
+                serialized_data.append(serialized_resource)
+        except AttributeError:
+            serialized_data = []
+            try:
+                for resource in filtered_queryset:
+                    serialized_resource = {
+                        'id': resource['id'],
+                        'Name': resource['Name'],
+                        'file': resource['file'],
+                        'thumbnail': resource['thumbnail'],
+                        # Add other fields you want to include in the serialized dictionary
+                    }
+                    # Append the serialized resource to the list
+                    serialized_data.append(serialized_resource)
+
+            except Exception as e:
+                # Handle any exceptions that may occur during serialization
+                print("Error during serialization:", e)
+
+        # Return the JSON response with the serialized data
+        return JsonResponse(serialized_data, safe=False)
+    
