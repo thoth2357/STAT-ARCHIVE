@@ -1,8 +1,9 @@
 import django_filters
 from django import forms
 from django.db.models import Q
+from django.db.utils import NotSupportedError
 from .models import PastQuestion, Project, TextBook, Sessions
-from .utils import convert_list_to_queryset, unionalize_models
+from .utils import convert_list_to_queryset, unionalize_models, filter_by_type
 
 
 CATEGORY = (
@@ -46,12 +47,12 @@ class ResourcesFilter(django_filters.FilterSet):
         )
         combined= list(pastquestion) + list(textbook) + list(project)
         result_queryset = convert_list_to_queryset(combined, PastQuestion, TextBook, Project)        
-        # print("result_queryset",result_queryset)    
+        print("result_queryset",result_queryset)    
         return result_queryset
     
     def category_filter(self, queryset, name, value):
         print("got here seyi oye",name, value,queryset)
-        # queryset = unionalize_models(PastQuestion, TextBook, Project)
+        # queryset = unionalize_models(PastQuestion, TextBook, Project) #uncomment situation when category standsalone
         if value == "Textbooks":
             id_name_list = [(item['id'], item['Name']) for item in queryset]
             found_textbooks = TextBook.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
@@ -71,10 +72,20 @@ class ResourcesFilter(django_filters.FilterSet):
             print("\n\n",queryset)
             id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
             found_textques = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Text_Questions")
-            # print(found_textques, "God is good")
+            print(found_textques, "God is good")
             return found_textques
 
     def session_filter(self,queryset, name, value):
-        filtered = queryset.filter(Session=value)
+        
+        print("got here 2", queryset)
+        # queryset = unionalize_models(PastQuestion, TextBook, Project) #uncomment situation when session standsalone
+        try:
+            filtered = queryset.filter(Session=value)
+            print(filtered)
+        except NotSupportedError:
+                print("exception gots")
+                id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
+                print(id_name_list, 'anmelist')
+                filtered = filter_by_type(id_name_list, PastQuestion, Project, value)
+                
         return filtered
-
