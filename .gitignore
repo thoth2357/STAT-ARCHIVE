@@ -1,5 +1,7 @@
 .venv
+.idea
 *.pyc
 staticfiles
 *.pdf
+output*
 media/*
