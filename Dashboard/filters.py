@@ -55,28 +55,26 @@ class ResourcesFilter(django_filters.FilterSet):
         if value == "Textbooks":
             id_name_list = [(item['id'], item['Name']) for item in queryset]
             found_textbooks = TextBook.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
-            print(found_textbooks, "God is good")
+            # print(found_textbooks, "God is good")
             return found_textbooks
         elif value == "Projects":
             id_name_list = [(item['id'], item['Name']) for item in queryset]
             found_projects = Project.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
-            print(found_projects, "God is good")
+            # print(found_projects, "God is good")
             return found_projects
         elif value == "Exam_Questions":
             id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
             found_examques = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Exam_Questions")
-            print(found_examques, "God is good")
+            # print(found_examques, "God is good")
             return found_examques
         elif value == "Text_Questions":
             print("\n\n",queryset)
             id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
             found_textques = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Text_Questions")
-            print(found_textques, "God is good")
+            # print(found_textques, "God is good")
             return found_textques
 
-
-
     def session_filter(self,queryset, name, value):
-        print("got to search mr",value,name)
-        print(queryset)
-        return queryset
+        filtered = queryset.filter(Session=value)
+        return filtered
+
