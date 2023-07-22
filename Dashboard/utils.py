@@ -110,3 +110,33 @@ def unionalize_models(model1, model2,model3):
 
     final = model1_query.union(model2_query, model3_query)
     return final
+
+
+def filter_by_type(id_name_list ,model1,model2,value):
+    type_model_mapping = {
+        'Text_Questions': model1,
+        'Exam_Questions':model1,
+        'Project': model2,
+        # Add more mappings for other types if needed
+    }
+
+    filtered_querysets = []
+    model_objects_set = set()  # Set to store model objects that have been added
+
+    for item in id_name_list:
+        record_id, record_name, record_type = item
+        model = type_model_mapping.get(record_type)
+        if model is not None:
+            # Filter the records based on the model
+            queryset = model.objects.filter(id=record_id, Name=record_name, Session=value)
+            
+            # Check if the model object is not already in the set before adding it
+            model_object = queryset.first()
+            if model_object not in model_objects_set:
+                filtered_querysets.append(queryset)
+                model_objects_set.add(model_object)
+                
+    # Take the union of all filtered querysets
+    combined_queryset = filtered_querysets[0].union(*filtered_querysets[1:])
+
+    return combined_queryset
