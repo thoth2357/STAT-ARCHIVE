@@ -11,6 +11,7 @@ from .models import PastQuestion, TextBook, Project, Sessions
 from .filters import ResourcesFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView
+from django.conf import settings
 
 
 class Bibliotheca(ListView):
@@ -110,7 +111,7 @@ class ResourcesSearch(FilterView):
         # Get the filtered queryset from the context
         print("got to here")
         filtered_queryset = context['filter'].qs
-        print('\n\n\n',filtered_queryset)
+        # print('\n\n\n',filtered_queryset)
         # Create a list to store the serialized data
         serialized_data = []
         try:
@@ -135,8 +136,8 @@ class ResourcesSearch(FilterView):
                     serialized_resource = {
                         'id': resource['id'],
                         'Name': resource['Name'],
-                        'file': resource['file'],
-                        'thumbnail': resource['thumbnail'],
+                        'file': f"{settings.MEDIA_URL}{resource['file']}",
+                        'thumbnail': f"{settings.MEDIA_URL}{resource['thumbnail']}",
                         'date-uploaded':resource['Date_uploaded']
                         # Add other fields you want to include in the serialized dictionary
                     }
@@ -144,7 +145,7 @@ class ResourcesSearch(FilterView):
                     serialized_data.append(serialized_resource)
                     # print(serialized_data, "seeeeeeeeeeeee")
                     serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
-                    # print("\n\nsorted_queryset", serialized_data)
+                    # print("\n\nserialized_data", serialized_data)
             except Exception as e:
                 # Handle any exceptions that may occur during serialization
                 print("Error during serialization:", e)
