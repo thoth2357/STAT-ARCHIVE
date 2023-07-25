@@ -1,22 +1,19 @@
-{% load pagination_tags %}
+{% load static %}
 <div class="row page mt-0">
   <div class="col-md-6">
-      <p class="page-text">Showing 8 from {{resources_count}} Books in Archive</p>
+    
   </div>
   <div class="col-md-6">
-      <nav aria-label="Blog Pagination">
-          <ul class="pagination style-1 p-t20">
-            {% for page_number in resource_per_page.paginator.page_range %}
-              <li class="page-item {% if page_number == resource_per_page.number %}active{% endif %}">
-                  {% comment %} <a class="page-link" href="
-                  {% if 'page=' in request.get_full_path %}
-                      ?{% url_replace request 'page' page_number %}
-                  {% else %}
-                      {{request.get_full_path}}&page={{ page_number }}
-                  {% endif %}">{{ page_number }}</a> {% endcomment %}
-              </li>
-            {% endfor %}
-          </ul>
-      </nav>
+
+    <nav aria-label="Blog Pagination">
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#">
+      Load More
+        <div class="panel-btn2">
+          <i class="fa-solid fa-spinner"></i>
+        </div>
+      </button>
+    </nav>
   </div>
 </div>
+
+
