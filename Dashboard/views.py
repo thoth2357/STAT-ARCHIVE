@@ -16,7 +16,7 @@ from django.views.generic import ListView
 class Bibliotheca(View):
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
-        sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded)
+        sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded,reverse=True)
         filtering = ResourcesFilter(request.GET, queryset=PastQuestion.objects.all())
         context = {
             'user': request.user,
@@ -108,7 +108,7 @@ class ResourcesSearch(FilterView):
     def render_to_response(self, context, **response_kwargs):
         # Get the filtered queryset from the context
         filtered_queryset = context['filter'].qs
-        print('\n\n\n',filtered_queryset)
+        # print('\n\n\n',filtered_queryset)
         # Create a list to store the serialized data
         serialized_data = []
         try:
