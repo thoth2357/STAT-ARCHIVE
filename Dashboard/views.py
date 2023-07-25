@@ -12,9 +12,12 @@ from .filters import ResourcesFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class Bibliotheca(ListView):
+class Bibliotheca(LoginRequiredMixin, View):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded,reverse=True)
@@ -23,14 +26,15 @@ class Bibliotheca(ListView):
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
-            'resources':sorted_resources,
-            'resources_count':len(sorted_resources),
+            'resources':sorted_resources[:8],
             'filter':filtering,
             'type':"home"
         }
         return render(request, 'Bibliotheca.html', context=context)
 
-class UploadResources(View):
+class UploadResources(LoginRequiredMixin, View):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
     def post(self,request):
         upload_type = QueryDict(urlparse(request.get_full_path()).query).get("query","")
         if upload_type == 'pq':
@@ -101,7 +105,9 @@ class UploadResources(View):
 
         return JsonResponse({'status': 'success'})
 
-class ResourcesSearch(FilterView):
+class ResourcesSearch(LoginRequiredMixin, FilterView):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
     model = PastQuestion
     template_name = 'Bibliotheca.html'
     paginate_by = 8
