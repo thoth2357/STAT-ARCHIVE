@@ -47,38 +47,35 @@ class ResourcesFilter(django_filters.FilterSet):
         )
         combined= list(pastquestion) + list(textbook) + list(project)
         result_queryset = convert_list_to_queryset(combined, PastQuestion, TextBook, Project)        
-        print("result_queryset",result_queryset)    
+        # print("result_queryset",result_queryset)    
         return result_queryset
     
     def category_filter(self, queryset, name, value):
-        print("got here seyi oye",name, value,queryset)
-        # queryset = unionalize_models(PastQuestion, TextBook, Project) #uncomment situation when category standsalone
-        if value == "Textbooks":
+        try:
             id_name_list = [(item['id'], item['Name']) for item in queryset]
-            found_textbooks = TextBook.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
-            # print(found_textbooks, "God is good")
-            return found_textbooks
-        elif value == "Projects":
+            if value == "Textbooks":
+                found_resources = TextBook.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
+            elif value == "Projects":
+                found_resources = Project.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
+            elif value == "Exam_Questions":
+                found_resources = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Exam_Questions")
+            elif value == "Text_Questions":
+                found_resources = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Text_Questions")
+        except TypeError:
+            queryset = unionalize_models(PastQuestion, TextBook, Project)  # Uncomment situation when category stands alone
             id_name_list = [(item['id'], item['Name']) for item in queryset]
-            found_projects = Project.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
-            # print(found_projects, "God is good")
-            return found_projects
-        elif value == "Exam_Questions":
-            id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
-            found_examques = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Exam_Questions")
-            # print(found_examques, "God is good")
-            return found_examques
-        elif value == "Text_Questions":
-            print("\n\n",queryset)
-            id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
-            found_textques = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Text_Questions")
-            print(found_textques, "God is good")
-            return found_textques
+            if value == "Textbooks":
+                found_resources = TextBook.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
+            elif value == "Projects":
+                found_resources = Project.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list])
+            elif value == "Exam_Questions":
+                found_resources = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Exam_Questions")
+            elif value == "Text_Questions":
+                found_resources = PastQuestion.objects.filter(id__in=[item[0] for item in id_name_list], Name__in=[item[1] for item in id_name_list], Type="Text_Questions")
+
+        return found_resources
 
     def session_filter(self,queryset, name, value):
-        
-        print("got here 2", queryset)
-        # queryset = unionalize_models(PastQuestion, TextBook, Project) #uncomment situation when session standsalone
         try:
             filtered = queryset.filter(Session=value)
             print(filtered)
