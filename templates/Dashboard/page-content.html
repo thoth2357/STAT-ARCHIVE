@@ -187,14 +187,33 @@
         });
     }
 
-    // Add event listener to the category dropdown change
-    $(".filter-category-new select[name='category']").on("change", handleFilterChange);
+    // Function to enable/disable the session dropdown
+    function toggleSessionDropdown() {
+        const categoryValue = $(".filter-category-new select[name='category']").val();
+        const searchValue = $(".header-item-search input[name='search']").val().trim();
+        const sessionDropdown = $(".filter-session-new select[name='session']");
+        
+        if (categoryValue || searchValue) {
+            sessionDropdown.prop("disabled", false);
+        } else {
+            sessionDropdown.prop("disabled", true);
+        }
+    }
 
-    // Add event listener to the session dropdown change
-    $(".filter-session-new select[name='session']").on("change", handleFilterChange);
+    // Call the toggleSessionDropdown function on page load to set initial state
+    toggleSessionDropdown();
+
+    // Add event listener to the category dropdown change
+    $(".filter-category-new select[name='category']").on("change", function() {
+        toggleSessionDropdown();
+        handleFilterChange(); // Also call the handleFilterChange function to update the results
+    });
 
     // Add event listener to the search input change
-    $(".header-item-search input[name='search']").on("input", handleFilterChange);
+    $(".header-item-search input[name='search']").on("input", function() {
+        toggleSessionDropdown();
+        handleFilterChange(); // Also call the handleFilterChange function to update the results
+    });
 </script>
 {% endblock scripts %}
 
