@@ -13,11 +13,12 @@ from django_filters.views import FilterView
 from django.views.generic import ListView
 
 
-class Bibliotheca(View):
+class Bibliotheca(ListView):
     def get(self, request):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded,reverse=True)
         filtering = ResourcesFilter(request.GET, queryset=PastQuestion.objects.all())
+        paginate_by = 8
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
@@ -107,8 +108,9 @@ class ResourcesSearch(FilterView):
 
     def render_to_response(self, context, **response_kwargs):
         # Get the filtered queryset from the context
+        print("got to here")
         filtered_queryset = context['filter'].qs
-        # print('\n\n\n',filtered_queryset)
+        print('\n\n\n',filtered_queryset)
         # Create a list to store the serialized data
         serialized_data = []
         try:
@@ -119,10 +121,13 @@ class ResourcesSearch(FilterView):
                     'Name': resource.Name,
                     'file': resource.file.url,
                     'thumbnail': resource.thumbnail.url,
+                    'date-uploaded': resource.Date_uploaded
                     # Add other fields you want to include in the JSON response
                 }
                 # Append the serialized resource to the list
                 serialized_data.append(serialized_resource)
+                serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
+                # print("\n\n",serialized_data, "seeeeeeeeeeeee2")
         except AttributeError:
             serialized_data = []
             try:
@@ -132,11 +137,14 @@ class ResourcesSearch(FilterView):
                         'Name': resource['Name'],
                         'file': resource['file'],
                         'thumbnail': resource['thumbnail'],
+                        'date-uploaded':resource['Date_uploaded']
                         # Add other fields you want to include in the serialized dictionary
                     }
                     # Append the serialized resource to the list
                     serialized_data.append(serialized_resource)
-
+                    # print(serialized_data, "seeeeeeeeeeeee")
+                    serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
+                    # print("\n\nsorted_queryset", serialized_data)
             except Exception as e:
                 # Handle any exceptions that may occur during serialization
                 print("Error during serialization:", e)
