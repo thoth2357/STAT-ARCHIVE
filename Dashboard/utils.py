@@ -65,19 +65,19 @@ def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3
     model3_pks = [obj.pk for obj in my_list if isinstance(obj, Model3)]
 
     # Retrieve the objects from the database using the primary keys
-    model1_queryset = Model1.objects.filter(pk__in=model1_pks).values("id", "Name", "Type", "file", "thumbnail")
-    model2_queryset = Model2.objects.filter(pk__in=model2_pks).values("id", "Name", "Type", "file", "thumbnail")
-    model3_queryset = Model3.objects.filter(pk__in=model3_pks).values("id", "Name", "Type", "file", "thumbnail")
+    model1_queryset = Model1.objects.filter(pk__in=model1_pks).values("id", "Name", "Type", "file", "thumbnail","Date_uploaded")
+    model2_queryset = Model2.objects.filter(pk__in=model2_pks).values("id", "Name", "Type", "file", "thumbnail","Date_uploaded")
+    model3_queryset = Model3.objects.filter(pk__in=model3_pks).values("id", "Name", "Type", "file", "thumbnail","Date_uploaded")
 
-    print(model1_queryset, "testing1\n")
-    print(model2_queryset, "testing2\n")
-    print(model3_queryset, "testing3\n")
+    # print(model1_queryset, "testing1\n")
+    # print(model2_queryset, "testing2\n")
+    # print(model3_queryset, "testing3\n")
 
 
     # # Combine all querysets into a single queryset
     h = {model1_queryset: len(model1_queryset), model2_queryset: len(model2_queryset),
          model3_queryset: len(model3_queryset)}
-    h = sorted(h.items(), key=lambda item: item[1], reverse=True)
+    h = sorted(h.items(), key=lambda item: item[1], reverse=False)
 
     h = [(item[0], item[1], item[0].model.__name__) for item in h]
 
