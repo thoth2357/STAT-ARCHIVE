@@ -108,12 +108,13 @@ $(document).ready(function () {
                 //close modal
                 var modal_close = document.getElementById("close-btn"); // Hide the upload modal
                 modal_close.click();
-
+                // console.log(xhr.responseText, status, error);
                 // Display the success message
+                const errorMessage = `Your file hasnt been uploaded \n\n  ${xhr.responseText}, \n Try again!. If problem persist contact admin@sta-archive.com`;  
                 Swal.fire({
                     icon: "error",
                     title: "Upload Not Successful!",
-                    text: "Your file hasnt been uploaded, Try again!. If problem persist contact admin@sta-archive.com",
+                    text: errorMessage,
                 });
             },
         });

@@ -2,7 +2,7 @@ import random
 import string
 from django.shortcuts import render
 from django.views import View
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseServerError
 from django.http.request import QueryDict
 from django.core.files import File
 from urllib.parse import urlparse
@@ -46,6 +46,20 @@ class UploadResources(LoginRequiredMixin, View):
             file = request.FILES.get('QuestionFile')
             thumbnail_name = ''.join(random.choices(string.ascii_letters + string.digits, k=8))          
             output_path = create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name)
+            
+            # Check if a similar PastQuestion object already exists
+            similar_pq = PastQuestion.objects.filter(
+                Session=Sessions.objects.get(id=session),
+                Type=pq_type,
+                Lecturer_name=lecturer_name,
+                Name=course_name,
+                Course_code=course_code
+            )
+            
+            if similar_pq:
+                return HttpResponseServerError("A similar PastQuestion already exists.")
+
+            
             pq_object = PastQuestion.objects.create(
                 Session = Sessions.objects.get(id=session),
                 Type = pq_type,
@@ -59,17 +73,29 @@ class UploadResources(LoginRequiredMixin, View):
                     pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
             except Exception:
                 pass #TODO send log to admin
-            return JsonResponse({'status': 'success'})    
+            return JsonResponse({'status': 'success'})
+        
+        
         elif upload_type == 'txb':
             textbook_name = request.POST.get('textbookName')
             textbook_author = request.POST.get('textbookAuthor')
             file = request.FILES.get('textbookFile')
+            
+            # Check if a similar TextBook object already exists
+            similar_txb = TextBook.objects.filter(
+                Name=textbook_name,
+                Author=textbook_author
+            )
+            if similar_txb:
+                return HttpResponseServerError("A similar Textbook already exists.")
+
             
             txb_object = TextBook.objects.create(
                 Name = textbook_name,
                 Author = textbook_author,
                 file = file,
             )
+            
             try:
                 thumbnail_path,filename = generate_textbook_thumbnail(txb_object.file.url, 'media/resources/images/textbook')
                 with open(thumbnail_path, 'rb') as image_file:
@@ -85,25 +111,36 @@ class UploadResources(LoginRequiredMixin, View):
             author = request.POST.get('projectAuthor')
             supervisor = request.POST.get('projectSupervisor')
             file = request.FILES.get('projectFile') 
-            prj_object = Project.objects.create(
-                Session = Sessions.objects.get(id=session),
-                Name = topic,
-                Author = author,
-                Supervisor = supervisor,
-                file = file
+            
+            # Check if a similar Project object already exists
+            similar_prj = Project.objects.filter(
+                Session=session,
+                Name=topic,
+                Author=author,
+                Supervisor=supervisor
             )
-            try:
-                thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
-                with open(thumbnail_path, 'rb') as image_file:
-                    prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
-                    #TODO To delete duplicate file
-            except Exception:
-                ...
-            return JsonResponse({'status': 'success'})
+            if similar_prj:
+                return HttpResponseServerError("A similar Project already exists.")
+            else:
+                prj_object = Project.objects.create(
+                    Session = Sessions.objects.get(id=session),
+                    Name = topic,
+                    Author = author,
+                    Supervisor = supervisor,
+                    file = file
+                )
+                try:
+                    thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
+                    with open(thumbnail_path, 'rb') as image_file:
+                        prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
+                        #TODO To delete duplicate file
+                except Exception:
+                    ...
+                return JsonResponse({'status': 'success'})
         else:
-            print('error')
+            return JsonResponse({'status': 'error', 'message': 'Invalid upload_type.'})
 
-        return JsonResponse({'status': 'success'})
+        # return JsonResponse({'status': 'success'})
 
 class ResourcesSearch(LoginRequiredMixin, FilterView):
     login_url = '/'
