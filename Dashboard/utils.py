@@ -84,7 +84,7 @@ def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3
 
     h = [item for item in h if item[0]]
     size = len(h)
-    print("\n", h, "bastards", size)
+    # print("\n", h, "bastards", size)
     # # for i in h:
     # #     h[0][0].union()
     if 1 < size < 3:  # sloppy code here , fix after deadline
@@ -94,7 +94,7 @@ def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3
     else:
         combined_queryset = h[0][0]
 
-    print("combined", combined_queryset)
+    # print("combined", combined_queryset)
     # results_list = sorted(
     #     combined_queryset,
     #     key=attrgetter('Date_uploaded')
