@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block misc-head-options %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endblock misc-head-options %}
 {% block title %} Login {% endblock title %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
@@ -14,25 +18,13 @@
                 <div class="wrap-login">
                     <form class="login-form validate-form" method="post">
                         {% csrf_token %}
-                        <!-- Add the following code to display form errors -->
-                        {% if form.errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <p>{{ error }}</p>
-                                    {% endfor %}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-
-                        <span class="login-form-logo">
-                            <a href={% url 'login' %}>
+                        <span class="login-form-logo"><a href={% url 'login' %}>
                                 <img src="{% static 'assets/img/futa-logo.jpeg' %}" alt="" width="120px">
                             </a>
                         </span>
 
                         <span class="login-form-title p-b-34 p-t-6">
-                            FUTA STAT-ARCHIVE <br> Log In
+                            FUTA STA-ARCHIVE <br> Log In
                         </span>
         
                         <div class="wrap-input100 validate-input" data-validate="Enter username">
@@ -51,8 +43,7 @@
                                 Login
                             </button>
                         </div>
-                        
-                        <br/>
+
                         <div class="text-center">
                             <p>
                                 <a style="color: white; font-size: 17px; onMouseOver="this.style.color='#fff'"" href="{% url 'forgot_password' %}"><i class="fas fa-mouse-pointer"></i> Forgot Password?</a> 
