@@ -609,9 +609,6 @@ var Bookland = function(){
 			heartBlast();
 			handleShopPannel();
 			handleHeaderMenuItem();
-			handleFinalCountDown();
-			cartButton();
-			handleSupport();
 		},
 
 		load:function(){
