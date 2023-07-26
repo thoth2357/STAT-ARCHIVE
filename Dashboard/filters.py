@@ -78,11 +78,11 @@ class ResourcesFilter(django_filters.FilterSet):
     def session_filter(self,queryset, name, value):
         try:
             filtered = queryset.filter(Session=value)
-            print(filtered)
+            # print(filtered)
         except NotSupportedError:
-                print("exception gots")
+                # print("exception gots")
                 id_name_list = [(item['id'], item['Name'], item['Type']) for item in queryset]
-                print(id_name_list, 'anmelist')
+                # print(id_name_list, 'anmelist')
                 filtered = filter_by_type(id_name_list, PastQuestion, Project, value)
                 
         return filtered
