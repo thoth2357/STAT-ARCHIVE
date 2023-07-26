@@ -142,3 +142,7 @@ def filter_by_type(id_name_list ,model1,model2,value):
     combined_queryset = filtered_querysets[0].union(*filtered_querysets[1:])
 
     return combined_queryset
+
+
+def remove_duplicate_file_from_path(path):
+    os.remove(path)
