@@ -13,6 +13,8 @@ from django_filters.views import FilterView
 from django.views.generic import ListView
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
+
 
 
 class Bibliotheca(LoginRequiredMixin, View):
@@ -22,11 +24,15 @@ class Bibliotheca(LoginRequiredMixin, View):
         all_resources = list(PastQuestion.objects.all()) + list(TextBook.objects.all()) + list(Project.objects.all())
         sorted_resources = sorted(all_resources, key=lambda resource: resource.Date_uploaded,reverse=True)
         filtering = ResourcesFilter(request.GET, queryset=PastQuestion.objects.all())
-        paginate_by = 8
+        paginator = Paginator(sorted_resources, 8)  # Change 8 to the desired number of items per page
+        
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        print(page_number, page_obj, page_obj.number, page_obj.paginator.num_pages)
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
-            'resources':sorted_resources[:8],
+            'resources':page_obj,
             'filter':filtering,
             'type':"home"
         }

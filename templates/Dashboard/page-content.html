@@ -26,10 +26,7 @@
                                 <form id="resource-search-form" action={% url 'resource-search' %} class="header-item-search">
                                     {% csrf_token %}
                                     <div class="input-group search-input">
-                                        {% render_field filter.form.search class+="form-control" placeholder="Search Books Here"%}
-                                        <button class="btn" type="submit">
-                                            <i class="flaticon-loupe"></i>
-                                        </button>
+                                        {% render_field filter.form.search class+="form-control" placeholder="Search Books Textbooks Projects Here"%}
                                     </div>
                                 </form>
                             </div>
@@ -52,46 +49,15 @@
                             
                         </div>
                     </div>
-                    <div class="row book-grid-row">
+                    <div class="row book-grid-row" id="infinite-scroll-content">
                         {% if type == 'home' %}
-                            {% with variable=resources %}
-                                <!-- Use the 'variable' here -->
-                                {% for resource in variable %}
-                                    <div class="col-book style-1">
-                                        <div class="dz-shop-card style-1">
-                                            <div class="dz-media">
-                                                <img src="{{resource.thumbnail.url}}" alt="book">
-                                            </div>
-                                            <div class="dz-content">
-                                                <span><b>{{resource.Name}}</b></span>
-                                                <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
-                                                    ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% endwith %}
+                                <!-- Render the initial content here -->
+                                {% include 'Dashboard/book-grid.html' with variable=resources %}                                
                         {% else %}
-                            {% with variable=filter.qs %}
-                                <!-- Use the 'variable' here -->
-                                {% for resource in variable %}
-                                    <div class="col-book style-1">
-                                        <div class="dz-shop-card style-1">
-                                            <div class="dz-media">
-                                                <img src="{{resource.thumbnail.url}}" alt="book">
-                                            </div>
-                                            <div class="dz-content">
-                                                <span><b>{{resource.Name}}</b></span>
-                                                <a href="{{resource.file.url}}" class="btn btn-secondary box-btn btnhover btnhover2"
-                                                    ><i class="fa fa-book-open m-r10"></i> Click To Download</a
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            {% endwith %}
+                                <!-- Render the initial content here -->
+                                {% include 'Dashboard/book-grid.html' with variable=filter.qs %} 
                         {% endif %}
+                        
                     </div>
                     {% include 'Dashboard/pagination.html' %}
                 </div>
@@ -104,6 +70,7 @@
 {% block scripts %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+$(document).ready(function () {
     // Function to handle changes in the category and session dropdowns and search input
     function handleFilterChange() {
         const searchValue = $(".header-item-search input[name='search']").val().trim();
@@ -214,6 +181,83 @@
         toggleSessionDropdown();
         handleFilterChange(); // Also call the handleFilterChange function to update the results
     });
+    
+    // Function to hide the preloader
+    function hidePreloader() {
+        $("#loading-area").fadeOut();
+    }
+
+    // Function to show the preloader
+    function showPreloader() {
+        $("#loading-area").fadeIn();
+    }
+
+    // Initially, show the preloader on page load
+    showPreloader();
+
+    let loading = false;
+    let currentPage = {{ resources.number|escapejs }}
+    let totalPages = {{ resources.paginator.num_pages|escapejs }}
+    
+    console.log("PAges", currentPage, totalPages)
+    // Function to load the next page of pagination
+    function loadNextPage() {
+      if (!loading && currentPage < totalPages) {
+        loading = true;
+        const nextPage = currentPage + 1;
+  
+        // Show the loading spinner
+        document.getElementById("loading").style.display = "block";
+        
+
+        //console.log("nextpage",nextPageURL)
+        // Send the AJAX request to fetch the next page
+        $.ajax({
+          url: "{% url 'Bibliotheca' %}?page=" + nextPage,
+          type: "GET",
+          dataType: "html",
+          success: function (data) {
+            if (data.trim() !== "") {
+                // Get the <div class="col-book style-1"> elements from the response
+                const $colBooks = $(data).find(".col-book.style-1");
+                
+                // Append the retrieved elements to the container
+                $("#infinite-scroll-content").append($colBooks);
+                loading = false;
+                currentPage++;
+                console.log("PAges", currentPage, totalPages)
+
+            } else {
+                // If no more data is available, hide the preloader
+                $("#loading-area").hide();
+            }
+        },
+          error: function (xhr) {
+            // Handle error response
+            console.error(xhr.responseText);
+            loading = false;
+          },
+        });
+      }
+    }
+  
+    // Function to check if the user has scrolled to the bottom of the page
+    function checkScroll() {
+      if (
+        $(window).scrollTop() + $(window).height() >=
+        $(document).height() - 300
+      ) {
+        loadNextPage();
+      }
+    }
+  
+    // Add event listener for scrolling
+    $(window).on("scroll", function () {
+        // Hide the preloader when the user starts scrolling
+        hidePreloader();
+        checkScroll()
+    });
+});
 </script>
 {% endblock scripts %}
 
