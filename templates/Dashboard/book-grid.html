@@ -1,15 +1,28 @@
 {% for resource in variable %}
     <div class="col-book style-1">
         <div class="dz-shop-card style-1">
-            <div class="dz-media">
-                <img src="{{ resource.thumbnail.url }}" alt="book">
-            </div>
-            <div class="dz-content">
-                <span><b>{{ resource.Name }}</b></span>
-                <a href="{{ resource.file.url }}" class="btn btn-secondary box-btn btnhover btnhover2">
-                    <i class="fa fa-book-open m-r10"></i> Click To Download
-                </a>
-            </div>
+            {% if resource.thumbnail %}
+                <div class="dz-media">
+                    <img src="{{ resource.thumbnail.url }}" alt="book">
+                </div>
+                <div class="dz-content">
+                    <span><b>{{ resource.Name }}</b></span>
+                    <a href="{{ resource.file.url }}" class="btn btn-secondary box-btn btnhover btnhover2">
+                        <i class="fa fa-book-open m-r10"></i> Click To Download
+                    </a>
+                </div>
+            {% else %}
+                <div class="dz-media">
+                    <img src="" alt="Ouch! No Thumbnail ">
+                </div>
+                <div class="dz-content">
+                    <span><b>{{ resource.Name }}</b></span>
+                    <p><span><b>{{ resource.Type }}</b></span></p>
+                    <a href="{{ resource.file.url }}" class="btn btn-secondary box-btn btnhover btnhover2">
+                        <i class="fa fa-book-open m-r10"></i> Click To Download
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endfor %}
