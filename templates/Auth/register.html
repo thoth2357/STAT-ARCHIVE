@@ -223,10 +223,10 @@
                         icon: 'success',
                         title: 'Success',
                         text: successMessage,
-                    });
+                    }).then(function() {
+                        window.location.href = '{% url "login" %}';
+                    })
     
-                    // Handle success response
-                    //  window.location.href = '{% url "login" %}';  //#TODO change this to the appropriate URL after successful registration
                 },
                 error: function(xhr) {
                     // Handle error response
