@@ -7,22 +7,25 @@ from pdf2image import convert_from_path
 from typing import List
 from itertools import chain
 from operator import attrgetter
-
+from Log.models import Log
 
 def generate_textbook_thumbnail(file, destination):
-    input_file = os.path.join(settings.BASE_DIR, str(file).lstrip('/'))
+    try:
+        input_file = os.path.join(settings.BASE_DIR, str(file).lstrip('/'))
 
-    # Convert the first page of the PDF to an image
-    images = convert_from_path(input_file, first_page=1, last_page=1, size=(220, 300))
+        # Convert the first page of the PDF to an image
+        images = convert_from_path(input_file, first_page=1, last_page=1, size=(220, 300))
 
-    # Save the image thumbnail
-    filename = os.path.splitext(os.path.basename(input_file))[0]
-    output_dir = os.path.join(settings.BASE_DIR, destination)
-    os.makedirs(output_dir, exist_ok=True)  # Create the output directory if it doesn't exist
-    thumbnail_path = os.path.join(output_dir, f'{filename}_thumbnail.jpg')
-    print(thumbnail_path, "thumbnail-path")
-    images[0].save(thumbnail_path, 'JPEG')
-    return thumbnail_path, filename
+        # Save the image thumbnail
+        filename = os.path.splitext(os.path.basename(input_file))[0]
+        output_dir = os.path.join(settings.BASE_DIR, destination)
+        os.makedirs(output_dir, exist_ok=True)  # Create the output directory if it doesn't exist
+        thumbnail_path = os.path.join(output_dir, f'{filename}_thumbnail.jpg')
+        print(thumbnail_path, "thumbnail-path")
+        images[0].save(thumbnail_path, 'JPEG')
+        return thumbnail_path, filename
+    except Exception as e:
+        Log.objects.create(GeneratedBy="generate_textbook_thumbnail", ExceptionMessage=e)
 
 
 def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name):
@@ -55,8 +58,7 @@ def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, sessi
         imgkit.from_string(html_code, output_path, options=options, css=css)
         return output_path
     except Exception as e:
-        print(e)
-
+        Log.objects.create(GeneratedBy="create_pastquestion_thumbnail", ExceptionMessage=e)
 
 def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3: Model):
     # Get the primary keys of the objects for each model
