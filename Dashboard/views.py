@@ -14,8 +14,7 @@ from django.views.generic import ListView
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-
-
+from Log.models import Log
 
 class Bibliotheca(LoginRequiredMixin, View):
     login_url = '/'
@@ -77,8 +76,9 @@ class UploadResources(LoginRequiredMixin, View):
             try:           
                 with open(output_path, 'rb') as image_file:
                     pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
-            except Exception:
-                pass #TODO send log to admin
+            except Exception as e:
+                Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+
             return JsonResponse({'status': 'success'})
         
         
@@ -107,8 +107,9 @@ class UploadResources(LoginRequiredMixin, View):
                 with open(thumbnail_path, 'rb') as image_file:
                     txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                     #TODO To delete duplicate file
-            except Exception:
-                ...
+            except Exception as e:
+                Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                ... 
             return JsonResponse({'status': 'success'})
             
         elif upload_type == 'prj':
@@ -140,8 +141,9 @@ class UploadResources(LoginRequiredMixin, View):
                     with open(thumbnail_path, 'rb') as image_file:
                         prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                         #TODO To delete duplicate file
-                except Exception:
-                    ...
+                except Exception as e:
+                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                    
                 return JsonResponse({'status': 'success'})
         else:
             return JsonResponse({'status': 'error', 'message': 'Invalid upload_type.'})
@@ -197,7 +199,7 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
                     # print("\n\nserialized_data", serialized_data)
             except Exception as e:
                 # Handle any exceptions that may occur during serialization
-                print("Error during serialization:", e)
+                Log.objects.create(GeneratedBy="ResourcesSearchView->AttributeError", ExceptionMessage=e)                
 
         # Return the JSON response with the serialized data
         return JsonResponse(serialized_data, safe=False)
