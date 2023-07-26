@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     "Authentication.apps.AuthenticationConfig", # new   
     "Dashboard.apps.DashboardConfig",   # new
+    "Log.apps.LogConfig", # new
     
     "widget_tweaks", # new
     "django_extensions", # new
