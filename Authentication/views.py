@@ -140,4 +140,4 @@ class ResetPasswordView(View):
                 return JsonResponse({'success': 'Password reset successful.'}, status=200)
 
         # Invalid token or expired, redirect to an error page or display an error message
-        return render(request, 'Auth/password_reset_error.html') #TODO Create a password reset error page
+        return render(request, 'Auth/password_reset_error.html')
