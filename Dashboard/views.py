@@ -6,8 +6,8 @@ from django.http import JsonResponse, HttpResponseServerError
 from django.http.request import QueryDict
 from django.core.files import File
 from urllib.parse import urlparse
-from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail
-from .models import PastQuestion, TextBook, Project, Sessions
+from .utils import create_pastquestion_thumbnail, generate_textbook_thumbnail, remove_duplicate_file_from_path
+from .models import PastQuestion, TextBook, Project, Sessions, Report
 from .filters import ResourcesFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView
@@ -27,7 +27,7 @@ class Bibliotheca(LoginRequiredMixin, View):
         
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
-        print(page_number, page_obj, page_obj.number, page_obj.paginator.num_pages)
+        # print(page_number, page_obj, page_obj.number, page_obj.paginator.num_pages)
         context = {
             'user': request.user,
             'sessions':Sessions.objects.all(),
@@ -106,7 +106,7 @@ class UploadResources(LoginRequiredMixin, View):
                 thumbnail_path,filename = generate_textbook_thumbnail(txb_object.file.url, 'media/resources/images/textbook')
                 with open(thumbnail_path, 'rb') as image_file:
                     txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
-                    #TODO To delete duplicate file
+                    remove_duplicate_file_from_path(thumbnail_path)
             except Exception as e:
                 Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
                 ... 
@@ -140,7 +140,7 @@ class UploadResources(LoginRequiredMixin, View):
                     thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
                     with open(thumbnail_path, 'rb') as image_file:
                         prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
-                        #TODO To delete duplicate file
+                        remove_duplicate_file_from_path(thumbnail_path)
                 except Exception as e:
                     Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
                     
@@ -160,7 +160,7 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
 
     def render_to_response(self, context, **response_kwargs):
         # Get the filtered queryset from the context
-        print("got to here")
+        # print("got to here")
         filtered_queryset = context['filter'].qs
         # print('\n\n\n',filtered_queryset)
         # Create a list to store the serialized data
@@ -203,4 +203,26 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
 
         # Return the JSON response with the serialized data
         return JsonResponse(serialized_data, safe=False)
-    
+
+
+class ResourcesReportView(LoginRequiredMixin, View):
+    login_url = '/'
+    redirect_field_name = 'redirect_to'
+    def post(self,request):
+        category = request.POST.get('cagetory')
+        name = request.POST.get('name')
+        message = request.POST.get('message')
+        
+        try:
+            report_object = Report.objects.create(
+                Name = name,
+                Category = category,
+                Message = message
+            )
+            report_object.save()
+            return JsonResponse({"status":"success"})
+        except Exception as e:
+            Log.objects.create(GeneratedBy="ResourcesReportView", ExceptionMessage=e)
+            return HttpResponseServerError("Error in saving Report")
+
+        
