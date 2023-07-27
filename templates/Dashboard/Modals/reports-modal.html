@@ -1,0 +1,121 @@
+{% load static %}
+<!-- Sponsors Modal -->
+<div
+    class="modal fade"
+    id="reportModal"
+    tabindex="-1"
+    aria-labelledby="sponsorsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sponsorsModalLabel">
+                    <i class="fas fa-flag me-2"></i>Report Resource
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Fill the form below to report a resource:</p>
+                <form id="reportResourceForm">
+                    <div class="mb-3">
+                        <label for="resourceCategory" class="form-label">Resource Category</label>
+                        <select class="form-select" id="resourceCategory" required>
+                            <option value="" selected disabled>Select Resource Category</option>
+                            <option value="Exam Questions">Exam Questions</option>
+                            <option value="Test Questions">Text Questions</option>
+                            <option value="Textbooks">Textbooks</option>
+                            <option value="Projects">Projects</option>
+                            
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="resourceName" class="form-label">Resource Name</label>
+                        <input type="text" class="form-control" id="resourceName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Reason For Reporting Resource</label>
+                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close-btn2" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="submitReportBtn">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $("#submitReportBtn").click(function () {
+            var resourceName = $("#resourceName").val();
+            var resourceCategory = $("#resourceCategory").val();
+            var message = $("#message").val();
+            
+            // Validate that all fields are filled
+            if (!resourceName || !resourceCategory || !message) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Incomplete Form!",
+                    text: "Please fill all the required fields.",
+                });
+                return;
+            }
+    
+            $.ajax({
+                url: "/Stat-Archive/report/", // Replace 'report' with the actual URL name
+                type: "POST",
+                data: {
+                    name: resourceName,
+                    category: resourceCategory,
+                    message: message,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                },
+                dataType: "json",
+                success: function (response) {
+                    //close modal
+                    var modal_close = document.getElementById("close-btn2");
+                    var nav_bar_close = document.getElementById("navbar-toggler")
+                    if (nav_bar_close) {
+                        nav_bar_close.click()
+                    }
+                    modal_close.click();
+                    
+                    Swal.fire({
+                        icon: "success",
+                        title: "Report Submitted!",
+                        text:  "Thank you for reporting this resource.",
+                    });
+    
+                    confetti({
+                        particleCount: 500,
+                        spread: 100,
+                        origin: { y: 0.6 },
+                    });
+                },
+                error: function (xhr, status, error) {
+                    //close modal
+                    var modal_close = document.getElementById("close-btn2");
+                    modal_close.click();
+    
+                    Swal.fire({
+                        icon: "error",
+                        title: "Report Not Submitted!",
+                        text: "Failed to submit the report. Please try again later.",
+                    });
+                },
+            });
+        });
+    })
+</script>
+{% endblock scripts %}
