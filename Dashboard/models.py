@@ -64,3 +64,14 @@ class Project(models.Model):
     def __str__(self):
         return self.Name
 
+
+class Report(models.Model):
+    Resource_name = models.CharField(max_length=50),
+    Category = models.CharField(max_length=50)
+    Message = models.TextField()
+    
+    def __str__(self) -> str:
+        return f"{self.Name}- {self.Category}"
+    
+    
+    
