@@ -1917,3 +1917,72 @@ you should set broker_connection_retry_on_startup to True.
 [2023-08-03 19:09:18,164: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[cabac206-4ad6-462b-a235-0a596a1691bf] succeeded in 8.926424345998385s: None
 [2023-08-03 19:29:25,624: INFO/MainProcess] Task Authentication.tasks.send_email[67953a9f-fb05-4560-9c2b-8f7419040738] received
 [2023-08-03 19:29:38,403: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[67953a9f-fb05-4560-9c2b-8f7419040738] succeeded in 12.777655941998091s: None
+[2023-08-03 23:36:21,559: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 23:36:21,570: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 23:36:21,571: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 23:36:21,573: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 23:36:22,581: INFO/MainProcess] mingle: all alone
+[2023-08-03 23:36:22,592: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 23:37:35,494: INFO/MainProcess] Task Authentication.tasks.send_email[b09e3ec3-e666-40b3-b55d-dd10a0aa56b7] received
+[2023-08-03 23:37:40,443: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[b09e3ec3-e666-40b3-b55d-dd10a0aa56b7] succeeded in 4.947005836998869s: None
+[2023-08-03 23:44:13,824: INFO/MainProcess] Task Authentication.tasks.send_email[8e24f227-220e-4867-aa86-9525ac50c351] received
+[2023-08-03 23:44:13,832: ERROR/ForkPoolWorker-7] Task Authentication.tasks.send_email[8e24f227-220e-4867-aa86-9525ac50c351] raised unexpected: TypeError("send_email() got multiple values for argument 'type_'")
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 477, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 760, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: send_email() got multiple values for argument 'type_'
+[2023-08-03 23:46:09,245: ERROR/MainProcess] Received unregistered task of type 'Authentication.tasks.send_email_func'.
+The message has been ignored and discarded.
+
+Did you remember to import the module containing this task?
+Or maybe you're using relative imports?
+
+Please see
+https://docs.celeryq.dev/en/latest/internals/protocol.html
+for more information.
+
+The full contents of the message body was:
+b'[["osungbohun odunayo", "oluwaseyioyewunmi99@gmail.com", "Sta Archive Password Reset", "http://127.0.0.1:8000/reset-password/?token=bsdrcw-73bd2ed3a5e61862e627631fd6882507"], {"type_": "reset"}, {"callbacks": null, "errbacks": null, "chain": null, "chord": null}]' (263b)
+
+The full contents of the message headers:
+{'lang': 'py', 'task': 'Authentication.tasks.send_email_func', 'id': '3e4d699d-eef3-4d03-9abf-b8568f2e52b5', 'shadow': None, 'eta': None, 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': '3e4d699d-eef3-4d03-9abf-b8568f2e52b5', 'parent_id': None, 'argsrepr': "('osungbohun odunayo', 'oluwaseyioyewunmi99@gmail.com', 'Sta Archive Password Reset', 'http://127.0.0.1:8000/reset-password/?token=bsdrcw-73bd2ed3a5e61862e627631fd6882507')", 'kwargsrepr': "{'type_': 'reset'}", 'origin': 'gen78047@Asteria', 'ignore_result': False, 'stamped_headers': None, 'stamps': {}}
+
+The delivery info for this task is:
+{'exchange': '', 'routing_key': 'celery'}
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py", line 642, in on_task_received
+    strategy = strategies[type_]
+               ~~~~~~~~~~^^^^^^^
+KeyError: 'Authentication.tasks.send_email_func'
+[2023-08-03 23:47:09,493: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 23:47:09,503: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 23:47:09,504: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 23:47:09,506: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 23:47:10,517: INFO/MainProcess] mingle: all alone
+[2023-08-03 23:47:10,529: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 23:47:24,612: INFO/MainProcess] Task Authentication.tasks.send_email_func[f9432f19-32c3-435b-977e-975485faa77d] received
+[2023-08-03 23:47:28,445: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email_func[f9432f19-32c3-435b-977e-975485faa77d] succeeded in 3.8305463409997174s: None
