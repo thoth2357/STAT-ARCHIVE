@@ -1,0 +1,1919 @@
+[2023-08-03 16:36:23,084: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 16:36:23,104: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 16:36:23,105: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 16:36:23,107: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 16:36:24,118: INFO/MainProcess] mingle: all alone
+[2023-08-03 16:36:24,130: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 16:40:35,170: INFO/MainProcess] Task Authentication.tasks.send_email[2027de89-75d9-4d2a-9fc2-2d42f30ea767] received
+[2023-08-03 16:40:45,246: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[2027de89-75d9-4d2a-9fc2-2d42f30ea767] succeeded in 10.075443015000928s: None
+[2023-08-03 17:13:15,896: INFO/MainProcess] Task Authentication.tasks.send_email[ece165d2-3ee9-40c4-af00-36a54c0f82c8] received
+[2023-08-03 17:13:20,865: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[ece165d2-3ee9-40c4-af00-36a54c0f82c8] succeeded in 4.967166774000361s: None
+[2023-08-03 17:18:41,380: INFO/MainProcess] Task Authentication.tasks.send_email[abb970cf-b519-4dcd-bb83-dce99d0299f9] received
+[2023-08-03 17:18:48,265: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[abb970cf-b519-4dcd-bb83-dce99d0299f9] succeeded in 6.883505915000569s: None
+[2023-08-03 17:20:14,486: INFO/MainProcess] Task Authentication.tasks.send_email[99ba4e7e-aef6-4de6-bfe3-ac838d1bfcf6] received
+[2023-08-03 17:20:18,331: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[99ba4e7e-aef6-4de6-bfe3-ac838d1bfcf6] succeeded in 3.8428853890000028s: None
+[2023-08-03 17:21:09,926: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:21:09,932: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 17:21:09,932: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:21:09,933: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 17:21:10,938: INFO/MainProcess] mingle: all alone
+[2023-08-03 17:21:10,946: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 17:22:32,088: INFO/MainProcess] Task Authentication.tasks.send_email[6564534e-51b8-4699-8fe1-365d232353d4] received
+[2023-08-03 17:22:32,094: WARNING/ForkPoolWorker-7] <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Email Confirmation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css">
+            /**
+   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
+   */
+            @media screen {
+                @font-face {
+                    font-family: "Source Sans Pro";
+                    font-style: normal;
+                    font-weight: 400;
+                    src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
+                        url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff)
+                            format("woff");
+                }
+                @font-face {
+                    font-family: "Source Sans Pro";
+                    font-style: normal;
+                    font-weight: 700;
+                    src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
+                        url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff)
+                            format("woff");
+                }
+            }
+            /**
+   * Avoid browser level font resizing.
+   * 1. Windows Mobile
+   * 2. iOS / OSX
+   */
+            body,
+            table,
+            td,
+            a {
+                -ms-text-size-adjust: 100%; /* 1 */
+                -webkit-text-size-adjust: 100%; /* 2 */
+            }
+            /**
+   * Remove extra space added to tables and cells in Outlook.
+   */
+            table,
+            td {
+                mso-table-rspace: 0pt;
+                mso-table-lspace: 0pt;
+            }
+            /**
+   * Better fluid images in Internet Explorer.
+   */
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
+            /**
+   * Remove blue links for iOS devices.
+   */
+            a[x-apple-data-detectors] {
+                font-family: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+                color: inherit !important;
+                text-decoration: none !important;
+            }
+            /**
+   * Fix centering issues in Android 4.4.
+   */
+            div[style*="margin: 16px 0;"] {
+                margin: 0 !important;
+            }
+            body {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            /**
+   * Collapse table borders to avoid space between cells.
+   */
+            table {
+                border-collapse: collapse !important;
+            }
+            a {
+                color: #1a82e2;
+            }
+            img {
+                height: auto;
+                line-height: 100%;
+                text-decoration: none;
+                border: 0;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body style="background-color: #e9ecef">
+        <!-- start preheader -->
+        <div
+            class="preheader"
+            style="
+                display: none;
+                max-width: 0;
+                max-height: 0;
+                overflow: hidden;
+                font-size: 1px;
+                line-height: 1px;
+                color: #fff;
+                opacity: 0;
+            ">
+            A preheader is the short summary text that follows the subject line when an email is
+            viewed in the inbox.
+        </div>
+        <!-- end preheader -->
+
+        <!-- start body -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <!-- start logo -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <tr>
+                            <td align="center" valign="top" style="padding: 36px 24px">
+                                <a
+                                    href="https://www.blogdesire.com"
+                                    target="_blank"
+                                    style="display: inline-block">
+                                    <img
+                                        src="https://www.blogdesire.com/wp-content/uploads/2019/07/blogdesire-1.png"
+                                        alt="Logo"
+                                        border="0"
+                                        width="48"
+                                        style="
+                                            display: block;
+                                            width: 48px;
+                                            max-width: 48px;
+                                            min-width: 48px;
+                                        " />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end logo -->
+
+            <!-- start hero -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 36px 24px 0;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    border-top: 3px solid #d4dadf;
+                                ">
+                                <h1
+                                    style="
+                                        margin: 0;
+                                        font-size: 32px;
+                                        font-weight: 700;
+                                        letter-spacing: -1px;
+                                        line-height: 48px;
+                                    ">
+                                    Hello oluwaseyioyewunmi7 <br />Confirm Your Email Address
+                                </h1>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end hero -->
+
+            <!-- start copy block -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                ">
+                                <p style="margin: 0">
+                                    Tap the button below to confirm your email address. If you
+                                    didn't create an account with
+                                    <a href="http://127.0.0.1:8000/verify/Nw/bsd9lk-58907c119bc198412e9b2246f0e14c32/">Sta Archive</a>, you can safely
+                                    delete this email.
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+
+                        <!-- start button -->
+                        <tr>
+                            <td align="left" bgcolor="#ffffff">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td align="center" bgcolor="#ffffff" style="padding: 12px">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td
+                                                        align="center"
+                                                        bgcolor="#1a82e2"
+                                                        style="border-radius: 6px">
+                                                        <a
+                                                            href="https://www.blogdesire.com"
+                                                            target="_blank"
+                                                            style="
+                                                                display: inline-block;
+                                                                padding: 16px 36px;
+                                                                font-family: 'Source Sans Pro',
+                                                                    Helvetica, Arial, sans-serif;
+                                                                font-size: 16px;
+                                                                color: #ffffff;
+                                                                text-decoration: none;
+                                                                border-radius: 6px;
+                                                            "
+                                                            >Confirm Email</a
+                                                        >
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- end button -->
+
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                ">
+                                <p style="margin: 0">
+                                    If that doesn't work, copy and paste the following link in your
+                                    browser:
+                                </p>
+                                <p style="margin: 0">
+                                    <a href="http://127.0.0.1:8000/verify/Nw/bsd9lk-58907c119bc198412e9b2246f0e14c32/" target="_blank"
+                                        >http://127.0.0.1:8000/verify/Nw/bsd9lk-58907c119bc198412e9b2246f0e14c32/</a
+                                    >
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    border-bottom: 3px solid #d4dadf;
+                                ">
+                                <p style="margin: 0">
+                                    Cheers,<br />
+                                    Sta Archive
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end copy block -->
+
+            <!-- start footer -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef" style="padding: 24px">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <!-- start permission -->
+                        <tr>
+                            <td
+                                align="center"
+                                bgcolor="#e9ecef"
+                                style="
+                                    padding: 12px 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #666;
+                                ">
+                                <p style="margin: 0">
+                                    You received this email because we received a request for
+                                    confirming your email address for your account. If you didn't
+                                    reques you can safely delete this email.
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end permission -->
+
+                        <!-- start unsubscribe -->
+                        <tr>
+                            <td
+                                align="center"
+                                bgcolor="#e9ecef"
+                                style="
+                                    padding: 12px 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #666;
+                                ">
+                                <p style="margin: 0">
+                                    Statistics Department, Federal University Of Technology Akure
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end footer -->
+        </table>
+        <!-- end body -->
+    </body>
+</html>
+[2023-08-03 17:22:32,094: WARNING/ForkPoolWorker-7]  
+[2023-08-03 17:22:32,095: WARNING/ForkPoolWorker-7] message-html
+[2023-08-03 17:22:37,822: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[6564534e-51b8-4699-8fe1-365d232353d4] succeeded in 5.732504518000496s: None
+[2023-08-03 17:24:16,612: INFO/MainProcess] Task Authentication.tasks.send_email[314a7da4-1df4-4424-94d2-016613ab62a3] received
+[2023-08-03 17:24:16,613: WARNING/ForkPoolWorker-7] <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Email Confirmation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style type="text/css">
+            /**
+   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
+   */
+            @media screen {
+                @font-face {
+                    font-family: "Source Sans Pro";
+                    font-style: normal;
+                    font-weight: 400;
+                    src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
+                        url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff)
+                            format("woff");
+                }
+                @font-face {
+                    font-family: "Source Sans Pro";
+                    font-style: normal;
+                    font-weight: 700;
+                    src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
+                        url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff)
+                            format("woff");
+                }
+            }
+            /**
+   * Avoid browser level font resizing.
+   * 1. Windows Mobile
+   * 2. iOS / OSX
+   */
+            body,
+            table,
+            td,
+            a {
+                -ms-text-size-adjust: 100%; /* 1 */
+                -webkit-text-size-adjust: 100%; /* 2 */
+            }
+            /**
+   * Remove extra space added to tables and cells in Outlook.
+   */
+            table,
+            td {
+                mso-table-rspace: 0pt;
+                mso-table-lspace: 0pt;
+            }
+            /**
+   * Better fluid images in Internet Explorer.
+   */
+            img {
+                -ms-interpolation-mode: bicubic;
+            }
+            /**
+   * Remove blue links for iOS devices.
+   */
+            a[x-apple-data-detectors] {
+                font-family: inherit !important;
+                font-size: inherit !important;
+                font-weight: inherit !important;
+                line-height: inherit !important;
+                color: inherit !important;
+                text-decoration: none !important;
+            }
+            /**
+   * Fix centering issues in Android 4.4.
+   */
+            div[style*="margin: 16px 0;"] {
+                margin: 0 !important;
+            }
+            body {
+                width: 100% !important;
+                height: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            /**
+   * Collapse table borders to avoid space between cells.
+   */
+            table {
+                border-collapse: collapse !important;
+            }
+            a {
+                color: #1a82e2;
+            }
+            img {
+                height: auto;
+                line-height: 100%;
+                text-decoration: none;
+                border: 0;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body style="background-color: #e9ecef">
+        <!-- start preheader -->
+        <div
+            class="preheader"
+            style="
+                display: none;
+                max-width: 0;
+                max-height: 0;
+                overflow: hidden;
+                font-size: 1px;
+                line-height: 1px;
+                color: #fff;
+                opacity: 0;
+            ">
+            A preheader is the short summary text that follows the subject line when an email is
+            viewed in the inbox.
+        </div>
+        <!-- end preheader -->
+
+        <!-- start body -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <!-- start logo -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <tr>
+                            <td align="center" valign="top" style="padding: 36px 24px">
+                                <a
+                                    href="https://www.blogdesire.com"
+                                    target="_blank"
+                                    style="display: inline-block">
+                                    <img
+                                        src="https://www.blogdesire.com/wp-content/uploads/2019/07/blogdesire-1.png"
+                                        alt="Logo"
+                                        border="0"
+                                        width="48"
+                                        style="
+                                            display: block;
+                                            width: 48px;
+                                            max-width: 48px;
+                                            min-width: 48px;
+                                        " />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end logo -->
+
+            <!-- start hero -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 36px 24px 0;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    border-top: 3px solid #d4dadf;
+                                ">
+                                <h1
+                                    style="
+                                        margin: 0;
+                                        font-size: 32px;
+                                        font-weight: 700;
+                                        letter-spacing: -1px;
+                                        line-height: 48px;
+                                    ">
+                                    Hello oluwaseyioyewunmi7 <br />Confirm Your Email Address
+                                </h1>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end hero -->
+
+            <!-- start copy block -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                ">
+                                <p style="margin: 0">
+                                    Tap the button below to confirm your email address. If you
+                                    didn't create an account with
+                                    <a href="http://127.0.0.1:8000/verify/OA/bsd9og-31c1d3cc2135d802cf16500ae23a850f/">Sta Archive</a>, you can safely
+                                    delete this email.
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+
+                        <!-- start button -->
+                        <tr>
+                            <td align="left" bgcolor="#ffffff">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td align="center" bgcolor="#ffffff" style="padding: 12px">
+                                            <table border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td
+                                                        align="center"
+                                                        bgcolor="#1a82e2"
+                                                        style="border-radius: 6px">
+                                                        <a
+                                                            href="https://www.blogdesire.com"
+                                                            target="_blank"
+                                                            style="
+                                                                display: inline-block;
+                                                                padding: 16px 36px;
+                                                                font-family: 'Source Sans Pro',
+                                                                    Helvetica, Arial, sans-serif;
+                                                                font-size: 16px;
+                                                                color: #ffffff;
+                                                                text-decoration: none;
+                                                                border-radius: 6px;
+                                                            "
+                                                            >Confirm Email</a
+                                                        >
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- end button -->
+
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                ">
+                                <p style="margin: 0">
+                                    If that doesn't work, copy and paste the following link in your
+                                    browser:
+                                </p>
+                                <p style="margin: 0">
+                                    <a href="http://127.0.0.1:8000/verify/OA/bsd9og-31c1d3cc2135d802cf16500ae23a850f/" target="_blank"
+                                        >http://127.0.0.1:8000/verify/OA/bsd9og-31c1d3cc2135d802cf16500ae23a850f/</a
+                                    >
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+
+                        <!-- start copy -->
+                        <tr>
+                            <td
+                                align="left"
+                                bgcolor="#ffffff"
+                                style="
+                                    padding: 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    border-bottom: 3px solid #d4dadf;
+                                ">
+                                <p style="margin: 0">
+                                    Cheers,<br />
+                                    Sta Archive
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end copy -->
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end copy block -->
+
+            <!-- start footer -->
+            <tr>
+                <td align="center" bgcolor="#e9ecef" style="padding: 24px">
+                    <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+                    <table
+                        border="0"
+                        cellpadding="0"
+                        cellspacing="0"
+                        width="100%"
+                        style="max-width: 600px">
+                        <!-- start permission -->
+                        <tr>
+                            <td
+                                align="center"
+                                bgcolor="#e9ecef"
+                                style="
+                                    padding: 12px 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #666;
+                                ">
+                                <p style="margin: 0">
+                                    You received this email because we received a request for
+                                    confirming your email address for your account. If you didn't
+                                    reques you can safely delete this email.
+                                </p>
+                            </td>
+                        </tr>
+                        <!-- end permission -->
+
+                        <!-- start unsubscribe -->
+                        <tr>
+                            <td
+                                align="center"
+                                bgcolor="#e9ecef"
+                                style="
+                                    padding: 12px 24px;
+                                    font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    color: #666;
+                                ">
+                                <p style="margin: 0">
+                                    Statistics Department, Federal University Of Technology Akure
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+                </td>
+            </tr>
+            <!-- end footer -->
+        </table>
+        <!-- end body -->
+    </body>
+</html>
+[2023-08-03 17:24:16,613: WARNING/ForkPoolWorker-7]  
+[2023-08-03 17:24:16,614: WARNING/ForkPoolWorker-7] message-html
+[2023-08-03 17:24:27,533: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[314a7da4-1df4-4424-94d2-016613ab62a3] succeeded in 10.919714812000166s: None
+[2023-08-03 17:54:20,329: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:54:20,334: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 17:54:20,334: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:54:20,335: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 17:54:21,341: INFO/MainProcess] mingle: all alone
+[2023-08-03 17:54:21,348: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 17:54:21,350: INFO/MainProcess] Task Authentication.tasks.send_email[e6056215-b611-4da1-a8e9-75c5ac10dae8] received
+[2023-08-03 17:54:21,351: WARNING/ForkPoolWorker-7] Got here
+[2023-08-03 17:54:21,351: INFO/MainProcess] Task Authentication.tasks.send_email[a5ce1593-52bb-479c-a2ba-26ee1965b71c] received
+[2023-08-03 17:54:21,352: WARNING/ForkPoolWorker-7] {'username': 'oluwaseyioyewunmi7', 'verification_link': 'http://127.0.0.1:8000/verify/OQ/bsdalq-a6dfe89bd33227d40c736e97540e8124/'}
+[2023-08-03 17:54:21,352: WARNING/ForkPoolWorker-7]  
+[2023-08-03 17:54:21,352: WARNING/ForkPoolWorker-7] context
+[2023-08-03 17:54:21,353: WARNING/ForkPoolWorker-8] Got here
+[2023-08-03 17:54:21,353: WARNING/ForkPoolWorker-8] {'username': 'oluwaseyioyewunmi99', 'verification_link': 'http://127.0.0.1:8000/verify/MTA/bsdawe-68ff448eb8508edd1311943c21beb5ab/'}
+[2023-08-03 17:54:21,353: WARNING/ForkPoolWorker-8]  
+[2023-08-03 17:54:21,353: WARNING/ForkPoolWorker-8] context
+[2023-08-03 17:54:21,357: WARNING/ForkPoolWorker-7] 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content=" " />
+        <meta name="keywords" content="" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+        <title> Email Confirmation </title>
+    
+        
+<   link rel="stylesheet" href="/static/assets/css/verify_email.css">
+
+    </head>
+    <body>
+        
+        <!-- start preheader -->
+        <div
+        class="preheader"
+        style="
+            display: none;
+            max-width: 0;
+            max-height: 0;
+            overflow: hidden;
+            font-size: 1px;
+            line-height: 1px;
+            color: #fff;
+            opacity: 0;
+        ">
+        A preheader is the short summary text that follows the subject line when an email is
+        viewed in the inbox.
+    </div>
+    <!-- end preheader -->
+
+    <!-- start body -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- start logo -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <tr>
+                        <td align="center" valign="top" style="padding: 36px 24px">
+                            <a
+                                href="https://www.blogdesire.com"
+                                target="_blank"
+                                style="display: inline-block">
+                                <img
+                                    src="https://www.blogdesire.com/wp-content/uploads/2019/07/blogdesire-1.png"
+                                    alt="Logo"
+                                    border="0"
+                                    width="48"
+                                    style="
+                                        display: block;
+                                        width: 48px;
+                                        max-width: 48px;
+                                        min-width: 48px;
+                                    " />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end logo -->
+
+        <!-- start hero -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 36px 24px 0;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                border-top: 3px solid #d4dadf;
+                            ">
+                            <h1
+                                style="
+                                    margin: 0;
+                                    font-size: 32px;
+                                    font-weight: 700;
+                                    letter-spacing: -1px;
+                                    line-height: 48px;
+                                ">
+                                Hello oluwaseyioyewunmi7 <br />Confirm Your Email Address
+                            </h1>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end hero -->
+
+        <!-- start copy block -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                            ">
+                            <p style="margin: 0">
+                                Tap the button below to confirm your email address. If you
+                                didn't create an account with
+                                <a href="http://127.0.0.1:8000/verify/OQ/bsdalq-a6dfe89bd33227d40c736e97540e8124/">Sta Archive</a>, you can safely
+                                delete this email.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+
+                    <!-- start button -->
+                    <tr>
+                        <td align="left" bgcolor="#ffffff">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" bgcolor="#ffffff" style="padding: 12px">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td
+                                                    align="center"
+                                                    bgcolor="#1a82e2"
+                                                    style="border-radius: 6px">
+                                                    <a
+                                                        href="https://www.blogdesire.com"
+                                                        target="_blank"
+                                                        style="
+                                                            display: inline-block;
+                                                            padding: 16px 36px;
+                                                            font-family: 'Source Sans Pro',
+                                                                Helvetica, Arial, sans-serif;
+                                                            font-size: 16px;
+                                                            color: #ffffff;
+                                                            text-decoration: none;
+                                                            border-radius: 6px;
+                                                        "
+                                                        >Confirm Email</a
+                                                    >
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- end button -->
+
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                            ">
+                            <p style="margin: 0">
+                                If that doesn't work, copy and paste the following link in your
+                                browser:
+                            </p>
+                            <p style="margin: 0">
+                                <a href="http://127.0.0.1:8000/verify/OQ/bsdalq-a6dfe89bd33227d40c736e97540e8124/" target="_blank"
+                                    >http://127.0.0.1:8000/verify/OQ/bsdalq-a6dfe89bd33227d40c736e97540e8124/</a
+                                >
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                                border-bottom: 3px solid #d4dadf;
+                            ">
+                            <p style="margin: 0">
+                                Cheers,<br />
+                                Sta Archive
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+                </table>
+            </td>
+        </tr>
+        <!-- end copy block -->
+
+        <!-- start footer -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef" style="padding: 24px">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <!-- start permission -->
+                    <tr>
+                        <td
+                            align="center"
+                            bgcolor="#e9ecef"
+                            style="
+                                padding: 12px 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #666;
+                            ">
+                            <p style="margin: 0">
+                                You received this email because we received a request for
+                                confirming your email address for your account. If you didn't
+                                reques you can safely delete this email.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end permission -->
+
+                    <!-- start unsubscribe -->
+                    <tr>
+                        <td
+                            align="center"
+                            bgcolor="#e9ecef"
+                            style="
+                                padding: 12px 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #666;
+                            ">
+                            <p style="margin: 0">
+                                Statistics Department, Federal University Of Technology Akure
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end footer -->
+    </table>
+
+
+        
+            
+        
+    </body>
+</html>
+[2023-08-03 17:54:21,357: WARNING/ForkPoolWorker-7]  
+[2023-08-03 17:54:21,357: WARNING/ForkPoolWorker-7] message-html
+[2023-08-03 17:54:21,358: WARNING/ForkPoolWorker-8] 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content=" " />
+        <meta name="keywords" content="" />
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+        <title> Email Confirmation </title>
+    
+        
+<   link rel="stylesheet" href="/static/assets/css/verify_email.css">
+
+    </head>
+    <body>
+        
+        <!-- start preheader -->
+        <div
+        class="preheader"
+        style="
+            display: none;
+            max-width: 0;
+            max-height: 0;
+            overflow: hidden;
+            font-size: 1px;
+            line-height: 1px;
+            color: #fff;
+            opacity: 0;
+        ">
+        A preheader is the short summary text that follows the subject line when an email is
+        viewed in the inbox.
+    </div>
+    <!-- end preheader -->
+
+    <!-- start body -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <!-- start logo -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <tr>
+                        <td align="center" valign="top" style="padding: 36px 24px">
+                            <a
+                                href="https://www.blogdesire.com"
+                                target="_blank"
+                                style="display: inline-block">
+                                <img
+                                    src="https://www.blogdesire.com/wp-content/uploads/2019/07/blogdesire-1.png"
+                                    alt="Logo"
+                                    border="0"
+                                    width="48"
+                                    style="
+                                        display: block;
+                                        width: 48px;
+                                        max-width: 48px;
+                                        min-width: 48px;
+                                    " />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end logo -->
+
+        <!-- start hero -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 36px 24px 0;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                border-top: 3px solid #d4dadf;
+                            ">
+                            <h1
+                                style="
+                                    margin: 0;
+                                    font-size: 32px;
+                                    font-weight: 700;
+                                    letter-spacing: -1px;
+                                    line-height: 48px;
+                                ">
+                                Hello oluwaseyioyewunmi99 <br />Confirm Your Email Address
+                            </h1>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end hero -->
+
+        <!-- start copy block -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                            ">
+                            <p style="margin: 0">
+                                Tap the button below to confirm your email address. If you
+                                didn't create an account with
+                                <a href="http://127.0.0.1:8000/verify/MTA/bsdawe-68ff448eb8508edd1311943c21beb5ab/">Sta Archive</a>, you can safely
+                                delete this email.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+
+                    <!-- start button -->
+                    <tr>
+                        <td align="left" bgcolor="#ffffff">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" bgcolor="#ffffff" style="padding: 12px">
+                                        <table border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td
+                                                    align="center"
+                                                    bgcolor="#1a82e2"
+                                                    style="border-radius: 6px">
+                                                    <a
+                                                        href="https://www.blogdesire.com"
+                                                        target="_blank"
+                                                        style="
+                                                            display: inline-block;
+                                                            padding: 16px 36px;
+                                                            font-family: 'Source Sans Pro',
+                                                                Helvetica, Arial, sans-serif;
+                                                            font-size: 16px;
+                                                            color: #ffffff;
+                                                            text-decoration: none;
+                                                            border-radius: 6px;
+                                                        "
+                                                        >Confirm Email</a
+                                                    >
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- end button -->
+
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                            ">
+                            <p style="margin: 0">
+                                If that doesn't work, copy and paste the following link in your
+                                browser:
+                            </p>
+                            <p style="margin: 0">
+                                <a href="http://127.0.0.1:8000/verify/MTA/bsdawe-68ff448eb8508edd1311943c21beb5ab/" target="_blank"
+                                    >http://127.0.0.1:8000/verify/MTA/bsdawe-68ff448eb8508edd1311943c21beb5ab/</a
+                                >
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+
+                    <!-- start copy -->
+                    <tr>
+                        <td
+                            align="left"
+                            bgcolor="#ffffff"
+                            style="
+                                padding: 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 16px;
+                                line-height: 24px;
+                                border-bottom: 3px solid #d4dadf;
+                            ">
+                            <p style="margin: 0">
+                                Cheers,<br />
+                                Sta Archive
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end copy -->
+                </table>
+            </td>
+        </tr>
+        <!-- end copy block -->
+
+        <!-- start footer -->
+        <tr>
+            <td align="center" bgcolor="#e9ecef" style="padding: 24px">
+                <table
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    style="max-width: 600px">
+                    <!-- start permission -->
+                    <tr>
+                        <td
+                            align="center"
+                            bgcolor="#e9ecef"
+                            style="
+                                padding: 12px 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #666;
+                            ">
+                            <p style="margin: 0">
+                                You received this email because we received a request for
+                                confirming your email address for your account. If you didn't
+                                reques you can safely delete this email.
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- end permission -->
+
+                    <!-- start unsubscribe -->
+                    <tr>
+                        <td
+                            align="center"
+                            bgcolor="#e9ecef"
+                            style="
+                                padding: 12px 24px;
+                                font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #666;
+                            ">
+                            <p style="margin: 0">
+                                Statistics Department, Federal University Of Technology Akure
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- end footer -->
+    </table>
+
+
+        
+            
+        
+    </body>
+</html>
+[2023-08-03 17:54:21,358: WARNING/ForkPoolWorker-8]  
+[2023-08-03 17:54:21,358: WARNING/ForkPoolWorker-8] message-html
+[2023-08-03 17:54:21,915: WARNING/ForkPoolWorker-7] Email sending failed for <django.core.mail.message.EmailMessage object at 0x7fab8ff97150>. Retrying in 1 seconds.
+[2023-08-03 17:54:22,212: WARNING/ForkPoolWorker-8] Email sending failed for <django.core.mail.message.EmailMessage object at 0x7fab8ff97750>. Retrying in 1 seconds.
+[2023-08-03 17:54:22,922: INFO/MainProcess] Task Authentication.tasks.send_email[e6056215-b611-4da1-a8e9-75c5ac10dae8] received
+[2023-08-03 17:54:22,929: WARNING/ForkPoolWorker-7] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py:686: RuntimeWarning: Exception raised outside body: EncodeError(TypeError('Object of type type is not JSON serializable')):
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 27, in send_email
+    email.attach_alternative(html_message, "text/html")
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EmailMessage' object has no attribute 'attach_alternative'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 477, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 760, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 49, in send_email
+    self.retry(exc=Exception)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/task.py", line 757, in retry
+    raise ret
+celery.exceptions.Retry: Retry in 180s: <class 'Exception'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 490, in trace_task
+    I, R, state, retval = on_error(
+                          ^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 399, in on_error
+    R = I.handle_error_state(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+           ^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 200, in handle_retry
+    task.backend.mark_as_retry(
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 279, in mark_as_retry
+    return self.store_result(task_id, exc, state,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 979, in _store_result
+    self._set_with_state(self.get_key_for_task(task_id), self.encode(meta), state)
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 413, in encode
+    _, _, payload = self._encode(data)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 417, in _encode
+    return dumps(data, serializer=self.serializer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 219, in dumps
+    with _reraise_errors(EncodeError):
+  File "/usr/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 45, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/exceptions.py", line 34, in reraise
+    raise value.with_traceback(tb)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type type is not JSON serializable
+
+  warn(RuntimeWarning(
+
+[2023-08-03 17:54:22,933: ERROR/ForkPoolWorker-7] Task Authentication.tasks.send_email[e6056215-b611-4da1-a8e9-75c5ac10dae8] raised unexpected: EncodeError(TypeError('Object of type type is not JSON serializable'))
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 27, in send_email
+    email.attach_alternative(html_message, "text/html")
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EmailMessage' object has no attribute 'attach_alternative'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 477, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 760, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 49, in send_email
+    self.retry(exc=Exception)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/task.py", line 757, in retry
+    raise ret
+celery.exceptions.Retry: Retry in 180s: <class 'Exception'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 490, in trace_task
+    I, R, state, retval = on_error(
+                          ^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 399, in on_error
+    R = I.handle_error_state(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+           ^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 200, in handle_retry
+    task.backend.mark_as_retry(
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 279, in mark_as_retry
+    return self.store_result(task_id, exc, state,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 979, in _store_result
+    self._set_with_state(self.get_key_for_task(task_id), self.encode(meta), state)
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 413, in encode
+    _, _, payload = self._encode(data)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 417, in _encode
+    return dumps(data, serializer=self.serializer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 219, in dumps
+    with _reraise_errors(EncodeError):
+  File "/usr/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 45, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/exceptions.py", line 34, in reraise
+    raise value.with_traceback(tb)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type type is not JSON serializable
+[2023-08-03 17:54:23,219: INFO/MainProcess] Task Authentication.tasks.send_email[a5ce1593-52bb-479c-a2ba-26ee1965b71c] received
+[2023-08-03 17:54:23,228: WARNING/ForkPoolWorker-8] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py:686: RuntimeWarning: Exception raised outside body: EncodeError(TypeError('Object of type type is not JSON serializable')):
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 27, in send_email
+    email.attach_alternative(html_message, "text/html")
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EmailMessage' object has no attribute 'attach_alternative'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 477, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 760, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 49, in send_email
+    self.retry(exc=Exception)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/task.py", line 757, in retry
+    raise ret
+celery.exceptions.Retry: Retry in 180s: <class 'Exception'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 490, in trace_task
+    I, R, state, retval = on_error(
+                          ^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 399, in on_error
+    R = I.handle_error_state(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+           ^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 200, in handle_retry
+    task.backend.mark_as_retry(
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 279, in mark_as_retry
+    return self.store_result(task_id, exc, state,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 979, in _store_result
+    self._set_with_state(self.get_key_for_task(task_id), self.encode(meta), state)
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 413, in encode
+    _, _, payload = self._encode(data)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 417, in _encode
+    return dumps(data, serializer=self.serializer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 219, in dumps
+    with _reraise_errors(EncodeError):
+  File "/usr/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 45, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/exceptions.py", line 34, in reraise
+    raise value.with_traceback(tb)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type type is not JSON serializable
+
+  warn(RuntimeWarning(
+
+[2023-08-03 17:54:23,231: ERROR/ForkPoolWorker-8] Task Authentication.tasks.send_email[a5ce1593-52bb-479c-a2ba-26ee1965b71c] raised unexpected: EncodeError(TypeError('Object of type type is not JSON serializable'))
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 27, in send_email
+    email.attach_alternative(html_message, "text/html")
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EmailMessage' object has no attribute 'attach_alternative'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 477, in trace_task
+    R = retval = fun(*args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 760, in __protected_call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/Authentication/tasks.py", line 49, in send_email
+    self.retry(exc=Exception)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/task.py", line 757, in retry
+    raise ret
+celery.exceptions.Retry: Retry in 180s: <class 'Exception'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type type is not JSON serializable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 490, in trace_task
+    I, R, state, retval = on_error(
+                          ^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 399, in on_error
+    R = I.handle_error_state(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 178, in handle_error_state
+    return {
+           ^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/app/trace.py", line 200, in handle_retry
+    task.backend.mark_as_retry(
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 279, in mark_as_retry
+    return self.store_result(task_id, exc, state,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 526, in store_result
+    self._store_result(task_id, result, state, traceback,
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 979, in _store_result
+    self._set_with_state(self.get_key_for_task(task_id), self.encode(meta), state)
+                                                         ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 413, in encode
+    _, _, payload = self._encode(data)
+                    ^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/backends/base.py", line 417, in _encode
+    return dumps(data, serializer=self.serializer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 219, in dumps
+    with _reraise_errors(EncodeError):
+  File "/usr/lib/python3.11/contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 45, in _reraise_errors
+    reraise(wrapper, wrapper(exc), sys.exc_info()[2])
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/exceptions.py", line 34, in reraise
+    raise value.with_traceback(tb)
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 41, in _reraise_errors
+    yield
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/serialization.py", line 220, in dumps
+    payload = encoder(data)
+              ^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 57, in dumps
+    return _dumps(s, cls=cls, **dict(default_kwargs, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/kombu/utils/json.py", line 45, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+kombu.exceptions.EncodeError: Object of type type is not JSON serializable
+[2023-08-03 17:56:14,463: WARNING/MainProcess] Restoring 2 unacknowledged message(s)
+[2023-08-03 17:56:18,692: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:56:18,703: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 17:56:18,704: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 17:56:18,705: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 17:56:19,710: INFO/MainProcess] mingle: all alone
+[2023-08-03 17:56:19,719: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 17:56:19,721: INFO/MainProcess] Task Authentication.tasks.send_email[a5ce1593-52bb-479c-a2ba-26ee1965b71c] received
+[2023-08-03 17:56:19,723: INFO/MainProcess] Task Authentication.tasks.send_email[e6056215-b611-4da1-a8e9-75c5ac10dae8] received
+[2023-08-03 17:57:32,749: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[e6056215-b611-4da1-a8e9-75c5ac10dae8] succeeded in 9.831951643001958s: None
+[2023-08-03 17:57:33,159: INFO/ForkPoolWorker-8] Task Authentication.tasks.send_email[a5ce1593-52bb-479c-a2ba-26ee1965b71c] succeeded in 9.944736688998091s: None
+[2023-08-03 18:57:45,197: INFO/MainProcess] Task Authentication.tasks.send_email[44d59698-fdeb-45a3-b178-36d657c4d74e] received
+[2023-08-03 18:57:54,037: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[44d59698-fdeb-45a3-b178-36d657c4d74e] succeeded in 8.83309521100091s: None
+[2023-08-03 19:02:57,692: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 19:02:57,697: INFO/MainProcess] Connected to redis://localhost:6379//
+[2023-08-03 19:02:57,698: WARNING/MainProcess] /run/media/ghost/STORAGE1/Code-House/Web-Applications/Stat-Archive/STAT-ARCHIVE/.venv/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:498: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2023-08-03 19:02:57,699: INFO/MainProcess] mingle: searching for neighbors
+[2023-08-03 19:02:58,704: INFO/MainProcess] mingle: all alone
+[2023-08-03 19:02:58,712: INFO/MainProcess] celery@Asteria ready.
+[2023-08-03 19:09:09,235: INFO/MainProcess] Task Authentication.tasks.send_email[cabac206-4ad6-462b-a235-0a596a1691bf] received
+[2023-08-03 19:09:18,164: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[cabac206-4ad6-462b-a235-0a596a1691bf] succeeded in 8.926424345998385s: None
+[2023-08-03 19:29:25,624: INFO/MainProcess] Task Authentication.tasks.send_email[67953a9f-fb05-4560-9c2b-8f7419040738] received
+[2023-08-03 19:29:38,403: INFO/ForkPoolWorker-7] Task Authentication.tasks.send_email[67953a9f-fb05-4560-9c2b-8f7419040738] succeeded in 12.777655941998091s: None
