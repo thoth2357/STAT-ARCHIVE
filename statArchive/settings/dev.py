@@ -16,7 +16,8 @@ load_dotenv()  # loads the configs from .env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# print("BASE_DIR: ", BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,15 +41,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    
-    "Authentication.apps.AuthenticationConfig", # new   
+
+    "Authentication.apps.AuthenticationConfig", # new
     "Dashboard.apps.DashboardConfig",   # new
     "Log.apps.LogConfig", # new
-    
+
     "widget_tweaks", # new
     "django_extensions", # new
     "django_filters",
-    
+
 ]
 
 MIDDLEWARE = [
@@ -166,5 +167,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = str(os.getenv('DEFAULT_FROM_EMAIL'))
 EMAIL_HOST_USER = str(os.getenv('EMAIL_HOST_USER'))
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+
+# Celery Broker - Redis
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = "Asia/New_York"
