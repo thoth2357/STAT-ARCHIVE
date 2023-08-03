@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 
 from .forms import LoginForm, RegisterForm
-from .tasks import send_email  
+from .tasks import send_email_func  
 from .utils import generate_token, generate_link, decode_token, generate_password_reset_token
 from .models import User
 
@@ -63,7 +63,7 @@ class RegisterView(View):
             print(verification_link, 'link')
             
             # Send verification email asynchronously
-            # send_email.delay(user.email, 'Account Verification' ,verification_link) #TODO Schedule the email sending task asynchronously
+            send_email_func.delay(user.fullname, user.email, 'Sta Archive Account Verification' ,verification_link,type_="verify") #TODO Schedule the email sending task asynchronously
             return JsonResponse({'success': 'Registration Successful, Check Email to Verify'}, status=200)  # Return sucess response
         else:
             return JsonResponse({'error': f'Username or Email Already Exists'}, status=400)  # Return error response
@@ -101,7 +101,7 @@ class ForgotPasswordView(View):
             # Send the password reset email
             message = f'Hello {user.fullname},\n\nTo reset your password, click on the following link:\n\n{reset_url}\n\nIf you did not request a password reset, please ignore this email.\n\nBest regards,\nStat-Archive Team'
             print("RESET password", message)
-            # send_email.delay(user.email, 'Password Reset' ,message) #TODO Schedule the email sending task asynchronously
+            send_email_func.delay(user.fullname, user.email, 'Sta Archive Password Reset' ,reset_url,type_='reset') #TODO Schedule the email sending task asynchronously
             
             # Display a success message or redirect to a success page
             return JsonResponse({'success': 'Password reset email sent.'}, status=200)
