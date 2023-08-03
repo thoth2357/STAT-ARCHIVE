@@ -5,3 +5,5 @@ staticfiles
 *.pdf
 output*
 media/*
+.vscode/settings.json
+dump.rdb
