@@ -1,9 +1,11 @@
 import os
 import imgkit
+import requests
+import io
 from django.templatetags.static import static
 from django.conf import settings
 from django.db.models import Model
-from pdf2image import convert_from_path
+from pdf2image import convert_from_bytes
 from typing import List
 from itertools import chain
 from operator import attrgetter
@@ -11,10 +13,15 @@ from Log.models import Log
 
 def generate_textbook_thumbnail(file, destination):
     try:
-        input_file = os.path.join(settings.BASE_DIR, str(file).lstrip('/'))
-
+        input_file = file
+        # print(str(file), input_file, "testting")
         # Convert the first page of the PDF to an image
-        images = convert_from_path(input_file, first_page=1, last_page=1, size=(220, 300))
+        response = requests.get(file)
+        if response.status_code != 200:
+            Log.objects.create(GeneratedBy="Generate textbook thumbnail response error", ExceptionMessage="file wasnt gotten")
+        
+        pdf_bytes = io.BytesIO(response.content)
+        images = convert_from_bytes(pdf_bytes.read(), first_page=1, last_page=1, size=(220, 300))
 
         # Save the image thumbnail
         filename = os.path.splitext(os.path.basename(input_file))[0]
