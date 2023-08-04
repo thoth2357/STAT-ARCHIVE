@@ -76,6 +76,7 @@ class UploadResources(LoginRequiredMixin, View):
             try:           
                 with open(output_path, 'rb') as image_file:
                     pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
+                    remove_duplicate_file_from_path(output_path)
             except Exception as e:
                 Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
 
@@ -167,18 +168,35 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
         serialized_data = []
         try:
             for resource in filtered_queryset:
+                try:
                 # Serialize each resource object into a dictionary
-                serialized_resource = {
-                    'id': resource.id,
-                    'Name': resource.Name,
-                    'file': resource.file.url,
-                    'thumbnail': resource.thumbnail.url,
-                    'date-uploaded': resource.Date_uploaded
-                    # Add other fields you want to include in the JSON response
-                }
-                # Append the serialized resource to the list
-                serialized_data.append(serialized_resource)
-                serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
+                    serialized_resource = {
+                        'id': resource.id,
+                        'Name': resource.Name,
+                        'file': resource.file.url,
+                        'thumbnail': resource.thumbnail.url,
+                        'date-uploaded': resource.Date_uploaded
+                        # Add other fields you want to include in the JSON response
+                    }
+                    # Append the serialized resource to the list
+                    serialized_data.append(serialized_resource)
+                    serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
+                except ValueError:
+                    serialized_resource = {
+                        'id': resource.id,
+                        'Name': resource.Name,
+                        'file': resource.file.url,
+                        'thumbnail': '',
+                        'date-uploaded': resource.Date_uploaded
+                        # Add other fields you want to include in the JSON response
+                    }
+                    # Append the serialized resource to the list
+                    serialized_data.append(serialized_resource)
+                    serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
+                    Log.objects.create(
+                        GeneratedBy="ResourcesSearch",
+                        ExceptionMessage=ValueError
+                    )
                 # print("\n\n",serialized_data, "seeeeeeeeeeeee2")
         except AttributeError:
             serialized_data = []
