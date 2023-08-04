@@ -7,6 +7,6 @@ class Log(models.Model):
     ExceptionMessage = models.TextField()
     
     def __str__(self) -> str:
-        return f"{self.timestamp} - {self.GeneratedBy}"
+        return f"Log@{self.timestamp} - {self.GeneratedBy}"
     
     
