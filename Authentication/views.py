@@ -60,11 +60,11 @@ class RegisterView(View):
             # Construct the verification URL
             verification_link = generate_link(request, uid, token)
 
-            print(verification_link, 'link')
+            # print(verification_link, 'link')
             
             # Send verification email asynchronously
             send_email_func.delay(user.fullname, user.email, 'Sta Archive Account Verification' ,verification_link,type_="verify") #TODO Schedule the email sending task asynchronously
-            return JsonResponse({'success': 'Registration Successful, Check Email to Verify'}, status=200)  # Return sucess response
+            return JsonResponse({'success': 'Registration Successful, Check Email to Verify \n check Spam Folder if you didnt find mail.'}, status=200)  # Return sucess response
         else:
             return JsonResponse({'error': f'Username or Email Already Exists'}, status=400)  # Return error response
 
@@ -104,7 +104,7 @@ class ForgotPasswordView(View):
             send_email_func.delay(user.fullname, user.email, 'Sta Archive Password Reset' ,reset_url,type_='reset') #TODO Schedule the email sending task asynchronously
             
             # Display a success message or redirect to a success page
-            return JsonResponse({'success': 'Password reset email sent.'}, status=200)
+            return JsonResponse({'success': 'Password reset email sent. \n check Spam Folder if you didnt find mail.'}, status=200)
         except User.DoesNotExist:
             # Display an error message if the email is not associated with any user account
             return JsonResponse({'error': 'The provided email does not exist in our records.'}, status=400)
@@ -113,7 +113,7 @@ class ResetPasswordView(View):
     def get(self, request):
         token = request.GET.get('token')
         user = User.objects.filter(reset_token=token).first()
-        print('user', user)
+        # print('user', user)
         if user:
             # Check if the token is still valid (within the expiration time)
             if user.reset_token_expiration and user.reset_token_expiration > timezone.now():
