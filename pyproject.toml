@@ -7,11 +7,10 @@ readme = "README.md"
 packages = [{include = "stat_archive"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 django = "^4.2.2"
 django-widget-tweaks = "^1.4.12"
 django-celery-results = "^2.5.1"
-uvicorn = "^0.22.0"
 imgkit = "^1.2.3"
 pdf2image = "^1.16.3"
 django-filter = "^23.2"
@@ -22,6 +21,7 @@ redis = "^4.6.0"
 django-storages = "^1.13.2"
 boto3 = "^1.28.19"
 requests = "^2.31.0"
+gunicorn = "^21.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
