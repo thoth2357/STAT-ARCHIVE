@@ -7,7 +7,7 @@
 body,
 html {
     height: 100%;
-    background-image: url(../img/library.jpg);
+    background-image:  url("/static/assets/img/library.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
