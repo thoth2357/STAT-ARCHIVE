@@ -52,35 +52,39 @@ class UploadResources(LoginRequiredMixin, View):
             thumbnail_name = ''.join(random.choices(string.ascii_letters + string.digits, k=8))          
             output_path = create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name)
             
-            # Check if a similar PastQuestion object already exists
-            similar_pq = PastQuestion.objects.filter(
-                Session=Sessions.objects.get(id=session),
-                Type=pq_type,
-                Lecturer_name=lecturer_name,
-                Name=course_name,
-                Course_code=course_code
-            )
-            
-            if similar_pq:
-                return HttpResponseServerError("A similar PastQuestion already exists.")
+            if file.content_type == 'application/pdf':
+                # Check if a similar PastQuestion object already exists
+                similar_pq = PastQuestion.objects.filter(
+                    Session=Sessions.objects.get(id=session),
+                    Type=pq_type,
+                    Lecturer_name=lecturer_name,
+                    Name=course_name,
+                    Course_code=course_code
+                )
+                
+                if similar_pq:
+                    return HttpResponseServerError("A similar PastQuestion already exists.")
 
-            
-            pq_object = PastQuestion.objects.create(
-                Session = Sessions.objects.get(id=session),
-                Type = pq_type,
-                Lecturer_name = lecturer_name,
-                Name = course_name,
-                Course_code = course_code,
-                file = file,
-            )
-            try:           
-                with open(output_path, 'rb') as image_file:
-                    pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
-                    remove_duplicate_file_from_path(output_path)
-            except Exception as e:
-                Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                
+                pq_object = PastQuestion.objects.create(
+                    Session = Sessions.objects.get(id=session),
+                    Type = pq_type,
+                    Lecturer_name = lecturer_name,
+                    Name = course_name,
+                    Course_code = course_code,
+                    file = file,
+                )
+                try:           
+                    with open(output_path, 'rb') as image_file:
+                        pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
+                        remove_duplicate_file_from_path(output_path)
+                except Exception as e:
+                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
 
-            return JsonResponse({'status': 'success'})
+                return JsonResponse({'status': 'success'})
+            else:
+                return HttpResponseServerError("🗃️ Only PDF files are allowed")
+
         
         
         elif upload_type == 'txb':
@@ -88,31 +92,36 @@ class UploadResources(LoginRequiredMixin, View):
             textbook_author = request.POST.get('textbookAuthor')
             file = request.FILES.get('textbookFile')
             
-            # Check if a similar TextBook object already exists
-            similar_txb = TextBook.objects.filter(
-                Name=textbook_name,
-                Author=textbook_author
-            )
-            if similar_txb:
-                return HttpResponseServerError("A similar Textbook already exists.")
+            print("TYpe", file.content_type)
+            
+            if file.content_type == 'application/pdf':
+                # Check if a similar TextBook object already exists
+                similar_txb = TextBook.objects.filter(
+                    Name=textbook_name,
+                    Author=textbook_author
+                )
+                if similar_txb:
+                    return HttpResponseServerError("A similar Textbook already exists.")
 
-            
-            txb_object = TextBook.objects.create(
-                Name = textbook_name,
-                Author = textbook_author,
-                file = file,
-            )
-            
-            try:
-                thumbnail_path,filename = generate_textbook_thumbnail(txb_object.file.url, 'media/resources/images/textbook')
-                with open(thumbnail_path, 'rb') as image_file:
-                    txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
-                    remove_duplicate_file_from_path(thumbnail_path)
-            except Exception as e:
-                Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
-                ... 
-            return JsonResponse({'status': 'success'})
-            
+                
+                txb_object = TextBook.objects.create(
+                    Name = textbook_name,
+                    Author = textbook_author,
+                    file = file,
+                )
+                
+                try:
+                    thumbnail_path,filename = generate_textbook_thumbnail(txb_object.file.url, 'media/resources/images/textbook')
+                    with open(thumbnail_path, 'rb') as image_file:
+                        txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
+                        remove_duplicate_file_from_path(thumbnail_path)
+                except Exception as e:
+                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                    ... 
+                return JsonResponse({'status': 'success'})
+            else:
+                return HttpResponseServerError("🗃️ Only PDF files are allowed")
+
         elif upload_type == 'prj':
             session = request.POST.get('session')
             topic = request.POST.get('projectTopic')
@@ -120,32 +129,37 @@ class UploadResources(LoginRequiredMixin, View):
             supervisor = request.POST.get('projectSupervisor')
             file = request.FILES.get('projectFile') 
             
-            # Check if a similar Project object already exists
-            similar_prj = Project.objects.filter(
-                Session=session,
-                Name=topic,
-                Author=author,
-                Supervisor=supervisor
-            )
-            if similar_prj:
-                return HttpResponseServerError("A similar Project already exists.")
-            else:
-                prj_object = Project.objects.create(
-                    Session = Sessions.objects.get(id=session),
-                    Name = topic,
-                    Author = author,
-                    Supervisor = supervisor,
-                    file = file
+            if file.content_type == 'application/pdf':
+
+                # Check if a similar Project object already exists
+                similar_prj = Project.objects.filter(
+                    Session=session,
+                    Name=topic,
+                    Author=author,
+                    Supervisor=supervisor
                 )
-                try:
-                    thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
-                    with open(thumbnail_path, 'rb') as image_file:
-                        prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
-                        remove_duplicate_file_from_path(thumbnail_path)
-                except Exception as e:
-                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
-                    
-                return JsonResponse({'status': 'success'})
+                if similar_prj:
+                    return HttpResponseServerError("A similar Project already exists.")
+                else:
+                    prj_object = Project.objects.create(
+                        Session = Sessions.objects.get(id=session),
+                        Name = topic,
+                        Author = author,
+                        Supervisor = supervisor,
+                        file = file
+                    )
+                    try:
+                        thumbnail_path,filename = generate_textbook_thumbnail(prj_object.file.url, 'media/resources/images/project')
+                        with open(thumbnail_path, 'rb') as image_file:
+                            prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
+                            remove_duplicate_file_from_path(thumbnail_path)
+                    except Exception as e:
+                        Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                        
+                    return JsonResponse({'status': 'success'})
+            else:
+                return HttpResponseServerError("🗃️ Only PDF files are allowed")
+
         else:
             return JsonResponse({'status': 'error', 'message': 'Invalid upload_type.'})
 
