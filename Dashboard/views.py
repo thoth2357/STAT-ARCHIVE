@@ -197,11 +197,11 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
                     serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
                 except ValueError:
                     serialized_resource = {
-                        'id': resource.id,
-                        'Name': resource.Name,
-                        'file': resource.file.url,
-                        'thumbnail': '',
-                        'date-uploaded': resource.Date_uploaded
+                        'id': resource['id'],
+                        'Name': resource['Name'],
+                        'file': f"{settings.MEDIA_URL}{resource['file']}",
+                        'thumbnail': f"{settings.MEDIA_URL}{resource['thumbnail']}",
+                        'date-uploaded':resource['Date_uploaded']
                         # Add other fields you want to include in the JSON response
                     }
                     # Append the serialized resource to the list

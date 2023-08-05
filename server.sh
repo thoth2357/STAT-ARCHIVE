@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME = "STATARCHIVE"
+NAME="STATARCHIVE"
 DIR=/home/seyi/codes-in-production/STATARCHIVE
 USER=seyi
 GROUP=seyi
@@ -18,7 +18,7 @@ export PYTHONPATH=$DIR:$PYTHONPATH
 
 
 #Command to run the progam VIA supervisor
-exec /home/seyi/codes-in-production/Web3Conferene/.venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec /home/seyi/codes-in-production/STATARCHIVE/.venv/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
 --name $NAME \
 --workers $WORKERS \
 --user=$USER \
