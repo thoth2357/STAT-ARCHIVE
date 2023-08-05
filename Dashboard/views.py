@@ -54,13 +54,18 @@ class UploadResources(LoginRequiredMixin, View):
             
             if file.content_type == 'application/pdf':
                 # Check if a similar PastQuestion object already exists
-                similar_pq = PastQuestion.objects.filter(
-                    Session=Sessions.objects.get(id=session),
-                    Type=pq_type,
-                    Lecturer_name=lecturer_name,
-                    Name=course_name,
-                    Course_code=course_code
-                )
+                try:
+                    if pq_type != 'Exam_Questions' and pq_type != 'Text_Questions':
+                        return HttpResponseServerError("😠😠😠..Choose the Type of the Past Questions ,Please.")
+                    similar_pq = PastQuestion.objects.filter(
+                        Session=Sessions.objects.get(id=session),
+                        Type=pq_type,
+                        Lecturer_name=lecturer_name,
+                        Name=course_name,
+                        Course_code=course_code
+                    )
+                except Exception:
+                    return HttpResponseServerError("😭😭..You might have missed a detail of your PQ, check again")
                 
                 if similar_pq:
                     return HttpResponseServerError("A similar PastQuestion already exists.")
@@ -96,10 +101,14 @@ class UploadResources(LoginRequiredMixin, View):
             
             if file.content_type == 'application/pdf':
                 # Check if a similar TextBook object already exists
-                similar_txb = TextBook.objects.filter(
-                    Name=textbook_name,
-                    Author=textbook_author
-                )
+                try:
+                    similar_txb = TextBook.objects.filter(
+                        Name=textbook_name,
+                        Author=textbook_author
+                    )
+                except Exception:
+                    return HttpResponseServerError("😭😭..You might have missed a detail of your Textbook, check again")
+                    
                 if similar_txb:
                     return HttpResponseServerError("A similar Textbook already exists.")
 
@@ -132,12 +141,15 @@ class UploadResources(LoginRequiredMixin, View):
             if file.content_type == 'application/pdf':
 
                 # Check if a similar Project object already exists
-                similar_prj = Project.objects.filter(
-                    Session=session,
-                    Name=topic,
-                    Author=author,
-                    Supervisor=supervisor
-                )
+                try:
+                    similar_prj = Project.objects.filter(
+                        Session=session,
+                        Name=topic,
+                        Author=author,
+                        Supervisor=supervisor
+                    )
+                except Exception:
+                    return HttpResponseServerError("😭😭..You might have missed a detail of your Project, check again")
                 if similar_prj:
                     return HttpResponseServerError("A similar Project already exists.")
                 else:
