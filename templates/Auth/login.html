@@ -75,15 +75,15 @@
     $(document).ready(function() {
         // Regular expression for username validation
         var usernamePattern = /^sta\/\d{2}\/\d{4}$/;
-        
+        var isValiduser = true;
         // Function to validate username on keyup event
         function validateUsername() {
             var username = $('input[name="username"]').val();
-            if (username.length >= 11) {
+            if (username.length >= 1) {
                 if (usernamePattern.test(username)) {
                     $('#username-error').empty();
                 } else {
-                    $('#username-error').text('Not a Valid Statistics Matric Number');
+                    $('#username-error').text('Not a Valid Statistics Matric Number (sta/**/****)');
                 }
             } else {
                 $('#username-error').empty();
@@ -107,37 +107,52 @@
             var password = $('input[name="password"]').val();
             
             // Validate username format
-            if (username.length >= 11 && !usernamePattern.test(username)) {
-                $('#username-error').text('Invalid Matric Number');
-                return;
+            if (username.length >= 1) {
+                if (usernamePattern.test(username)) {
+                    $('#username-error').empty();
+                    isValiduser = true;
+                } else {
+                    $('#username-error').text('Not a Valid Statistics Matric Number (sta/**/****)');
+                    isValiduser = false;
+                }
             }
             
-            // Send AJAX request
-            $.ajax({
-                url: '{% url "login" %}',
-                type: 'POST',
-                data: {
-                    'username': username.replace(/\//g, ''),
-                    'password': password,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    // Handle success response
-                    window.location.href = '{% url "Bibliotheca" %}'; 
-                },
-                error: function(xhr) {
-                    // Handle error response
-                    if (xhr.status === 400) {
-                        var errorData = xhr.responseJSON;
-                        // Display error message in SweetAlert popup
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: errorData.error,
-                        });
+            if (isValiduser) {
+                // Send AJAX request
+                $.ajax({
+                    url: '{% url "login" %}',
+                    type: 'POST',
+                    data: {
+                        'username': username.replace(/\//g, ''),
+                        'password': password,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        // Handle success response
+                        window.location.href = '{% url "Bibliotheca" %}'; 
+                    },
+                    error: function(xhr) {
+                        // Handle error response
+                        if (xhr.status === 400) {
+                            var errorData = xhr.responseJSON;
+                            // Display error message in SweetAlert popup
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: errorData.error,
+                            });
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                // Display error message in SweetAlert popup
+                Swal.fire({
+                    icon: 'error',
+                    title: '😭',
+                    text: "You want to stress me, 😫 Please Correct your Details"
+                });
+            }
+            
         });
     });
 </script>

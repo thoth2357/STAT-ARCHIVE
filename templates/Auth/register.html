@@ -91,15 +91,21 @@
     $(document).ready(function() {
         // Regular expression for username validation
         var usernamePattern = /^sta\/\d{2}\/\d{4}$/;
+
+        //flag to track validation status
+        var isValiduser = true;
+        var isValidemail = true;
+        var isValidfull = true;
+        var isValidpass = true;
     
         // Function to validate username on keyup event
         function validateUsername() {
             var username = $('input[name="username"]').val();
-            if (username.length >= 10) {
+            if (username.length >= 1) {
                 if (usernamePattern.test(username)) {
                     $('#username-error').empty();
                 } else {
-                    $('#username-error').text('Not a Valid Statistics Matric Number');
+                    $('#username-error').text('Not a Valid Statistics Matric Number (sta/**/****)');
                 }
             } else {
                 $('#username-error').empty();
@@ -152,7 +158,8 @@
         // AJAX form submission
         $('#register-btn').click(function(e) {
             e.preventDefault();
-    
+            
+            //console.log("Valild Status",isValiduser,isValidemail,isValidfull,isValidpass)
             // Clear previous error messages
             $('.error-message').empty();
     
@@ -162,87 +169,94 @@
             var email = $('input[name="email"]').val();
             var password = $('input[name="password1"]').val();
             var confirm_password = $('input[name="password2"]').val();
-            
-            // Validate field required
-            if (fullname.trim() === '') {
-                $('#fullname-error').text('Field required');
-                return;
-            }
-            if (username.trim() === '') {
-                $('#username-error').text('Field required');
-                return;
-            }
-            if (email.trim() === '') {
-                $('#email-error').text('Field required');
-                return;
-            }
-            if (password.trim() === '') {
-                $('#password-error').text('Field required');
-                return;
-            }
-            if (confirm_password.trim() === '') {
-                $('#confirm-password-error').text('Field required');
-                return;
-            }
-    
+
             // Validate username format
-            if (username.length >= 11 && !usernamePattern.test(username)) {
-                $('#username-error').text('Invalid Matric Number');
-                return;
+            if (username.length >= 1) {
+                if (usernamePattern.test(username)) {
+                    $('#username-error').empty();
+                    isValiduser = true;
+                } else {
+                    $('#username-error').text('Not a Valid Statistics Matric Number (sta/**/****)');
+                    isValiduser = false;
+                }
             }
     
             // Validate email format
-            var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-            if (email.length > 0 && !emailPattern.test(email)) {
-                $('#email-error').text('Invalid email format');
-                return;
+            if (email.length > 0) {
+                var emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                if (!emailPattern.test(email)) {
+                    $('#email-error').text('Invalid email format');
+                    isValidemail = false;
+                } else {
+                    $('#email-error').empty();
+                    isValidemail = true;
+                }
             }
-    
+            
+            // Validate field required
+            if (fullname.trim() === '' && username.trim() === '' && email.trim() === '' && password.trim() === '' && confirm_password.trim() === '') {
+                $('#fullname-error').text('Field required');
+                isValidfull = false;
+            }else {
+                isValidfull = true;
+            }
+
             // Validate password match
             if (password != confirm_password) {
                 $('#password-error').text('Password does not match');
-                return;
+                isValidpass = false;
+            }else{
+                isValidpass = true;
             }
-    
-            // Send AJAX request
-            $.ajax({
-                url: '{% url "register" %}',
-                type: 'POST',
-                data: {
-                    'fullname': fullname,
-                    'username': username.replace(/\//g, ''),
-                    'email': email,
-                    'password1': password,
-                    'password2': confirm_password,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    var successMessage = response.success;
-                    // Display success message in SweetAlert popup
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: successMessage,
-                    }).then(function() {
-                        window.location.href = '{% url "login" %}';
-                    })
-    
-                },
-                error: function(xhr) {
-                    // Handle error response
-                    if (xhr.status === 400) {
-                        var errorData = xhr.responseJSON;
-                        var errorMessage = errorData.error;
-                        
-                        // Display error message in SweetAlert popup
+            
+            if (isValiduser && isValidemail && isValidfull && isValidpass) {
+                // Send AJAX request
+                $.ajax({
+                    url: '{% url "register" %}',
+                    type: 'POST',
+                    data: {
+                        'fullname': fullname,
+                        'username': username.replace(/\//g, ''),
+                        'email': email,
+                        'password1': password,
+                        'password2': confirm_password,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        var successMessage = response.success;
+                        // Display success message in SweetAlert popup
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: errorMessage,
-                        });
+                            icon: 'success',
+                            title: 'Success',
+                            text: successMessage,
+                        }).then(function() {
+                            window.location.href = '{% url "login" %}';
+                        })
+        
+                    },
+                    error: function(xhr) {
+                        // Handle error response
+                        if (xhr.status === 400) {
+                            var errorData = xhr.responseJSON;
+                            var errorMessage = errorData.error;
+                            
+                            // Display error message in SweetAlert popup
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: errorMessage,
+                            });
+                        }
                     }
-                }
-            });
+                });
+            }else{
+                // Display error message in SweetAlert popup
+                Swal.fire({
+                    icon: 'error',
+                    title: '😭',
+                    text: "You want to stress me, 😫 Please Correct your Details"
+                });
+            }
         });
     });
     

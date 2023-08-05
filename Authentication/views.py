@@ -10,6 +10,7 @@ from .forms import LoginForm, RegisterForm
 from .tasks import send_email_func  
 from .utils import generate_token, generate_link, decode_token, generate_password_reset_token
 from .models import User
+from Log.models import Log
 
 class LoginView(View):
     def get(self, request):
@@ -19,6 +20,7 @@ class LoginView(View):
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
+        # print(username, password, 'dtals')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             if user.is_email_verified == False:
@@ -40,20 +42,24 @@ class RegisterView(View):
         return render(request, 'Auth/register.html', {'form': form})
 
     def post(self, request):
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
+        try:
+            # print(request.POST,"post-values")
+            # form = RegisterForm(request.POST)
+            
+            username = request.POST['username']
+            email = request.POST['email']
             
             # Check if username or email already exists
-            if User.objects.filter(username=username).exists():
-                return JsonResponse({'error': 'Username already exists'}, status=400)
-            elif User.objects.filter(email=email).exists():
-                return JsonResponse({'error': 'Email already exists'}, status=400)
-            
-            user = form.save(commit=False)
-            user.save()
+            if User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists():
+                return JsonResponse({'error': 'Username or Email already exists'}, status=400)
 
+            user = User.objects.create(
+                fullname = request.POST["fullname"],
+                username = request.POST["username"],
+                email =  request.POST["email"],
+            )
+            user.set_password(request.POST["password1"])
+            user.save(update_fields=["password"])
             # Generate verification token
             uid, token = generate_token(user)
 
@@ -65,9 +71,14 @@ class RegisterView(View):
             # Send verification email asynchronously
             send_email_func.delay(user.fullname, user.email, 'Sta Archive Account Verification' ,verification_link,type_="verify") #TODO Schedule the email sending task asynchronously
             return JsonResponse({'success': 'Registration Successful, Check Email to Verify \n check Spam Folder if you didnt find mail.'}, status=200)  # Return sucess response
-        else:
-            return JsonResponse({'error': f'Username or Email Already Exists'}, status=400)  # Return error response
-
+            # else:
+            #     print(form,"form")
+            #     return JsonResponse({'error': f'Error Encountered, Please check your Details again'}, status=400)  # Return error response
+        except Exception:
+            Log.objects.create(GeneratedBy="RegisterView", ExceptionMessage=Exception)
+            return JsonResponse({'error': 'An error Occurred which has been logged , We are sorry and would fix immediately, Try Again Later'}, status=400)  # Return error response
+            
+            
 class VerifyEmailView(View):
     def get(self, request, uidb64, token):
         try:
