@@ -26,7 +26,7 @@
                                 <form id="resource-search-form" action={% url 'resource-search' %} class="header-item-search">
                                     {% csrf_token %}
                                     <div class="input-group search-input">
-                                        {% render_field filter.form.search class+="form-control" placeholder="Search Books Textbooks Projects Here"%}
+                                        {% render_field filter.form.search class+="form-control" placeholder="Type to search for Books, Textbooks & Projects Here"%}
                                     </div>
                                 </form>
                             </div>
@@ -177,10 +177,19 @@ $(document).ready(function () {
     });
 
     // Add event listener to the search input change
-    $(".header-item-search input[name='search']").on("input", function() {
-        toggleSessionDropdown();
-        handleFilterChange(); // Also call the handleFilterChange function to update the results
+    $(".header-item-search input[name='search']").on("keypress", function(event) {
+        // Check if the Enter key (key code 13) was pressed
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        } else {
+            toggleSessionDropdown();
+            handleFilterChange(); // Also call the handleFilterChange function to update the results
+        }
     });
+
+
+    
+    
     
     // Function to hide the preloader
     function hidePreloader() {
