@@ -110,7 +110,7 @@ $(document).ready(function () {
                 modal_close.click();
                 // console.log(xhr.responseText, status, error);
                 // Display the success message
-                const errorMessage = `Your file hasnt been uploaded \n\n  ${xhr.responseText}, \n Try again!. If problem persist contact admin@sta-archive.com`;  
+                const errorMessage = `Your file hasnt been uploaded \n\n  ${xhr.responseText}, \n Try again!. If problem persist contact sta.archive.app@gmail.com`;  
                 Swal.fire({
                     icon: "error",
                     title: "Upload Not Successful!",
