@@ -97,7 +97,6 @@ class UploadResources(LoginRequiredMixin, View):
             textbook_author = request.POST.get('textbookAuthor')
             file = request.FILES.get('textbookFile')
             
-            print("TYpe", file.content_type)
             
             if file.content_type == 'application/pdf':
                 # Check if a similar TextBook object already exists
