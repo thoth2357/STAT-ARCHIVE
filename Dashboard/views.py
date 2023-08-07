@@ -253,7 +253,7 @@ class ResourcesReportView(LoginRequiredMixin, View):
     login_url = '/'
     redirect_field_name = 'redirect_to'
     def post(self,request):
-        category = request.POST.get('cagetory')
+        category = request.POST.get('category')
         name = request.POST.get('name')
         message = request.POST.get('message')
         

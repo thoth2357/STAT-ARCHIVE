@@ -71,7 +71,7 @@ class Report(models.Model):
     Message = models.TextField()
     
     def __str__(self) -> str:
-        return f"{self.Name}- {self.Category}"
+        return f"{self.Resource_name}- {self.Category}"
     
     
     
