@@ -69,7 +69,7 @@ class RegisterView(View):
             # print(verification_link, 'link')
             
             # Send verification email asynchronously
-            send_email_func.delay(user.fullname, user.email, 'Sta Archive Account Verification' ,verification_link,type_="verify") #TODO Schedule the email sending task asynchronously
+            send_email_func.delay(user.fullname, user.email, 'Sta Archive Account Verification' ,verification_link,type_="verify") 
             return JsonResponse({'success': 'Registration Successful, Check Email to Verify \n check Spam Folder if you didnt find mail.'}, status=200)  # Return sucess response
             # else:
             #     print(form,"form")
@@ -112,7 +112,7 @@ class ForgotPasswordView(View):
             # Send the password reset email
             message = f'Hello {user.fullname},\n\nTo reset your password, click on the following link:\n\n{reset_url}\n\nIf you did not request a password reset, please ignore this email.\n\nBest regards,\nStat-Archive Team'
             print("RESET password", message)
-            send_email_func.delay(user.fullname, user.email, 'Sta Archive Password Reset' ,reset_url,type_='reset') #TODO Schedule the email sending task asynchronously
+            send_email_func.delay(user.fullname, user.email, 'Sta Archive Password Reset' ,reset_url,type_='reset') 
             
             # Display a success message or redirect to a success page
             return JsonResponse({'success': 'Password reset email sent. \n check Spam Folder if you didnt find mail.'}, status=200)

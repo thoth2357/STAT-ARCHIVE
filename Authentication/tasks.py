@@ -20,26 +20,28 @@ def send_email_func(self, user, email, subject, message, type_):
         # Use Django's send_mail() function or any email sending library of your choice
         if type_ == "verify":
             html_message = render_to_string('Auth/verify_email.html', context)
+        elif type_ == "report":
+            html_message = render_to_string('Auth/report_resource_email.html', context)
         else:
             html_message = render_to_string('Auth/forgot_password_email.html', context)
         # print(html_message, "message-html")
         send_mail(subject, message="", from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email], html_message=html_message)
 
-    except Exception:
+    except Exception as e:
         # Retry the task in case of failure
         delay = 2**self.request.retries  # exponential backoff delay
         if self.request.retries == self.max_retries:
             # Maximum number of retries exceeded
-            # Log the error or handle it as required
-            Log.objects.create(
+            # Log the error
+            Log.objects.create( 
                 GeneratedBy="send email",
-                ExceptionMessage=f"Email sending failed for {email}. Max retries exceeded.\n{Exception}",
+                ExceptionMessage=f"Email sending failed for {email}. Max retries exceeded.\n{e}",
             )
         else:
             # Retry the task after the delay
             Log.objects.create(
                 GeneratedBy="send email",
-                ExceptionMessage=f"Email sending failed for {email}. Max retries exceeded.\n{Exception}",
+                ExceptionMessage=f"Email sending failed for {email}.\n{e}",
             )
             print(f"Email sending failed for {email}. Retrying in {delay} seconds.")
             sleep(delay)
