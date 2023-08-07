@@ -66,7 +66,7 @@ class Project(models.Model):
 
 
 class Report(models.Model):
-    Resource_name = models.CharField(max_length=50),
+    Resource_name = models.CharField(max_length=50,)
     Category = models.CharField(max_length=50)
     Message = models.TextField()
     

@@ -259,7 +259,7 @@ class ResourcesReportView(LoginRequiredMixin, View):
         
         try:
             report_object = Report.objects.create(
-                Name = name,
+                Resource_name = name,
                 Category = category,
                 Message = message
             )
