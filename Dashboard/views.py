@@ -83,8 +83,8 @@ class UploadResources(LoginRequiredMixin, View):
                     with open(output_path, 'rb') as image_file:
                         pq_object.thumbnail.save(f'{thumbnail_name}.png', File(image_file))
                         remove_duplicate_file_from_path(output_path)
-                except Exception as e:
-                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                except Exception as error_message:
+                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=error_message)
 
                 return JsonResponse({'status': 'success'})
             else:
@@ -123,8 +123,8 @@ class UploadResources(LoginRequiredMixin, View):
                     with open(thumbnail_path, 'rb') as image_file:
                         txb_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                         remove_duplicate_file_from_path(thumbnail_path)
-                except Exception as e:
-                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                except Exception as error_message:
+                    Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=error_message)
                     ... 
                 return JsonResponse({'status': 'success'})
             else:
@@ -164,8 +164,8 @@ class UploadResources(LoginRequiredMixin, View):
                         with open(thumbnail_path, 'rb') as image_file:
                             prj_object.thumbnail.save(f'{filename}.jpg', File(image_file))
                             remove_duplicate_file_from_path(thumbnail_path)
-                    except Exception as e:
-                        Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=e)
+                    except Exception as error_message:
+                        Log.objects.create(GeneratedBy="UploadResourcesView", ExceptionMessage=error_message)
                         
                     return JsonResponse({'status': 'success'})
             else:
@@ -240,9 +240,9 @@ class ResourcesSearch(LoginRequiredMixin, FilterView):
                     # print(serialized_data, "seeeeeeeeeeeee")
                     serialized_data = sorted(serialized_data, key=lambda x: x['date-uploaded'],reverse=True)
                     # print("\n\nserialized_data", serialized_data)
-            except Exception as e:
+            except Exception as error_message:
                 # Handle any exceptions that may occur during serialization
-                Log.objects.create(GeneratedBy="ResourcesSearchView->AttributeError", ExceptionMessage=e)                
+                Log.objects.create(GeneratedBy="ResourcesSearchView->AttributeError", ExceptionMessage=error_message)                
 
         # Return the JSON response with the serialized data
         return JsonResponse(serialized_data, safe=False)
@@ -264,8 +264,8 @@ class ResourcesReportView(LoginRequiredMixin, View):
             )
             report_object.save()
             return JsonResponse({"status":"success"})
-        except Exception as e:
-            Log.objects.create(GeneratedBy="ResourcesReportView", ExceptionMessage=e)
+        except Exception as error_message:
+            Log.objects.create(GeneratedBy="ResourcesReportView", ExceptionMessage=error_message)
             return HttpResponseServerError("Error in saving Report")
 
 def custom_404(request, exception):

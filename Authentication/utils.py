@@ -2,6 +2,8 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator, default_toke
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.models import Group
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
@@ -34,3 +36,10 @@ def generate_password_reset_token(request, user):
     expiration = timezone.now() + timedelta(minutes=10)
     link = request.build_absolute_uri(reverse('reset_password')) + f'?token={token}'
     return token,expiration,link
+
+def get_librarian_for_level(username):
+    username = username[0:5]
+    librarian =  User.objects.filter(Q(groups__name=Group.objects.get(name='Librarian'))&Q(username__startswith=username))
+    librarian_email = librarian.values_list('email', flat=True).first()
+    print(librarian_email, "librarian_email")
+    return librarian_email

@@ -17,4 +17,4 @@ def send_report_email(sender, instance, created, **kwargs):
         
         #send email to all users in librarian group
         for email in emails:
-            send_email_func.delay("Librarian", email, 'Sta Archive Resource Report' ,"A user Has reported a resource",type_="report")
+            send_email_func.delay("Librarian", email, 'Sta Archive Resource Report' ,"A user Has reported a resource",type_="report",username="Librarian")

@@ -31,8 +31,8 @@ def generate_textbook_thumbnail(file, destination):
         print(thumbnail_path, "thumbnail-path")
         images[0].save(thumbnail_path, 'JPEG')
         return thumbnail_path, filename
-    except Exception as e:
-        Log.objects.create(GeneratedBy="generate_textbook_thumbnail", ExceptionMessage=e)
+    except Exception as error_message:
+        Log.objects.create(GeneratedBy="generate_textbook_thumbnail", ExceptionMessage=error_message)
 
 
 def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, session, pq_type, thumbnail_name):
@@ -64,8 +64,8 @@ def create_pastquestion_thumbnail(course_name, course_code, lecturer_name, sessi
         output_path = os.path.join(settings.BASE_DIR, f'media/resources/images/{thumbnail_name}.png')
         imgkit.from_string(html_code, output_path, options=options, css=css)
         return output_path
-    except Exception as e:
-        Log.objects.create(GeneratedBy="create_pastquestion_thumbnail", ExceptionMessage=e)
+    except Exception as error_message:
+        Log.objects.create(GeneratedBy="create_pastquestion_thumbnail", ExceptionMessage=error_message)
 
 def convert_list_to_queryset(my_list: List, Model1: Model, Model2: Model, Model3: Model):
     # Get the primary keys of the objects for each model

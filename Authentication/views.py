@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import JsonResponse
 from django.utils import timezone
+from django.contrib.sites.shortcuts import get_current_site
+
 
 from .forms import LoginForm, RegisterForm
 from .tasks import send_email_func
@@ -99,6 +101,7 @@ class RegisterView(View):
                 "Sta Archive Account Verification",
                 verification_link,
                 type_="verify",
+                username=user.username
             )
             return JsonResponse(
                 {
@@ -109,8 +112,8 @@ class RegisterView(View):
             # else:
             #     print(form,"form")
             #     return JsonResponse({'error': f'Error Encountered, Please check your Details again'}, status=400)  # Return error response
-        except Exception:
-            Log.objects.create(GeneratedBy="RegisterView", ExceptionMessage=Exception)
+        except Exception as error_message:
+            Log.objects.create(GeneratedBy="RegisterView", ExceptionMessage=error_message)
             return JsonResponse(
                 {
                     "error": "An error Occurred which has been logged , We are sorry and would fix immediately, Try Again Later"
@@ -121,11 +124,23 @@ class RegisterView(View):
 
 class VerifyEmailView(View):
     def get(self, request, uidb64, token):
+        admin_site = f"{get_current_site(request)}/admin/Authentication/user/"
         try:
             user, token_generator = decode_token(uidb64)
+            print(user,token_generator,uidb64)
             if token_generator.check_token(user, token):
                 user.is_email_verified = True
                 user.save()
+                
+                # Send verification email asynchronously
+                send_email_func.delay(
+                    user.fullname,
+                    None,
+                    "Sta Archive Account Verification",
+                    admin_site,
+                    type_="approve",
+                    username=user.username
+                )
                 return render(request, "Auth/verification_sucess.html")
             else:
                 return render(request, "Auth/verification_error.html")
@@ -160,6 +175,7 @@ class ForgotPasswordView(View):
                 "Sta Archive Password Reset",
                 reset_url,
                 type_="reset",
+                username=user.username
             )
 
             # Display a success message or redirect to a success page

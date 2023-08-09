@@ -5,14 +5,15 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from time import sleep
+from .utils import get_librarian_for_level
 from Log.models import Log
+from typing import Optional
 
 
 @shared_task(bind=True, max_retries=3)
-def send_email_func(self, user, email, subject, message, type_):
+def send_email_func(self, user, email:Optional[str], subject, message, type_, username:Optional[str]=None):
     try:
         context = {
-            
             'username': user,
             'verification_link': message
         }
@@ -22,12 +23,15 @@ def send_email_func(self, user, email, subject, message, type_):
             html_message = render_to_string('Auth/verify_email.html', context)
         elif type_ == "report":
             html_message = render_to_string('Auth/report_resource_email.html', context)
+        elif type_ == "approve":
+            email = get_librarian_for_level(username)
+            html_message = render_to_string('Auth/approve_user_notice.html', context)
         else:
             html_message = render_to_string('Auth/forgot_password_email.html', context)
         # print(html_message, "message-html")
         send_mail(subject, message="", from_email=settings.DEFAULT_FROM_EMAIL, recipient_list=[email], html_message=html_message)
 
-    except Exception as e:
+    except Exception as error_message:
         # Retry the task in case of failure
         delay = 2**self.request.retries  # exponential backoff delay
         if self.request.retries == self.max_retries:
@@ -35,14 +39,14 @@ def send_email_func(self, user, email, subject, message, type_):
             # Log the error
             Log.objects.create( 
                 GeneratedBy="send email",
-                ExceptionMessage=f"Email sending failed for {email}. Max retries exceeded.\n{e}",
+                ExceptionMessage=f"Email sending failed for {email}. Max retries exceeded.\n{error_message}",
             )
         else:
             # Retry the task after the delay
             Log.objects.create(
                 GeneratedBy="send email",
-                ExceptionMessage=f"Email sending failed for {email}.\n{e}",
+                ExceptionMessage=f"Email sending failed for {email}.\n{error_message}",
             )
             print(f"Email sending failed for {email}. Retrying in {delay} seconds.")
             sleep(delay)
-            self.retry(exc=Exception)
+            self.retry(exc=error_message)
