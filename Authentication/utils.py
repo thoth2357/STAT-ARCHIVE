@@ -39,7 +39,7 @@ def generate_password_reset_token(request, user):
 
 def get_librarian_for_level(username):
     username = username[0:5]
-    librarian =  User.objects.filter(Q(groups__name=Group.objects.get(name='Librarian'))&Q(username__startswith=username))
+    librarian =  User.objects.filter(Q(groups__name=Group.objects.get(name='Classrep'))&Q(username__startswith=username))
     librarian_email = librarian.values_list('email', flat=True).first()
     print(librarian_email, "librarian_email")
     return librarian_email
