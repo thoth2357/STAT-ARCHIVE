@@ -105,7 +105,7 @@ class RegisterView(View):
             )
             return JsonResponse(
                 {
-                    "success": "Registration Successful, Check Email to Verify \n check Spam Folder if you didnt find mail."
+                    "success": "Registration Successful ✅, Check Email ✉️ to Verify \n check Spam Folder 📁 if you didnt find mail."
                 },
                 status=200,
             )  # Return sucess response
@@ -127,7 +127,7 @@ class VerifyEmailView(View):
         admin_site = f"{get_current_site(request)}/admin/Authentication/user/"
         try:
             user, token_generator = decode_token(uidb64)
-            print(user,token_generator,uidb64)
+            # print(user,token_generator,uidb64)
             if token_generator.check_token(user, token):
                 user.is_email_verified = True
                 user.save()

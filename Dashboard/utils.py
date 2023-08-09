@@ -28,7 +28,7 @@ def generate_textbook_thumbnail(file, destination):
         output_dir = os.path.join(settings.BASE_DIR, destination)
         os.makedirs(output_dir, exist_ok=True)  # Create the output directory if it doesn't exist
         thumbnail_path = os.path.join(output_dir, f'{filename}_thumbnail.jpg')
-        print(thumbnail_path, "thumbnail-path")
+        # print(thumbnail_path, "thumbnail-path")
         images[0].save(thumbnail_path, 'JPEG')
         return thumbnail_path, filename
     except Exception as error_message:
