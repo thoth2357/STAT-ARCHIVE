@@ -23,6 +23,7 @@ boto3 = "^1.28.19"
 requests = "^2.31.0"
 gunicorn = "^21.2.0"
 typing-extensions = "^4.7.1"
+django-jazzmin = "^2.6.0"
 
 
 [tool.poetry.group.dev.dependencies]
