@@ -11,10 +11,11 @@ from django.db.models import Q
 @receiver(post_save, sender=Report)
 def send_report_email(sender, instance, created, **kwargs):
     if created:
-        #get users in librarian group
-        users = User.objects.filter(Q(groups__name=Group.objects.get(name='Librarian')))
-        emails = list(users.values_list('email', flat=True))
+        email = "librarian@staarchive.com.ng"
+        # #get users in librarian group
+        # users = User.objects.filter(Q(groups__name=Group.objects.get(name='Librarian')))
+        # emails = list(users.values_list('email', flat=True))
         
-        #send email to all users in librarian group
-        for email in emails:
-            send_email_func.delay("Librarian", email, 'Sta Archive Resource Report' ,"A user Has reported a resource",type_="report",username="Librarian")
+        # #send email to all users in librarian group
+        # for email in emails:
+        send_email_func.delay("Librarian", email, 'Sta Archive Resource Report' ,"A user Has reported a resource",type_="report",username="Librarian")
