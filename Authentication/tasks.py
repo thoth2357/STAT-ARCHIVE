@@ -25,7 +25,9 @@ def send_email_func(self, user, email:Optional[str], subject, message, type_, us
             html_message = render_to_string('Auth/report_resource_email.html', context)
         elif type_ == "approve":
             email = get_librarian_for_level(username)
-            html_message = render_to_string('Auth/approve_user_notice.html', context)
+            html_message = render_to_string('Auth/approve_user_notice_librarian.html', context)
+        elif type_ == "notify_approve":
+            html_message = render_to_string('Auth/approve_user_notice_user.html',context)
         else:
             html_message = render_to_string('Auth/forgot_password_email.html', context)
         # print(html_message, "message-html")
