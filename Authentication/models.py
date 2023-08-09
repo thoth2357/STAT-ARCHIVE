@@ -8,6 +8,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
     is_email_verified = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)
     reset_token = models.CharField(max_length=100, blank=True, null=True)
     reset_token_expiration = models.DateTimeField(blank=True, null=True)
 
