@@ -192,8 +192,8 @@ JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "STA ARCHIVE",
     "site_header": "Admin",
-    "site_logo": "/assets/img/futa-logo.jpeg",
-    "login_logo": "/assets/img/futa-logo.jpeg",
+    "site_logo": "assets/img/futa-logo.jpeg",
+    "login_logo": "assets/img/futa-logo.jpeg",
     "welcome_sign": "Welcome to the STA Archive Admin Page",
     "copyright": "staarchive.com.ng",
     
